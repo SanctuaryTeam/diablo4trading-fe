@@ -44,5 +44,17 @@ docker compose up
 ## Running commands on Docker service
 
 ```bash
-docker-compose run web-app yarn add my-package --save-dev
+docker-compose run web-app yarn add my-package --dev
+```
+
+## Running prettier
+
+```bash
+npm run format
+```
+
+or to save changes
+
+```bash
+npm run format --write
 ```
