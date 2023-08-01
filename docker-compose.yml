@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  web-app:
+    # Use the image built from the Dockerfile in the current directory
+    build:
+      context: .
+      args:
+        SANCTUARYTEAM_AUTH_TOKEN: ${SANCTUARYTEAM_AUTH_TOKEN}
+    # Read environment variables from the .env file
+    env_file:
+      - .env
+    # Specify the working directory inside the container
+    working_dir: /app
+    # Mount the current directory into the container for live code editing
+    volumes:
+      - .:/app
+    # Expose the development server port (if needed)
+    ports:
+      - "5173:5173"
+    # Install and run the development server using Yarn
+    command:
+      - sh
+      - -c
+      - |
+        yarn install
+        yarn dev --host

@@ -58,6 +58,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         query = {},
     } = payload;
 
+    const isSeasonalItemType = (type: Game.ItemType) => [Game.ItemType.Amulet, Game.ItemType.Ring].includes(type);
+
     return (
         <form onSubmit={handleSubmit}>
             <Card sx={{ p: 2, pt: 0 }}>
@@ -72,7 +74,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                                             onChange={item => setPayload({ ...payload, query: { ...query, item } })}
                                         />
                                     </Grid>
-                                    {SEASONAL_SERVERS.includes(serverType) && (
+                                    {SEASONAL_SERVERS.includes(serverType) && isSeasonalItemType(query?.item?.type) && (
                                         <Grid item xs={12}>
                                             <SearchFilterSeasonal
                                                 value={query.seasonal}
