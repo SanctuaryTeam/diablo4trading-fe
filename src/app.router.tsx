@@ -2,8 +2,13 @@ import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
 import { Common } from './modules/common';
 import { I18n } from './modules/i18n';
 import { Trade } from './modules/trade';
+import { Auth } from './modules/auth';
 
 export const router = createBrowserRouter([
+    {
+        path: 'auth/*',
+        element: (<Auth.Element />)
+    },
     {
         path: ':language?',
         element: (

@@ -3,10 +3,12 @@ import { useLingui } from '@lingui/react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from '@mui/material';
 import { useAuth } from '../providers';
+import { useNavigate } from 'react-router-dom';
 
 export const HeaderUser: React.FC = (
 
 ) => {
+    const navigate = useNavigate();
     const { i18n } = useLingui();
 
     const { user, login } = useAuth();
@@ -14,7 +16,7 @@ export const HeaderUser: React.FC = (
         return (
             <Button
                 startIcon={<AccountCircleIcon />}
-                onClick={login}
+                onClick={() => navigate('/auth/discord')}
             >
                 {t(i18n)`Login`}
             </Button>
