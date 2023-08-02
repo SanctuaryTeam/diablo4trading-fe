@@ -35,10 +35,12 @@ export const Header: React.FC = (
 
     // TODO: add routes
     const tradePath = useResolvedPath('./trade');
+    const servicesPath = useResolvedPath('./services');
     const faqPath = useResolvedPath('./faq');
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
+        { ...servicesPath, label: t(i18n)`Services` },
         { ...faqPath, label: t(i18n)`FAQ` }
     ];
 

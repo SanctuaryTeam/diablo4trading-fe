@@ -11,8 +11,8 @@ export const Nav: React.FC = () => {
     const listingsPath = useResolvedPath('./listings');
 
     const paths = [
-        { ...searchPath, label: t(i18n)`Search for Items` },
-        { ...listingsPath, label: t(i18n)`My Listings` },
+        { ...searchPath, label: t(i18n)`Search for Services` },
+        { ...listingsPath, label: t(i18n)`My Services` },
     ];
 
     return <Common.NavTabs paths={paths} />;

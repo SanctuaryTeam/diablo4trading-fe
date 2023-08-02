@@ -1,22 +1,25 @@
 import { Common } from '@modules/common';
 import { RouteAuth } from '@modules/route-auth';
+import { RouteServices } from '@modules/route-services';
 import { RouteTrade } from '@modules/route-trade';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
+import { MasterLayout } from './app.master.layout';
+import { NotFoundPage } from './app.not-found.page';
 
 export const router = createBrowserRouter([
     {
         path: 'auth/*',
         element: (
-            <Common.MasterLayout hideHeader>
+            <MasterLayout hideHeader>
                 <RouteAuth.Element />
-            </Common.MasterLayout>
+            </MasterLayout>
         )
     },
     {
         path: ':language?',
         element: (
             <Common.RouteLanguageProvider indexPath='trade'>
-                <Common.MasterLayout>
+                <MasterLayout>
                     <Common.AssetsProvider>
                         {loading => {
                             if (loading) {
@@ -29,14 +32,14 @@ export const router = createBrowserRouter([
                             return <Outlet />;
                         }}
                     </Common.AssetsProvider>
-                </Common.MasterLayout>
+                </MasterLayout>
             </Common.RouteLanguageProvider>
         ),
         children: [
             { index: true, element: <Navigate to='trade' replace /> },
             { path: 'trade/*', element: <RouteTrade.Element /> },
-            // { path: 'services/*', element: <Trade.Element /> },
-            { path: '*', element: <Common.NotFoundPage /> }
+            { path: 'services/*', element: <RouteServices.Element /> },
+            { path: '*', element: <NotFoundPage /> }
         ]
     }
 ]);
