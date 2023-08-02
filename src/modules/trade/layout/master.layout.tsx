@@ -1,6 +1,7 @@
 import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { Common } from '@modules/common';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, IconButton, Stack, Tab, Tabs, Typography } from '@mui/material';
@@ -8,7 +9,6 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import { useNavigate, useResolvedPath } from 'react-router';
 import { matchPath, useMatches } from 'react-router-dom';
-import { Common } from '../../common';
 import { useAssets, useServerType } from '../providers';
 
 const ServerTypeIcon = styled('img')(() => ({

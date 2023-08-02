@@ -1,6 +1,6 @@
 import { Game } from '@diablosnaps/common';
+import { Common } from '@modules/common';
 import { Navigate, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
-import { Common } from '../common';
 import { MasterLayout } from './layout';
 import { ListingsPage, SearchPage } from './pages';
 import { AssetsProvider, ServerTypeProvider } from './providers';

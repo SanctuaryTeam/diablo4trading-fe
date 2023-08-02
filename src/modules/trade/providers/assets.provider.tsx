@@ -1,7 +1,7 @@
 import { Assets } from '@diablosnaps/assets';
 import { Game } from '@diablosnaps/common';
+import { I18n } from '@modules/i18n';
 import React, { useEffect } from 'react';
-import { I18n } from '../../i18n';
 import { AssetsContext } from './assets.context';
 
 interface AssetsProviderProps {

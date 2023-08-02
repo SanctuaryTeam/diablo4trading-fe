@@ -22,13 +22,17 @@ i18n.load(Language.TraditionalChinese, TraditionalChinese);
 /* eslint-enable @typescript-eslint/no-unsafe-argument */
 
 interface SwitchProps {
+    language?: Language;
     children?: React.ReactNode;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
+    language: fallbackLanguage,
     children
 }) => {
-    const { language } = useLanguage();
+    const { language } = useLanguage() || {
+        language: fallbackLanguage
+    };
     const [current, setCurrent] = React.useState<Language>();
 
     React.useEffect(() => {

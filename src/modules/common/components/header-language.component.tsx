@@ -1,8 +1,8 @@
+import { I18n } from '@modules/i18n';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Button, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { I18n } from '../../i18n';
 
 export const HeaderLanguage: React.FC = (
 
