@@ -1,0 +1,4 @@
+node_modules
+public
+dist
+src/modules/i18n/languages

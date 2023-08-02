@@ -6,7 +6,6 @@ import { FOOTER_HEIGHT, Footer, HEADER_HEIGHT, Header } from '../components';
 
 const Main = styled('main')(() => ({
     display: 'flex',
-    minHeight: `calc(100vh - ${HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)`,
     backgroundImage: `url(${background})`,
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
@@ -15,10 +14,12 @@ const Main = styled('main')(() => ({
 }));
 
 interface MasterLayoutProps {
+    hideHeader?: boolean;
     children?: React.ReactNode;
 }
 
 export const MasterLayout: React.FC<MasterLayoutProps> = ({
+    hideHeader,
     children
 }) => {
     return (

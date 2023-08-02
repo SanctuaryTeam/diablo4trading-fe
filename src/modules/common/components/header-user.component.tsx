@@ -1,20 +1,23 @@
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { Redux } from '@modules/redux';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button } from '@mui/material';
-import { useAuth } from '../providers';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const HeaderUser: React.FC = (
 
 ) => {
     const { i18n } = useLingui();
+    const navigate = useNavigate();
 
-    const { user, login } = useAuth();
+    const user = useSelector(Redux.AuthSelectors.getUser);
     if (!user) {
         return (
             <Button
                 startIcon={<AccountCircleIcon />}
-                onClick={login}
+                onClick={() => navigate('/auth/discord')}
             >
                 {t(i18n)`Login`}
             </Button>

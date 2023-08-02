@@ -51,13 +51,14 @@ export const Header: React.FC = (
         setMobileOpen(prev => !prev);
     };
 
-    const tabValue = items.findIndex(p => {
+    const tabValue = Math.max(0, items.findIndex(p => {
         const match = matchPath({
             path: p.pathname,
             end: false
         }, matches[matches.length - 1].pathname);
         return match !== null;
-    });
+    }));
+
     const handleTabClick = (index: number) => {
         navigate(items[index]);
         setMobileOpen(false);

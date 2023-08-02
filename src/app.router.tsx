@@ -1,8 +1,17 @@
+import { Auth } from '@modules/auth';
 import { Common } from '@modules/common';
 import { Trade } from '@modules/trade';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
+    {
+        path: 'auth/*',
+        element: (
+            <Common.MasterLayout hideHeader>
+                <Auth.Element />
+            </Common.MasterLayout>
+        )
+    },
     {
         path: ':language?',
         element: (

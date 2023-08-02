@@ -12,7 +12,13 @@
     "paths": {
       "@assets/*": [
         "./src/assets/*"
-      ]
+      ],
+      "@config": [
+        "./src/config.ts"
+      ],
+      "@modules/*": [
+        "./src/modules/*"
+      ],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",
