@@ -2,6 +2,7 @@ import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import { Redux } from '@modules/redux';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, SimplifiedChinese, Spanish, TraditionalChinese, Turkish } from '../i18n';
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument */

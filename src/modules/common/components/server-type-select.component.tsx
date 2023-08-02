@@ -7,6 +7,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, IconButton, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
+import { useAssets, useRouteServerType } from '../providers';
 
 const ServerTypeIcon = styled('img')(() => ({
     width: 48,
@@ -15,9 +16,9 @@ const ServerTypeIcon = styled('img')(() => ({
 
 export const ServerTypeSelect: React.FC = () => {
     const { i18n } = useLingui();
-    const { language, translations } = Common.useAssets();
+    const { language, translations } = useAssets();
 
-    const [serverType, setServerType] = Common.useRouteServerType();
+    const [serverType, setServerType] = useRouteServerType();
     const handleServerTypeClick = (offset: number) => {
         const serverTypes = Object.values(Game.ServerType);
         const index = serverTypes.indexOf(serverType);
