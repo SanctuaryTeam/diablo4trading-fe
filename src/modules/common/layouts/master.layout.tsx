@@ -23,9 +23,17 @@ export const MasterLayout: React.FC<MasterLayoutProps> = ({
 }) => {
     return (
         <React.Fragment>
-            <Header />
-            <Main>
-                <Container maxWidth='xl'>
+            {!hideHeader && <Header />}
+            <Main sx={{
+                minHeight: `calc(100vh - ${hideHeader ? 0 : HEADER_HEIGHT}px - ${FOOTER_HEIGHT}px)`,
+            }}>
+                <Container
+                    maxWidth='xl'
+                    sx={{
+                        pt: 4,
+                        pb: 2
+                    }}
+                >
                     {children}
                 </Container>
             </Main>

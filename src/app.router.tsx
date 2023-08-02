@@ -1,23 +1,32 @@
+import { Common } from '@modules/common';
+import { Trade } from '@modules/trade';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
-import { Common } from './modules/common';
-import { I18n } from './modules/i18n';
-import { Trade } from './modules/trade';
 
 export const router = createBrowserRouter([
     {
         path: ':language?',
         element: (
-            <I18n.LanguageProvider>
-                <I18n.Switch>
-                    <Common.MasterLayout>
-                        <Outlet />
-                    </Common.MasterLayout>
-                </I18n.Switch>
-            </I18n.LanguageProvider>
+            <Common.RouteLanguageProvider indexPath='trade'>
+                <Common.MasterLayout>
+                    <Common.AssetsProvider>
+                        {loading => {
+                            if (loading) {
+                                return (
+                                    <Common.FloatingPanel>
+                                        <Common.Spinner />
+                                    </Common.FloatingPanel>
+                                );
+                            }
+                            return <Outlet />;
+                        }}
+                    </Common.AssetsProvider>
+                </Common.MasterLayout>
+            </Common.RouteLanguageProvider>
         ),
         children: [
             { index: true, element: <Navigate to='trade' replace /> },
             { path: 'trade/*', element: <Trade.Element /> },
+            // { path: 'services/*', element: <Trade.Element /> },
             { path: '*', element: <Common.NotFoundPage /> }
         ]
     }

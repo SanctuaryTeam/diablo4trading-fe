@@ -2,13 +2,12 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { Button, Menu, MenuItem } from '@mui/material';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import { I18n } from '../../i18n';
 
 export const HeaderLanguage: React.FC = (
 
 ) => {
     const location = useLocation();
-    const i18n = I18n.useLanguage();
+    const [routeLanguage, setRouteLanguage] = useRouteLanguage();
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement>();
     const open = Boolean(anchorEl);

@@ -20,7 +20,7 @@ const config: LinguiConfig = {
     sourceLocale: "en-US",
     catalogs: [
         {
-            path: "src/modules/i18n/languages/{locale}",
+            path: "src/modules/common/i18n/{locale}",
             include: [
                 "src"
             ],

@@ -1,9 +1,9 @@
 import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { Common } from '@modules/common';
 import { Autocomplete, TextField } from '@mui/material';
 import { matchSorter } from 'match-sorter';
-import { useAssets } from '../../providers';
 
 interface CharacterClassInputProps {
     value: Game.Class;
@@ -19,7 +19,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
     onChange,
 }) => {
     const { i18n } = useLingui();
-    const { language, translations } = useAssets();
+    const { language, translations } = Common.useAssets();
 
     const options = Object
         .values(Game.Class)

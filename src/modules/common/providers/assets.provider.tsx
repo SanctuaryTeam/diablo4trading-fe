@@ -3,6 +3,7 @@ import { Game } from '@diablosnaps/common';
 import React, { useEffect } from 'react';
 import { I18n } from '../../i18n';
 import { AssetsContext } from './assets.context';
+import { useRouteLanguage } from './route-language.context';
 
 interface AssetsProviderProps {
     children?: (loading: boolean) => React.ReactNode;
@@ -11,7 +12,7 @@ interface AssetsProviderProps {
 export const AssetsProvider: React.FC<AssetsProviderProps> = ({
     children
 }) => {
-    const i18n = I18n.useLanguage();
+    const [routeLanguage] = useRouteLanguage();
 
     const [loading, setLoading] = React.useState<boolean>(true);
 

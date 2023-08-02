@@ -1,9 +1,7 @@
 import { i18n } from '@lingui/core';
 import { I18nProvider } from '@lingui/react';
 import React from 'react';
-import { English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, SimplifiedChinese, Spanish, TraditionalChinese, Turkish } from '../languages';
-import { useLanguage } from '../providers';
-import { Language } from '../types';
+import { English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, SimplifiedChinese, Spanish, TraditionalChinese, Turkish } from '../i18n';
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 i18n.load(Language.German, German);
@@ -21,11 +19,11 @@ i18n.load(Language.SimplifiedChinese, SimplifiedChinese);
 i18n.load(Language.TraditionalChinese, TraditionalChinese);
 /* eslint-enable @typescript-eslint/no-unsafe-argument */
 
-interface SwitchProps {
+interface LanguageSwitchProps {
     children?: React.ReactNode;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
+export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     children
 }) => {
     const { language } = useLanguage();

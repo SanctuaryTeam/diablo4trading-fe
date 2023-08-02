@@ -1,12 +1,12 @@
 import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import { Common } from '@modules/common';
 import { Autocomplete, Popper, TextField, Typography, autocompleteClasses, useMediaQuery, useTheme } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { matchSorter } from 'match-sorter';
 import React from 'react';
 import { ListChildComponentProps, VariableSizeList } from 'react-window';
-import { useAssets } from '../../providers';
 
 const LISTBOX_PADDING = 8; // px
 
@@ -128,7 +128,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     disabled,
 }) => {
     const { i18n } = useLingui();
-    const { language, affixes } = useAssets();
+    const { language, affixes } = Common.useAssets();
 
     const { options, selected } = React.useMemo(() => {
         const options = Object
