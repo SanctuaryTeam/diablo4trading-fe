@@ -1,6 +1,6 @@
 import { Common } from '@modules/common';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-import { Container } from './components';
+import { Nav } from './components';
 import { ListingsPage, SearchPage } from './pages';
 
 export const Element: React.FC = (
@@ -13,9 +13,8 @@ export const Element: React.FC = (
                 element={(
                     <Common.RouteServerTypeProvider indexPath='search'>
                         <Common.ServerTypeSelect />
-                        <Container>
-                            <Outlet />
-                        </Container>
+                        <Nav />
+                        <Outlet />
                     </Common.RouteServerTypeProvider>
                 )}
             >

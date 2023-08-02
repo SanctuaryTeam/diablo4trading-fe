@@ -1,3 +1,3 @@
-export * from './container.component';
+export * from './nav.component';
 export * from './search-filter.component';
 

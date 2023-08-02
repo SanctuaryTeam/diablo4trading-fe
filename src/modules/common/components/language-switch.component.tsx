@@ -22,7 +22,7 @@ i18n.load(Redux.UserLanguage.TraditionalChinese, TraditionalChinese);
 /* eslint-enable @typescript-eslint/no-unsafe-argument */
 
 interface LanguageSwitchProps {
-    children?: React.ReactNode;
+    children: React.ReactNode;
 }
 
 export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({

@@ -4,13 +4,7 @@ import { Common } from '@modules/common';
 import React from 'react';
 import { useResolvedPath } from 'react-router';
 
-interface ContainerProps {
-    children: React.ReactNode;
-}
-
-export const Container: React.FC<ContainerProps> = ({
-    children
-}) => {
+export const Nav: React.FC = () => {
     const { i18n } = useLingui();
 
     const searchPath = useResolvedPath('./search');
@@ -21,9 +15,5 @@ export const Container: React.FC<ContainerProps> = ({
         { ...listingsPath, label: t(i18n)`My Listings` },
     ];
 
-    return (
-        <Common.NavTabs paths={paths}>
-            {children}
-        </Common.NavTabs>
-    )
+    return <Common.NavTabs paths={paths} />;
 }

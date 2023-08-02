@@ -9,12 +9,10 @@ interface NavPath extends Path {
 
 interface NavTabsProps {
     paths: NavPath[]
-    children?: React.ReactNode;
 }
 
 export const NavTabs: React.FC<NavTabsProps> = ({
-    paths,
-    children
+    paths
 }) => {
     const navigate = useNavigate();
     const matches = useMatches();
@@ -31,18 +29,15 @@ export const NavTabs: React.FC<NavTabsProps> = ({
     };
 
     return (
-        <>
-            <Tabs
-                value={tabValue}
-                onChange={handleTabChange}
-                centered
-                sx={{ pb: 1 }}
-            >
-                {paths.map(p => (
-                    <Tab key={p.pathname} label={p.label} />
-                ))}
-            </Tabs>
-            {children}
-        </>
+        <Tabs
+            value={tabValue}
+            onChange={handleTabChange}
+            centered
+            sx={{ pb: 1 }}
+        >
+            {paths.map(p => (
+                <Tab key={p.pathname} label={p.label} />
+            ))}
+        </Tabs>
     )
 }
