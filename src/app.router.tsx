@@ -1,6 +1,6 @@
-import { Auth } from '@modules/auth';
 import { Common } from '@modules/common';
-import { Trade } from '@modules/trade';
+import { RouteAuth } from '@modules/route-auth';
+import { RouteTrade } from '@modules/route-trade';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -8,7 +8,7 @@ export const router = createBrowserRouter([
         path: 'auth/*',
         element: (
             <Common.MasterLayout hideHeader>
-                <Auth.Element />
+                <RouteAuth.Element />
             </Common.MasterLayout>
         )
     },
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <Navigate to='trade' replace /> },
-            { path: 'trade/*', element: <Trade.Element /> },
+            { path: 'trade/*', element: <RouteTrade.Element /> },
             // { path: 'services/*', element: <Trade.Element /> },
             { path: '*', element: <Common.NotFoundPage /> }
         ]
