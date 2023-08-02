@@ -1,10 +1,15 @@
+import { ReactComponent as DiscordIcon } from '@assets/discord.svg';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { Link, Stack, SvgIcon, Typography } from '@mui/material';
+import RedditIcon from '@mui/icons-material/Reddit';
+import { Link as MuiLink, Stack, SvgIcon, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { APP_NAME } from '../constants';
-import RedditIcon from '@mui/icons-material/Reddit';
 import { ReactComponent as DiscordIcon } from '@assets/discord.svg';
+
+const Link = styled(MuiLink)(() => ({
+    display: 'inline-flex',
+}))
 
 const Root = styled('footer')(({ theme }) => ({
     backgroundColor: theme.palette.common.black,
