@@ -3,6 +3,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchFilter } from '../components';
 import { parseSearchPayload, stringifySearchPayload } from '../utils';
+import { Redux } from '@modules/redux';
 
 const PARAM_PAYLOAD = 'p';
 
@@ -13,9 +14,12 @@ export const SearchPage: React.FC = (
 
     const stringifiedPayload = params.get(PARAM_PAYLOAD);
 
+    const [ performSearch ] = Redux.useLazyTradeSearchCallbackQuery();
+
     const payload = React.useMemo(() => {
         return parseSearchPayload(stringifiedPayload);
     }, [stringifiedPayload]);
+
     const setPayload = React.useCallback((payload: API.SearchPayload) => {
         setParams({
             [PARAM_PAYLOAD]: stringifySearchPayload(payload)
@@ -24,6 +28,7 @@ export const SearchPage: React.FC = (
 
     const handleSearch = React.useCallback((payload: API.SearchPayload) => {
         setPayload(payload);
+        performSearch(payload);
     }, [setPayload]);
 
     return (

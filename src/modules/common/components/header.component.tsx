@@ -9,6 +9,7 @@ import { matchPath, useMatches, useNavigate, useResolvedPath } from 'react-route
 import { APP_NAME } from '../constants';
 import { HeaderLanguage } from './header-language.component';
 import { HeaderUser } from './header-user.component';
+import { HeaderServerType } from './header-server-type.component';
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     ...theme.typography.body1,
@@ -34,13 +35,17 @@ export const Header: React.FC = (
     const matches = useMatches();
 
     // TODO: add routes
-    const tradePath = useResolvedPath('./trade');
-    const servicesPath = useResolvedPath('./services');
+    const tradePath = useResolvedPath('trade');
+    const servicesPath = useResolvedPath('services');
+    const feedbackPath = useResolvedPath('./feedback');
     const faqPath = useResolvedPath('./faq');
+
+    console.log(tradePath, servicesPath)
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
         { ...servicesPath, label: t(i18n)`Services` },
+        { ...feedbackPath, label: t(i18n)`Feedback` },
         { ...faqPath, label: t(i18n)`FAQ` }
     ];
 
@@ -108,6 +113,7 @@ export const Header: React.FC = (
                         <Box flexGrow={1} />
                         <Stack direction='row' gap={1}>
                             <HeaderUser />
+                            <HeaderServerType />
                             <HeaderLanguage />
                         </Stack>
                     </Toolbar>

@@ -31,7 +31,7 @@ export const MasterLayout: React.FC<MasterLayoutProps> = ({
                 <Container
                     maxWidth='xl'
                     sx={{
-                        pt: 4,
+                        pt: 2,
                         pb: 2
                     }}
                 >

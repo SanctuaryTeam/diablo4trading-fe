@@ -2,7 +2,7 @@ import { Game } from '@diablosnaps/common';
 import { Redux } from '@modules/redux';
 import React from 'react';
 import { useStore } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Location, useNavigate, useParams } from 'react-router-dom';
 import { RouteServerTypeContext } from './route-server-type.context';
 
 const ROUTE_MAPPING: Record<Game.ServerType, string> = {
@@ -34,11 +34,14 @@ export const RouteServerTypeProvider: React.FC<RouteServerTypeProviderProps> = (
 
     const params: RouteServerTypeProviderParams = useParams();
 
+    console.log(params);
+
     const routeServerType = ROUTE_MAPPING_REVERSE[params.serverType ?? ''];
-    const setRouteServerType = React.useCallback((serverType: Game.ServerType) => {
+    const setRouteServerType = React.useCallback((serverType: Game.ServerType, location: Location) => {
         store.dispatch(Redux.UserSlice.actions.setServerType(serverType));
         const pathname = ROUTE_MAPPING[serverType];
-        navigate(`./../${pathname}/${indexPath}`)
+        console.log(location, 'here', { ...location, pathname: location.pathname.replace(/^(\/[^/]*)(\/[^/]*)/, `$1/${pathname}`) })
+        navigate({ ...location, pathname: location.pathname.replace(/^\/([^/]*)\/([^/]*)/, `$1/${pathname}`) });
     }, [indexPath, navigate, store]);
 
     const routeIncludesServerType = !!routeServerType;
@@ -48,7 +51,8 @@ export const RouteServerTypeProvider: React.FC<RouteServerTypeProviderProps> = (
             const state = store.getState() as Redux.RootState;
             const serverType = Redux.UserSelectors.getServerType(state);
             const pathname = ROUTE_MAPPING[serverType];
-            navigate(`./${pathname}/${indexPath}`)
+            console.log(`./${pathname}/${indexPath}`)
+            navigate(`./${pathname}/${indexPath}`, { relative: 'path' })
         }
     }, [routeIncludesServerType, navigate, store, indexPath])
 

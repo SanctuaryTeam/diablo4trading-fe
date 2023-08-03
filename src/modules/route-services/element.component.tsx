@@ -2,6 +2,7 @@ import { Common } from '@modules/common';
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Nav } from './components';
 import { ListingsPage, SearchPage } from './pages';
+import React from 'react';
 
 export const Element: React.FC = (
 
@@ -9,13 +10,11 @@ export const Element: React.FC = (
     return (
         <Routes>
             <Route
-                path=':serverType?'
                 element={(
-                    <Common.RouteServerTypeProvider indexPath='search'>
-                        <Common.ServerTypeSelect />
+                    <React.Fragment>
                         <Nav />
                         <Outlet />
-                    </Common.RouteServerTypeProvider>
+                    </React.Fragment>
                 )}
             >
                 <Route path='*' index element={<Navigate to='search' replace />} />

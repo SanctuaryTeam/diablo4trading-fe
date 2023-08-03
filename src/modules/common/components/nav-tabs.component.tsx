@@ -33,7 +33,12 @@ export const NavTabs: React.FC<NavTabsProps> = ({
             value={tabValue}
             onChange={handleTabChange}
             centered
-            sx={{ pb: 1 }}
+            sx={{ 
+                pb: 1,
+                "& .MuiTab-root": {
+                  fontSize: "1rem", // Increase the font size of the Tab elements
+                },
+              }}
         >
             {paths.map(p => (
                 <Tab key={p.pathname} label={p.label} />

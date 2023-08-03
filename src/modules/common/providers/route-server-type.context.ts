@@ -1,9 +1,10 @@
 import { Game } from '@diablosnaps/common';
 import React from 'react';
+import { Location } from 'react-router-dom';
 
 export type RouteServerTypeContext = [
     Game.ServerType,
-    (serverType: Game.ServerType) => void
+    (serverType: Game.ServerType, location: Location) => void
 ];
 export const RouteServerTypeContext = React.createContext<RouteServerTypeContext>(undefined);
 

@@ -27,9 +27,17 @@ export const BackendSlice = createApi({
                 params: { code }
             }),
         }),
+        tradeSearchCallback: builder.query<API.SearchResponse, API.SearchPayload>({
+            query: ({ query }) => ({
+                url: '/trade/search',
+                method: 'GET',
+                params: { ...query.id, ...query.affix }
+            })
+        })
     })
 });
 
 export const {
-    useAuthDiscordCallbackQuery
+    useAuthDiscordCallbackQuery,
+    useLazyTradeSearchCallbackQuery
 } = BackendSlice;
