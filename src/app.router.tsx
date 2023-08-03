@@ -13,48 +13,41 @@ export const router = createBrowserRouter([
             <MasterLayout hideHeader>
                 <RouteAuth.Element />
             </MasterLayout>
-        )
+        ),
     },
     {
         path: ':language?',
         element: (
-            <Common.RouteLanguageProvider>
-                <Common.AssetsProvider>
-                    {loading =>
-                        loading ?
-                            (
-                                <MasterLayout hideHeader={true}>
+            <Common.RouteLanguageProvider indexPath='trade'>
+                <MasterLayout>
+                    <Common.AssetsProvider>
+                        {(loading) => {
+                            if (loading) {
+                                return (
                                     <Common.FloatingPanel>
                                         <Common.Spinner />
                                     </Common.FloatingPanel>
-                                </MasterLayout>
-                            )
-                            :
-                            (
-                                <Outlet />
-                            )
-                    }
-                </Common.AssetsProvider>
+                                );
+                            }
+                            return <Outlet />;
+                        }}
+                    </Common.AssetsProvider>
+                </MasterLayout>
             </Common.RouteLanguageProvider>
         ),
         children: [
             {
-                path: ':serverType?',
+                index: true,
                 element: (
-                    <Common.RouteServerTypeProvider indexPath='trade'>
-                        <MasterLayout>
-                            <Outlet />
-                        </MasterLayout>
-                    </Common.RouteServerTypeProvider>
+                    <Navigate
+                        to='trade'
+                        replace
+                    />
                 ),
-                children: [
-                    // { index: true, element: <Navigate to='trade' replace /> },
-                    { path: 'trade/*', element: <RouteTrade.Element /> },
-                    { path: 'services/*', element: <RouteServices.Element /> },
-                    { path: '*', element: <NotFoundPage /> }
-                ]
-            }
-        ]
-
-    }
+            },
+            { path: 'trade/*', element: <RouteTrade.Element /> },
+            { path: 'services/*', element: <RouteServices.Element /> },
+            { path: '*', element: <NotFoundPage /> },
+        ],
+    },
 ]);

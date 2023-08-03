@@ -16,4 +16,4 @@ export const Nav: React.FC = () => {
     ];
 
     return <Common.NavTabs paths={paths} />;
-}
+};

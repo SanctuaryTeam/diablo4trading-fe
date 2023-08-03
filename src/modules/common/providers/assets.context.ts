@@ -13,4 +13,4 @@ export const AssetsContext = React.createContext<AssetsContext>(undefined);
 
 export const useAssets = () => {
     return React.useContext(AssetsContext);
-}
+};

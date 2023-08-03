@@ -8,16 +8,16 @@ Requires [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/).
 
 1. Create a [new GitHub personal access token](https://github.com/settings/tokens/new) with the following scopes:
 
-   ```
-   read:packages
-   ```
+    ```
+    read:packages
+    ```
 
 2. Set env variable `SANCTUARYTEAM_AUTH_TOKEN` to the token value. You should run `cp .env.example .env` and modify this new file to store your token.
 
 3. Run
-   ```bash
-   yarn install
-   ```
+    ```bash
+    yarn install
+    ```
 
 ## Compiles and hot-reloads for development
 

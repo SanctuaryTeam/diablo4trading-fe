@@ -15,43 +15,70 @@ export const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
 }) => {
     const { i18n } = useLingui();
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
-                <Typography variant='subtitle2' color='text.secondary'>
+        <Grid
+            container
+            spacing={1}
+        >
+            <Grid
+                item
+                xs={12}
+            >
+                <Typography
+                    variant='subtitle2'
+                    color='text.secondary'
+                >
                     {t(i18n)`Item`}
                 </Typography>
                 <Divider />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid
+                item
+                xs={12}
+                lg={6}
+            >
                 <ItemTypeInput
                     value={value.type}
-                    onChange={type => onChange({ ...value, type })}
+                    onChange={(type) => onChange({ ...value, type })}
                     label={t(i18n)`Type`}
                 />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid
+                item
+                xs={12}
+                lg={6}
+            >
                 <NumberInput
                     value={value.minPower}
-                    onChange={minPower => onChange({ ...value, minPower })}
-                    min={0} max={850}
+                    onChange={(minPower) => onChange({ ...value, minPower })}
+                    min={0}
+                    max={850}
                     label={t(i18n)`Min Power`}
                 />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid
+                item
+                xs={12}
+                lg={6}
+            >
                 <CharacterClassInput
                     value={value.classRestriction}
-                    onChange={classRestriction => onChange({ ...value, classRestriction })}
+                    onChange={(classRestriction) => onChange({ ...value, classRestriction })}
                     label={t(i18n)`Class Restriction`}
                 />
             </Grid>
-            <Grid item xs={12} lg={6}>
+            <Grid
+                item
+                xs={12}
+                lg={6}
+            >
                 <NumberInput
                     value={value.maxRequiredLevel}
-                    onChange={maxRequiredLevel => onChange({ ...value, maxRequiredLevel })}
-                    min={0} max={80}
+                    onChange={(maxRequiredLevel) => onChange({ ...value, maxRequiredLevel })}
+                    min={0}
+                    max={80}
                     label={t(i18n)`Max Required Level`}
                 />
             </Grid>
         </Grid>
-    )
-}
+    );
+};

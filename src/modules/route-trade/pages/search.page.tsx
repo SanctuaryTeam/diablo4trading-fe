@@ -3,33 +3,33 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchFilter } from '../components';
 import { parseSearchPayload, stringifySearchPayload } from '../utils';
-import { Redux } from '@modules/redux';
 
 const PARAM_PAYLOAD = 'p';
 
-export const SearchPage: React.FC = (
-
-) => {
+export const SearchPage: React.FC = () => {
     const [params, setParams] = useSearchParams();
 
     const stringifiedPayload = params.get(PARAM_PAYLOAD);
-
-    const [ performSearch ] = Redux.useLazyTradeSearchCallbackQuery();
 
     const payload = React.useMemo(() => {
         return parseSearchPayload(stringifiedPayload);
     }, [stringifiedPayload]);
 
-    const setPayload = React.useCallback((payload: API.SearchPayload) => {
-        setParams({
-            [PARAM_PAYLOAD]: stringifySearchPayload(payload)
-        });
-    }, [setParams]);
+    const setPayload = React.useCallback(
+        (payload: API.SearchPayload) => {
+            setParams({
+                [PARAM_PAYLOAD]: stringifySearchPayload(payload),
+            });
+        },
+        [setParams]
+    );
 
-    const handleSearch = React.useCallback((payload: API.SearchPayload) => {
-        setPayload(payload);
-        performSearch(payload);
-    }, [setPayload]);
+    const handleSearch = React.useCallback(
+        (payload: API.SearchPayload) => {
+            setPayload(payload);
+        },
+        [setPayload]
+    );
 
     return (
         <React.Fragment>
@@ -39,4 +39,4 @@ export const SearchPage: React.FC = (
             />
         </React.Fragment>
     );
-}
+};

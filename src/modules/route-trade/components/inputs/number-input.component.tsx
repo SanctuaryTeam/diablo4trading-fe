@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 
-const toString = (value: number) => value === undefined ? '' : value.toString();
+const toString = (value: number) => (value === undefined ? '' : value.toString());
 
 interface NumberInputProps {
     value: number;
@@ -25,7 +25,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     const [textValue, setTextValue] = React.useState<string>(toString(value));
     useEffect(() => {
         setTextValue(toString(value));
-    }, [value])
+    }, [value]);
 
     const setValue = (next: number) => {
         if (next === value) {
@@ -33,16 +33,16 @@ export const NumberInput: React.FC<NumberInputProps> = ({
             return;
         }
         onChange(next);
-    }
+    };
 
     return (
         <TextField
             value={textValue}
             label={label}
             helperText={helperText}
-            onChange={e => setTextValue(e.target.value)}
+            onChange={(e) => setTextValue(e.target.value)}
             onBlur={() => {
-                const numericValue = parseInt(textValue)
+                const numericValue = parseInt(textValue);
                 if (isNaN(numericValue)) {
                     setValue(undefined);
                     return;
@@ -59,5 +59,5 @@ export const NumberInput: React.FC<NumberInputProps> = ({
             }}
             disabled={disabled}
         />
-    )
-}
+    );
+};

@@ -15,5 +15,5 @@ export type RootStore = Store<RootState, AnyAction>;
 
 export const ROOT_STATE_INITIAL: Partial<RootState> = {
     auth: AUTH_STATE_INITIAL,
-    user: USER_STATE_INITIAL
+    user: USER_STATE_INITIAL,
 };

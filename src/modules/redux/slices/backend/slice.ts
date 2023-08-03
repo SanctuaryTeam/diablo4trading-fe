@@ -15,7 +15,7 @@ export const BackendSlice = createApi({
                 headers.set('Authorization', `Bearer ${token}`);
             }
             return headers;
-        }
+        },
     }),
     endpoints: (builder) => ({
         // auth
@@ -24,20 +24,17 @@ export const BackendSlice = createApi({
                 // TODO: should also return user
                 url: '/auth/discord/callback',
                 method: 'GET',
-                params: { code }
+                params: { code },
             }),
         }),
         tradeSearchCallback: builder.query<API.SearchResponse, API.SearchPayload>({
             query: ({ query }) => ({
                 url: '/trade/search',
                 method: 'GET',
-                params: { ...query.id, ...query.affix }
-            })
-        })
-    })
+                params: { ...query.id, ...query.affix },
+            }),
+        }),
+    }),
 });
 
-export const {
-    useAuthDiscordCallbackQuery,
-    useLazyTradeSearchCallbackQuery
-} = BackendSlice;
+export const { useAuthDiscordCallbackQuery, useLazyTradeSearchCallbackQuery } = BackendSlice;

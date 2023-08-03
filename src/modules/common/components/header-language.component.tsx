@@ -5,9 +5,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRouteLanguage } from '../providers';
 
-export const HeaderLanguage: React.FC = (
-
-) => {
+export const HeaderLanguage: React.FC = () => {
     const location = useLocation();
     const [routeLanguage, setRouteLanguage] = useRouteLanguage();
 
@@ -20,7 +18,7 @@ export const HeaderLanguage: React.FC = (
 
     const handleClose = () => {
         setAnchorEl(undefined);
-    }
+    };
 
     const handleLanguageChange = (language: Redux.UserLanguage) => {
         setRouteLanguage(language, location);
@@ -40,12 +38,14 @@ export const HeaderLanguage: React.FC = (
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
-                sx={[{
-                    '& .MuiList-root': {
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                    }
-                }]}
+                sx={[
+                    {
+                        '& .MuiList-root': {
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                        },
+                    },
+                ]}
             >
                 {Object.values(Redux.UserLanguage).map((language) => (
                     <MenuItem
@@ -59,4 +59,4 @@ export const HeaderLanguage: React.FC = (
             </Menu>
         </React.Fragment>
     );
-}
+};

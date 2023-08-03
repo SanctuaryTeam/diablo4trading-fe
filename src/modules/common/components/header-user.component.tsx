@@ -6,9 +6,7 @@ import { Button } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-export const HeaderUser: React.FC = (
-
-) => {
+export const HeaderUser: React.FC = () => {
     const { i18n } = useLingui();
     const navigate = useNavigate();
 
@@ -36,4 +34,4 @@ export const HeaderUser: React.FC = (
             {user.battleNetTag}
         </Button>
     );
-}
+};

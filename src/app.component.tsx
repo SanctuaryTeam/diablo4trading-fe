@@ -3,9 +3,7 @@ import { Redux } from '@modules/redux';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './app.router';
 
-export const App: React.FC = (
-
-) => {
+export const App: React.FC = () => {
     return (
         <Redux.StoreProvider>
             <Common.LanguageSwitch>
@@ -14,5 +12,5 @@ export const App: React.FC = (
                 </Common.Theme>
             </Common.LanguageSwitch>
         </Redux.StoreProvider>
-    )
+    );
 };

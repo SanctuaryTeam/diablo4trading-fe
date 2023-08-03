@@ -10,20 +10,18 @@ interface StoreProviderProps {
     children: React.ReactNode;
 }
 
-export const StoreProvider: React.FC<StoreProviderProps> = ({
-    children
-}) => {
+export const StoreProvider: React.FC<StoreProviderProps> = ({ children }) => {
     const store = React.useMemo(() => {
         const preloadedState = {
-            ...ROOT_STATE_INITIAL
+            ...ROOT_STATE_INITIAL,
         };
         preloadedState.auth = {
             ...preloadedState.auth,
-            ...(STORAGE.get('auth') || {})
+            ...(STORAGE.get('auth') || {}),
         };
         preloadedState.user = {
             ...preloadedState.user,
-            ...(STORAGE.get('user') || {})
+            ...(STORAGE.get('user') || {}),
         };
         if (!preloadedState.user.language) {
             preloadedState.user.language = retrieveLanguageFromNavigator(UserLanguage.English);
@@ -31,9 +29,9 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
 
         const store = configureStore({
             reducer: rootReducer,
-            middleware: getDefaultMiddleware => getDefaultMiddleware()
-                .concat(BackendSlice.middleware),
-            preloadedState
+            middleware: (getDefaultMiddleware) =>
+                getDefaultMiddleware().concat(BackendSlice.middleware),
+            preloadedState,
         });
         let next = { ...store.getState() };
         store.subscribe(() => {
@@ -47,9 +45,5 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
         });
         return store;
     }, []);
-    return (
-        <Provider store={store}>
-            {children}
-        </Provider>
-    )
-}
+    return <Provider store={store}>{children}</Provider>;
+};

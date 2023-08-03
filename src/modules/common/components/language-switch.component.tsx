@@ -3,7 +3,21 @@ import { I18nProvider } from '@lingui/react';
 import { Redux } from '@modules/redux';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, SimplifiedChinese, Spanish, TraditionalChinese, Turkish } from '../i18n';
+import {
+    English,
+    French,
+    German,
+    Italian,
+    Japanese,
+    Korean,
+    Polish,
+    Portuguese,
+    Russian,
+    SimplifiedChinese,
+    Spanish,
+    TraditionalChinese,
+    Turkish,
+} from '../i18n';
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 i18n.load(Redux.UserLanguage.German, German);
@@ -25,9 +39,7 @@ interface LanguageSwitchProps {
     children: React.ReactNode;
 }
 
-export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
-    children
-}) => {
+export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({ children }) => {
     const language = useSelector(Redux.UserSelectors.getLanguage);
     const [active, setActive] = React.useState<Redux.UserLanguage>();
 
@@ -41,10 +53,5 @@ export const LanguageSwitch: React.FC<LanguageSwitchProps> = ({
     if (!active) {
         return null;
     }
-
-    return (
-        <I18nProvider i18n={i18n}>
-            {children}
-        </I18nProvider>
-    )
-}
+    return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
+};

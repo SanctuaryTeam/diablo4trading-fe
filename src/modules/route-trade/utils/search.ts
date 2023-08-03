@@ -1,13 +1,14 @@
 import { API } from '@sanctuaryteam/shared';
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string';
 
-type KEY = keyof API.SearchPayload
+type KEY =
+    | keyof API.SearchPayload
     | keyof API.SearchPayload['query']
     | keyof API.SearchPayload['query']['item']
     | keyof API.SearchPayload['query']['seasonal']
     | keyof API.SearchPayload['query']['affix']
     | keyof API.SearchPayload['query']['affix']['options'][0]
-    | keyof API.SearchPayload['sort']
+    | keyof API.SearchPayload['sort'];
 
 const TABLE: Record<KEY, string> = {
     query: 'q',
@@ -32,9 +33,7 @@ const REVERSE_TABLE: Record<string, KEY> = Object.fromEntries(
     Object.entries(TABLE).map(([k, v]) => [v, k as KEY])
 );
 
-export function parseSearchPayload(
-    stringified: string
-): API.SearchPayload {
+export function parseSearchPayload(stringified: string): API.SearchPayload {
     if (!stringified?.length) {
         return {};
     }
@@ -62,9 +61,7 @@ export function parseSearchPayload(
     }
 }
 
-export function stringifySearchPayload(
-    payload: API.SearchPayload
-): string {
+export function stringifySearchPayload(payload: API.SearchPayload): string {
     const minified = JSON.stringify(payload, (_, value: unknown) => {
         if (value && typeof value === 'object' && !Array.isArray(value)) {
             const replacement: Record<string, unknown> = {};

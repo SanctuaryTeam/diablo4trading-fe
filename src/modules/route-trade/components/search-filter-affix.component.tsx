@@ -12,7 +12,7 @@ const AFFIX_MIN_COUNT = 4;
 const AFFIX_MAX_COUNT = 8;
 
 function getValidOptionsCount(options: API.AffixOption[]) {
-    return options.filter(option => option?.id !== undefined).length;
+    return options.filter((option) => option?.id !== undefined).length;
 }
 
 function getCountRange(options: API.AffixOption[]) {
@@ -33,10 +33,7 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
 }) => {
     const { i18n } = useLingui();
 
-    const {
-        options = [],
-        count
-    } = value;
+    const { options = [], count } = value;
 
     const getNewCount = (newOptions: API.AffixOption[]) => {
         const range = getCountRange(newOptions);
@@ -50,29 +47,27 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
             }
         }
         return newCount;
-    }
+    };
 
     const handleOptionChange = (index: number, update: Partial<API.AffixOption>) => {
         const newOptions = [...options];
         newOptions[index] = {
             ...newOptions[index],
-            ...update
+            ...update,
         };
         onChange({
             ...value,
             count: getNewCount(newOptions),
-            options: newOptions
+            options: newOptions,
         });
     };
 
     const handleAddAffixClick = () => {
         const length = Math.max(options.length, AFFIX_MIN_COUNT) + 1;
-        const newOptions = Array
-            .from({ length })
-            .map((_, i) => options[i]);
+        const newOptions = Array.from({ length }).map((_, i) => options[i]);
         onChange({
             ...value,
-            options: newOptions
+            options: newOptions,
         });
     };
 
@@ -82,80 +77,136 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
         onChange({
             ...value,
             count: getNewCount(newOptions),
-            options: newOptions
+            options: newOptions,
         });
-    }
+    };
 
     const range = getCountRange(options);
     return (
-        <Grid container spacing={1}>
-            <Grid item xs={12}>
-                <Typography variant='subtitle2' color='text.secondary'>
+        <Grid
+            container
+            spacing={1}
+        >
+            <Grid
+                item
+                xs={12}
+            >
+                <Typography
+                    variant='subtitle2'
+                    color='text.secondary'
+                >
                     {t(i18n)`Affixes`}
                 </Typography>
                 <Divider />
             </Grid>
-            {Array
-                .from({ length: Math.max(AFFIX_MIN_COUNT, Math.min(options.length ?? 0, AFFIX_MAX_COUNT)) })
-                .map((_, i) => {
-                    const option = options[i] || {
-                        id: undefined
-                    };
-                    const placeholder = isNaN(option.minValue) ? '#' : `${option.minValue}`;
-                    return (
-                        <Grid item xs={12} key={i}>
-                            <Grid container spacing={0.5}>
-                                <Grid item xs={9}>
-                                    <Stack direction='row' alignItems='center'>
-                                        {options.length > AFFIX_MIN_COUNT && (
-                                            <IconButton
-                                                onClick={() => handleRemoveAffixClick(i)}
-                                                sx={theme => ({ color: theme.palette.text.secondary })}
-                                            >
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        )}
-                                        <ItemAffixInput
-                                            value={option.id}
-                                            onChange={id => handleOptionChange(i, { id })}
-                                            label={t(i18n)`Affix ${i + 1}`}
-                                            placeholder={placeholder}
-                                        />
-                                    </Stack>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <NumberInput
-                                        value={option.minValue}
-                                        onChange={minValue => handleOptionChange(i, { minValue })}
-                                        min={0}
-                                        label={t(i18n)`Value`}
+            {Array.from({
+                length: Math.max(AFFIX_MIN_COUNT, Math.min(options.length ?? 0, AFFIX_MAX_COUNT)),
+            }).map((_, i) => {
+                const option = options[i] || {
+                    id: undefined,
+                };
+                const placeholder = isNaN(option.minValue) ? '#' : `${option.minValue}`;
+                return (
+                    <Grid
+                        item
+                        xs={12}
+                        key={i}
+                    >
+                        <Grid
+                            container
+                            spacing={0.5}
+                        >
+                            <Grid
+                                item
+                                xs={9}
+                            >
+                                <Stack
+                                    direction='row'
+                                    alignItems='center'
+                                >
+                                    {options.length > AFFIX_MIN_COUNT && (
+                                        <IconButton
+                                            onClick={() => {
+                                                handleRemoveAffixClick(i);
+                                            }}
+                                            sx={{ color: 'text.secondary' }}
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    )}
+                                    <ItemAffixInput
+                                        value={option.id}
+                                        onChange={(id) => {
+                                            handleOptionChange(i, { id });
+                                        }}
+                                        label={t(i18n)`Affix ${i + 1}`}
+                                        placeholder={placeholder}
                                     />
-                                </Grid>
+                                </Stack>
+                            </Grid>
+                            <Grid
+                                item
+                                xs={3}
+                            >
+                                <NumberInput
+                                    value={option.minValue}
+                                    onChange={(minValue) => {
+                                        handleOptionChange(i, { minValue });
+                                    }}
+                                    min={0}
+                                    label={t(i18n)`Value`}
+                                />
                             </Grid>
                         </Grid>
-                    )
-                })}
+                    </Grid>
+                );
+            })}
             {range.count >= 2 && (
-                <Grid item xs={12}>
-                    <Grid item container spacing={1}>
-                        <Grid item xs={9}>
+                <Grid
+                    item
+                    xs={12}
+                >
+                    <Grid
+                        item
+                        container
+                        spacing={1}
+                    >
+                        <Grid
+                            item
+                            xs={9}
+                        >
                             <Divider />
                         </Grid>
-                        <Grid item xs={3} />
-                        <Grid item xs={6}>
+                        <Grid
+                            item
+                            xs={3}
+                        />
+                        <Grid
+                            item
+                            xs={6}
+                        >
                             <NumberInput
                                 value={count}
-                                onChange={count => onChange({ ...value, count })}
-                                min={range.min} max={range.max}
+                                onChange={(count) => {
+                                    onChange({ ...value, count });
+                                }}
+                                min={range.min}
+                                max={range.max}
                                 disabled={range.min === undefined || range.max === undefined}
                                 label={t(i18n)`Minimum Affixes Required`}
-                                helperText={count >= 1 && range.count !== count
-                                    ? t(i18n)`At least ${count} of the ${range.count} affixes will be present`
-                                    : undefined
+                                helperText={
+                                    count >= 1 && range.count !== count
+                                        ? t(
+                                              i18n
+                                          )`At least ${count} of the ${range.count} affixes will be present`
+                                        : undefined
                                 }
                             />
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid
+                            item
+                            xs={3}
+                        >
                             {range.count >= AFFIX_MIN_COUNT && (
                                 <Button
                                     onClick={handleAddAffixClick}
@@ -171,5 +222,5 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
                 </Grid>
             )}
         </Grid>
-    )
-}
+    );
+};

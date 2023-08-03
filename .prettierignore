@@ -1,4 +1,4 @@
 node_modules
 public
 dist
-src/modules/i18n/languages
+src/modules/common/i18n

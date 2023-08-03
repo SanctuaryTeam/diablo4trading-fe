@@ -35,7 +35,7 @@ interface RouteLanguageProviderProps {
 
 export const RouteLanguageProvider: React.FC<RouteLanguageProviderProps> = ({
     indexPath,
-    children
+    children,
 }) => {
     const store = useStore();
     const navigate = useNavigate();
@@ -43,11 +43,17 @@ export const RouteLanguageProvider: React.FC<RouteLanguageProviderProps> = ({
     const params: RouteLanguageProviderParams = useParams();
 
     const routeLanguage = ROUTE_MAPPING_REVERSE[params.language ?? ''];
-    const setRouteLanguage = React.useCallback((language: Redux.UserLanguage, location: Location) => {
-        store.dispatch(Redux.UserSlice.actions.setLanguage(language));
-        const pathname = ROUTE_MAPPING[language];
-        navigate({ ...location, pathname: location.pathname.replace(/^\/[^/]*/, `/${pathname}`) });
-    }, [navigate, store]);
+    const setRouteLanguage = React.useCallback(
+        (language: Redux.UserLanguage, location: Location) => {
+            store.dispatch(Redux.UserSlice.actions.setLanguage(language));
+            const pathname = ROUTE_MAPPING[language];
+            navigate({
+                ...location,
+                pathname: location.pathname.replace(/^\/[^/]*/, `/${pathname}`),
+            });
+        },
+        [navigate, store]
+    );
 
     const routeIncludesLanguage = !!routeLanguage;
 
@@ -56,9 +62,9 @@ export const RouteLanguageProvider: React.FC<RouteLanguageProviderProps> = ({
             const state = store.getState() as Redux.RootState;
             const language = Redux.UserSelectors.getLanguage(state);
             const pathname = ROUTE_MAPPING[language];
-            navigate(`/${pathname}/${indexPath}`)
+            navigate(`/${pathname}/${indexPath}`);
         }
-    }, [routeIncludesLanguage, navigate, store, indexPath])
+    }, [routeIncludesLanguage, navigate, store, indexPath]);
 
     const value = React.useMemo<RouteLanguageContext>(() => {
         return [routeLanguage, setRouteLanguage];
@@ -67,10 +73,5 @@ export const RouteLanguageProvider: React.FC<RouteLanguageProviderProps> = ({
     if (!routeIncludesLanguage) {
         return null;
     }
-
-    return (
-        <RouteLanguageContext.Provider value={value}>
-            {children}
-        </RouteLanguageContext.Provider>
-    )
-}
+    return <RouteLanguageContext.Provider value={value}>{children}</RouteLanguageContext.Provider>;
+};

@@ -32,21 +32,39 @@ export const ServerTypeSelect: React.FC = () => {
             flexDirection='column'
             alignItems='center'
         >
-            <Stack direction='row' alignItems='center' gap={1}>
-                <IconButton color='primary' onClick={() => handleServerTypeClick(-1)}>
+            <Stack
+                direction='row'
+                alignItems='center'
+                gap={1}
+            >
+                <IconButton
+                    color='primary'
+                    onClick={() => handleServerTypeClick(-1)}
+                >
                     <ArrowBackIosIcon fontSize='large' />
                 </IconButton>
                 <ServerTypeIcon
                     src={Common.GAME_SERVER_TYPE_ICONS[serverType]}
-                    alt={t(i18n)`${Game.getServerTypeText(serverType, language, translations)}'s icon`}
+                    alt={t(i18n)`${Game.getServerTypeText(
+                        serverType,
+                        language,
+                        translations
+                    )}'s icon`}
                 />
-                <IconButton color='primary' onClick={() => handleServerTypeClick(1)}>
+                <IconButton
+                    color='primary'
+                    onClick={() => handleServerTypeClick(1)}
+                >
                     <ArrowForwardIosIcon fontSize='large' />
                 </IconButton>
             </Stack>
-            <Typography mt={1} variant='h4' component='h1'>
+            <Typography
+                mt={1}
+                variant='h4'
+                component='h1'
+            >
                 {Game.getServerTypeText(serverType, language, translations)}
             </Typography>
         </Box>
-    )
-}
+    );
+};

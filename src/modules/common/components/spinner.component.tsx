@@ -6,24 +6,22 @@ const Circle = styled('img')(() => ({
     '@keyframes spin': {
         '100%': {
             transform: 'rotate(360deg)',
-        }
-    }
+        },
+    },
 }));
 
 interface SpinnerProps {
     size?: number;
 }
 
-export const Spinner: React.FC<SpinnerProps> = ({
-    size = 16
-}) => {
+export const Spinner: React.FC<SpinnerProps> = ({ size = 16 }) => {
     return (
         <Circle
             src={GAME_SPINNER_ICON}
-            sx={theme => ({
+            sx={(theme) => ({
                 width: theme.spacing(size),
                 height: theme.spacing(size),
             })}
         />
-    )
-}
+    );
+};

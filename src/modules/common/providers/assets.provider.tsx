@@ -9,9 +9,7 @@ interface AssetsProviderProps {
     children?: (loading: boolean) => React.ReactNode;
 }
 
-export const AssetsProvider: React.FC<AssetsProviderProps> = ({
-    children
-}) => {
+export const AssetsProvider: React.FC<AssetsProviderProps> = ({ children }) => {
     const [routeLanguage] = useRouteLanguage();
 
     const [loading, setLoading] = React.useState<boolean>(true);
@@ -22,20 +20,34 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
 
     const language = React.useMemo(() => {
         switch (routeLanguage) {
-            case Redux.UserLanguage.German: return Game.Language.German;
-            case Redux.UserLanguage.English: return Game.Language.English;
-            case Redux.UserLanguage.Spanish: return Game.Language.Spanish;
-            case Redux.UserLanguage.French: return Game.Language.French;
-            case Redux.UserLanguage.Italian: return Game.Language.Italian;
-            case Redux.UserLanguage.Japanese: return Game.Language.Japanese;
-            case Redux.UserLanguage.Korean: return Game.Language.Korean;
-            case Redux.UserLanguage.Polish: return Game.Language.Polish;
-            case Redux.UserLanguage.Portuguese: return Game.Language.Portuguese;
-            case Redux.UserLanguage.Russian: return Game.Language.Russian;
-            case Redux.UserLanguage.Turkish: return Game.Language.Turkish;
-            case Redux.UserLanguage.SimplifiedChinese: return Game.Language.SimplifiedChinese;
-            case Redux.UserLanguage.TraditionalChinese: return Game.Language.TraditionalChinese;
-            default: return Game.Language.English;
+            case Redux.UserLanguage.German:
+                return Game.Language.German;
+            case Redux.UserLanguage.English:
+                return Game.Language.English;
+            case Redux.UserLanguage.Spanish:
+                return Game.Language.Spanish;
+            case Redux.UserLanguage.French:
+                return Game.Language.French;
+            case Redux.UserLanguage.Italian:
+                return Game.Language.Italian;
+            case Redux.UserLanguage.Japanese:
+                return Game.Language.Japanese;
+            case Redux.UserLanguage.Korean:
+                return Game.Language.Korean;
+            case Redux.UserLanguage.Polish:
+                return Game.Language.Polish;
+            case Redux.UserLanguage.Portuguese:
+                return Game.Language.Portuguese;
+            case Redux.UserLanguage.Russian:
+                return Game.Language.Russian;
+            case Redux.UserLanguage.Turkish:
+                return Game.Language.Turkish;
+            case Redux.UserLanguage.SimplifiedChinese:
+                return Game.Language.SimplifiedChinese;
+            case Redux.UserLanguage.TraditionalChinese:
+                return Game.Language.TraditionalChinese;
+            default:
+                return Game.Language.English;
         }
     }, [routeLanguage]);
 
@@ -58,19 +70,17 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
             Assets.loadAffixes(),
             // Assets.loadItems(),
             Assets.loadTranslations(),
-        ]).then(([affixes, /*items,*/ translations]) => {
-            setAffixes(affixes);
-            // setItems(items);
-            setTranslations(translations);
-            setLoading(false);
-        }).catch((error) => {
-            console.error(error);
-        });
-    }, [loading])
+        ])
+            .then(([affixes, /*items,*/ translations]) => {
+                setAffixes(affixes);
+                // setItems(items);
+                setTranslations(translations);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }, [loading]);
 
-    return (
-        <AssetsContext.Provider value={value}>
-            {children(loading)}
-        </AssetsContext.Provider>
-    )
-}
+    return <AssetsContext.Provider value={value}>{children(loading)}</AssetsContext.Provider>;
+};

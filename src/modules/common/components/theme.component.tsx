@@ -9,9 +9,7 @@ interface ThemeProps {
     children?: React.ReactNode;
 }
 
-export const Theme: React.FC<ThemeProps> = ({
-    children
-}) => {
+export const Theme: React.FC<ThemeProps> = ({ children }) => {
     const theme = useMemo(() => {
         return createAppTheme({
             disableAnimations: false,
