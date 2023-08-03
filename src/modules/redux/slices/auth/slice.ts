@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { API } from '@sanctuaryteam/shared';
-import { BackendSlice } from '..';
+import { BackendSlice } from './../backend/slice';
 
 interface AuthState {
     token: string;
