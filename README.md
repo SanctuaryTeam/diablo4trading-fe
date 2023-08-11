@@ -70,12 +70,12 @@ an HTML copy you can open in a boewser will be located here "coverage/unit/src/i
 1. Execute Unit tests
    1. Will run all files with *.test.ts
 ```bash
-npm run test:unit
+yarn run test:unit
 ```
 2. Execute unit tests and provide coverage
    1. After a Unit test execution, a coverage folder will be created. 
    2. Reports will be displayed in the output. 
    3. An HTML copy you can open in a boewser will be located here "coverage/unit/src/index.html"
 ```bash
-npm run test:coverage 
+yarn run test:coverage 
 ```
