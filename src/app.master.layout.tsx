@@ -14,20 +14,20 @@ const Main = styled('main')(() => ({
 }));
 
 interface MasterLayoutProps {
-    hideHeader?: boolean;
+    hideNavigation?: boolean;
     children?: React.ReactNode;
 }
 
 export const MasterLayout: React.FC<MasterLayoutProps> = ({
-    hideHeader,
+    hideNavigation,
     children,
 }) => {
     return (
         <React.Fragment>
-            {!hideHeader && <Common.Header />}
+            {<Common.Header hideNavigation={hideNavigation} />}
             <Main
                 sx={{
-                    minHeight: `calc(100vh - ${hideHeader ? 0 : Common.HEADER_HEIGHT}px - ${Common.FOOTER_HEIGHT}px)`,
+                    minHeight: `calc(100vh - ${Common.HEADER_HEIGHT}px - ${Common.FOOTER_HEIGHT}px)`,
                 }}
             >
                 <Container maxWidth='xl' sx={{ pt: 2, pb: 2 }}>

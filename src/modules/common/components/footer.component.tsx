@@ -4,6 +4,7 @@ import { useLingui } from '@lingui/react';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { Link as MuiLink, Stack, SvgIcon, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import { APP_NAME } from '../constants';
 
 const Link = styled(MuiLink)(() => ({
@@ -16,12 +17,22 @@ const Root = styled('footer')(({ theme }) => ({
     padding: theme.spacing(2, 0),
 }));
 
-export const FOOTER_HEIGHT = 104;
+export const FOOTER_HEIGHT = 136;
 
 export const Footer: React.FC = () => {
+    const navigate = useNavigate();
+
     const { i18n } = useLingui();
 
     const year = new Date().getFullYear();
+
+    const handleInternalLinkClick = (
+        event: React.MouseEvent<HTMLAnchorElement>,
+    ) => {
+        event.preventDefault();
+        const url = new URL(event.currentTarget.href);
+        navigate(url.pathname);
+    };
 
     return (
         <Root>
@@ -42,6 +53,34 @@ export const Footer: React.FC = () => {
                 </Link>
                 <Link target='_blank' href='https://discord.gg/Diablo4'>
                     <SvgIcon component={DiscordIcon} />
+                </Link>
+            </Stack>
+            <Stack
+                mt={1}
+                direction='row'
+                justifyContent='center'
+                spacing={1}
+            >
+                <Link
+                    href='/global/cookies'
+                    color='text.secondary'
+                    onClick={handleInternalLinkClick}
+                >
+                    {t(i18n)`Cookies`}
+                </Link>
+                <Link
+                    href='/global/contact'
+                    color='text.secondary'
+                    onClick={handleInternalLinkClick}
+                >
+                    {t(i18n)`Contact`}
+                </Link>
+                <Link
+                    href='/global/privacy'
+                    color='text.secondary'
+                    onClick={handleInternalLinkClick}
+                >
+                    {t(i18n)`Privacy`}
                 </Link>
             </Stack>
         </Root>

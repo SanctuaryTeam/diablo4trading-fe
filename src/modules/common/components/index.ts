@@ -4,7 +4,6 @@ export * from './header.component';
 export * from './item-frame.component';
 export * from './language-switch.component';
 export * from './nav-tabs.component';
-export * from './report-dialog.component';
 export * from './resize.component';
 export * from './server-type-input.component';
 export * from './server-type-select.component';

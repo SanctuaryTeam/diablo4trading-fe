@@ -49,7 +49,7 @@ export const RouteServerTypeProvider: React.FC<RouteServerTypeProviderProps> = (
             const state = store.getState() as Redux.RootState;
             const serverType = Redux.UserSelectors.getServerType(state);
             const pathname = ROUTE_MAPPING[serverType];
-            navigate(`./${pathname}`);
+            navigate(`./${pathname}`, { replace: true });
         }
     }, [routeIncludesServerType, navigate, store]);
 

@@ -36,7 +36,13 @@ Logo.defaultProps = {
 
 export const HEADER_HEIGHT = 48;
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+    hideNavigation?: boolean;
+}
+
+export const Header: React.FC<HeaderProps> = ({
+    hideNavigation,
+}) => {
     const { i18n } = useLingui();
 
     const navigate = useNavigate();
@@ -109,24 +115,28 @@ export const Header: React.FC = () => {
                                     {APP_NAME}
                                 </Typography>
                             </Box>
-                            <Tabs
-                                value={tabValue}
-                                sx={{ display: { xs: 'none', md: 'flex' } }}
-                            >
-                                {items.map((p, i) => (
-                                    <Tab
-                                        key={p.pathname}
-                                        label={p.label}
-                                        onClick={() => handleTabClick(i)}
-                                    />
-                                ))}
-                            </Tabs>
+                            {!hideNavigation && (
+                                <Tabs
+                                    value={tabValue}
+                                    sx={{ display: { xs: 'none', md: 'flex' } }}
+                                >
+                                    {items.map((p, i) => (
+                                        <Tab
+                                            key={p.pathname}
+                                            label={p.label}
+                                            onClick={() => handleTabClick(i)}
+                                        />
+                                    ))}
+                                </Tabs>
+                            )}
                         </Stack>
                         <Box flexGrow={1} />
-                        <Stack direction='row' gap={1}>
-                            <HeaderUser />
-                            <HeaderLanguage />
-                        </Stack>
+                        {!hideNavigation && (
+                            <Stack direction='row' gap={1}>
+                                <HeaderUser />
+                                <HeaderLanguage />
+                            </Stack>
+                        )}
                     </Toolbar>
                 </Container>
             </AppBar>
@@ -156,15 +166,17 @@ export const Header: React.FC = () => {
                             {APP_NAME}
                         </Typography>
                     </Box>
-                    <Tabs value={tabValue} orientation='vertical'>
-                        {items.map((p, i) => (
-                            <Tab
-                                key={p.pathname}
-                                label={p.label}
-                                onClick={() => handleTabClick(i)}
-                            />
-                        ))}
-                    </Tabs>
+                    {!hideNavigation && (
+                        <Tabs value={tabValue} orientation='vertical'>
+                            {items.map((p, i) => (
+                                <Tab
+                                    key={p.pathname}
+                                    label={p.label}
+                                    onClick={() => handleTabClick(i)}
+                                />
+                            ))}
+                        </Tabs>
+                    )}
                 </Drawer>
             </Box>
         </Box>

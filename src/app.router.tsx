@@ -1,17 +1,25 @@
 import { Common } from '@modules/common';
 import { RouteAuth } from '@modules/route-auth';
+import { RouteGlobal } from '@modules/route-global';
 import { RouteServices } from '@modules/route-services';
 import { RouteTrade } from '@modules/route-trade';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { MasterLayout } from './app.master.layout';
-import { NotFoundPage } from './app.not-found.page';
 
 export const router = createBrowserRouter([
     {
         path: 'auth/*',
         element: (
-            <MasterLayout hideHeader>
+            <MasterLayout hideNavigation>
                 <RouteAuth.Element />
+            </MasterLayout>
+        ),
+    },
+    {
+        path: 'global/*',
+        element: (
+            <MasterLayout hideNavigation>
+                <RouteGlobal.Element />
             </MasterLayout>
         ),
     },
@@ -37,9 +45,9 @@ export const router = createBrowserRouter([
         ),
         children: [
             { index: true, element: <Navigate to='trade' replace /> },
-            { path: 'trade/*', element: <RouteTrade.Element /> },
             { path: 'services/*', element: <RouteServices.Element /> },
-            { path: '*', element: <NotFoundPage /> },
+            { path: 'trade/*', element: <RouteTrade.Element /> },
+            { path: '*', element: <Common.NotFoundPage /> },
         ],
     },
 ]);

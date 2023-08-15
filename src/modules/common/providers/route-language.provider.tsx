@@ -62,7 +62,7 @@ export const RouteLanguageProvider: React.FC<RouteLanguageProviderProps> = ({
             const state = store.getState() as Redux.RootState;
             const language = Redux.UserSelectors.getLanguage(state);
             const pathname = ROUTE_MAPPING[language];
-            navigate(`/${pathname}/${indexPath}`);
+            navigate(`/${pathname}/${indexPath}`, { replace: true });
         }
     }, [routeIncludesLanguage, navigate, store, indexPath]);
 
