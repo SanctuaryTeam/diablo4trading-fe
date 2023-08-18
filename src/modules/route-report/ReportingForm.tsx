@@ -27,12 +27,17 @@ const ReportingForm: React.FC<ReportingFormProps> = ({ onSubmit, onCancel }) => 
     <div className="reporting-form">
       <h2>Report Issue</h2>
       <label>
-        Reason:
+        Report Reason:
         <select value={reason} onChange={handleReasonChange}>
           <option value="">Select a reason</option>
-          <option value="spam">Spam</option>
-          <option value="inappropriate">Inappropriate content</option>
-          <option value="other">Other</option>
+          <option value="bids-not-honored">Bids not honored</option>
+          <option value="alt-manipulation">Alt/friend used for manipulation</option>
+          <option value="scam">Scam (withholding gold/services)</option>
+          <option value="exploit-sales">Exploit sales (bugged sigils, etc)</option>
+          <option value="rmt">RMT (Real Money Trading)</option>
+          <option value="sales-outside">Sales outside of application (Direct Messages/etc)</option>
+          <option value="editing-bids">Editing bids after posting</option>
+          <option value="other">Other (which could be detailed in the text field)</option>
         </select>
       </label>
       <br />
