@@ -2,28 +2,44 @@ import React, { useState } from 'react';
 import ModalWindow from './ModalWindow';
 
 interface ReportingFormProps {
-  onSubmit: () => void;
+  onSubmit: (reportData: ReportData) => void;
   onCancel: () => void;
 }
 
+interface ReportData {
+  reason: string;
+  details: string;
+  screenshot: File | null;
+}
+
 const ReportingForm: React.FC<ReportingFormProps> = ({ onSubmit, onCancel }) => {
-  const [reason, setReason] = useState('');
-  const [details, setDetails] = useState('');
+  const [reportData, setReportData] = useState<ReportData>({
+    reason: '',
+    details: '',
+    screenshot: null,
+  });
 
   const handleReasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setReason(event.target.value);
+    setReportData({ ...reportData, reason: event.target.value });
   };
 
   const handleDetailsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDetails(event.target.value);
+    setReportData({ ...reportData, details: event.target.value });
+  };
+
+  const handleScreenshotChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setReportData({ ...reportData, screenshot: event.target.files[0] });
+    }
   };
 
   const handleSubmit = () => {
     // Send report logic here
-    onSubmit();
+    onSubmit(reportData);
   };
 
-  return (
+
+return (
     <div className="reporting-form">
       <h2>Report Issue</h2>
       <label>
@@ -43,7 +59,12 @@ const ReportingForm: React.FC<ReportingFormProps> = ({ onSubmit, onCancel }) => 
       <br />
       <label>
         Details:
-        <input type="text" value={details} onChange={handleDetailsChange} />
+        <input type="text" value={reportData.details} onChange={handleDetailsChange} />
+      </label>
+      <br />
+      <label>
+        Screenshot/Image:
+        <input type="file" accept="image/*" onChange={handleScreenshotChange} />
       </label>
       <br />
       <button onClick={handleSubmit}>Submit</button>
@@ -51,5 +72,3 @@ const ReportingForm: React.FC<ReportingFormProps> = ({ onSubmit, onCancel }) => 
     </div>
   );
 };
-
-export default ReportingForm;
