@@ -21,3 +21,6 @@ Create middleware that can be used to check user roles and permissions for speci
 ### React Integration
 
 Need to make requests to the backend to retrieve user role information and determine whether certain features or pages should be accessible.
+
+
+### Someone to do the CSS on ReportingForm.tsx, Snackbar.tsx, Modalwindow.tsx and to implement the main.tsx file somewhere.
