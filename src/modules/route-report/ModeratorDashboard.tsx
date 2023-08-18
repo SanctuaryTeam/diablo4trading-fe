@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import ModalWindow from './ModalWindow';
-import ReportingForm from './ReportingForm';
-import Snackbar from './Snackbar';
+import ReportingForm from './ReportingForm'; // Make sure to import your existing components
+import Snackbar from './Snackbar'; // Make sure to import your existing components
+
+interface ModeratorDashboardProps {
+  userRole: string; // Pass in the user's role from your authentication system
+}
 
 interface ModerationAction {
   id: number;
   type: 'warn' | 'ban';
   user: string;
+  escalated: boolean;
+  escalationReason: string;
 }
 
-const ModeratorDashboard: React.FC = () => {
+const ModeratorDashboard: React.FC<ModeratorDashboardProps> = ({ userRole }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [selectedReport, setSelectedReport] = useState<number | null>(null);
   const [moderationAction, setModerationAction] = useState<ModerationAction | null>(null);
+  const [escalatedReports, setEscalatedReports] = useState<number[]>([]);
 
   const reports = [
     { id: 1, reason: 'spam', details: 'Spam content on post', user: 'user123' },
@@ -38,7 +45,21 @@ const ModeratorDashboard: React.FC = () => {
   };
 
   const handleActionClick = (actionType: 'warn' | 'ban', userId: string) => {
-    setModerationAction({ id: selectedReport, type: actionType, user: userId });
+    setModerationAction({ id: selectedReport, type: actionType, user: userId, escalated: false, escalationReason: '' });
+  };
+
+  const handleEscalateClick = () => {
+    if (moderationAction && moderationAction.escalationReason.trim() !== '') {
+      setModerationAction({ ...moderationAction, escalated: true });
+      setEscalatedReports([...escalatedReports, moderationAction.id]);
+      setModerationAction(null);
+    }
+  };
+
+  const handleEscalationReasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (moderationAction) {
+      setModerationAction({ ...moderationAction, escalationReason: event.target.value });
+    }
   };
 
   const handleSnackbarClose = () => {
@@ -64,7 +85,7 @@ const ModeratorDashboard: React.FC = () => {
       </ModalWindow>
       <Snackbar open={snackbarOpen} onClose={handleSnackbarClose} />
 
-      {moderationAction && (
+      {moderationAction && !escalatedReports.includes(moderationAction.id) && (
         <div className="moderation-action">
           <h2>Take Action</h2>
           <p>
@@ -74,6 +95,17 @@ const ModeratorDashboard: React.FC = () => {
           </p>
           <button onClick={() => handleActionClick('warn', moderationAction.user)}>Warn User</button>
           <button onClick={() => handleActionClick('ban', moderationAction.user)}>Ban User</button>
+          <div>
+            <label>
+              Escalation Reason:
+              <input
+                type="text"
+                value={moderationAction.escalationReason}
+                onChange={handleEscalationReasonChange}
+              />
+            </label>
+          </div>
+          <button onClick={handleEscalateClick}>Escalate to Senior Moderator</button>
         </div>
       )}
     </div>
