@@ -2,26 +2,33 @@ import React, { useState } from 'react';
 import ModalWindow from './ModalWindow';
 
 interface AppealFormProps {
-  onSubmit: () => void;
+  onSubmit: (appealData: AppealData) => void;
   onCancel: () => void;
 }
 
-const AppealForm: React.FC<AppealFormProps> = ({ onSubmit, onCancel }) => {
-  const [reason, setReason] = useState('');
-  const [details, setDetails] = useState('');
+interface AppealData {
+  reason: string;
+  details: string;
+  screenshot: File | null;
+  appealReason: string; // New field for the appeal reason
+}
 
-  const handleReasonChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setReason(event.target.value);
+const AppealForm: React.FC<AppealFormProps> = ({ onSubmit, onCancel }) => {
+  const [appealData, setAppealData] = useState<AppealData>({
+    reason: '',
+    details: '',
+    screenshot: null,
+    appealReason: '', // Initialize the appeal reason
+  });
+
+  const handleAppealReasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAppealData({ ...appealData, appealReason: event.target.value });
   };
 
   const handleDetailsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDetails(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // Send appeal logic here
-    onSubmit();
-  };
 
   return (
     <div className="appeal-form">
@@ -39,7 +46,7 @@ const AppealForm: React.FC<AppealFormProps> = ({ onSubmit, onCancel }) => {
       <br />
       <label>
         Details:
-        <input type="text" value={details} onChange={handleDetailsChange} />
+        <input type="text" value={appealData.appealReason} onChange={handleAppealReasonChange} />
       </label>
       <br />
       <button onClick={handleSubmit}>Submit</button>
