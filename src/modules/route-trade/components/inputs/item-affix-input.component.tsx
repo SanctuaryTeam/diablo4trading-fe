@@ -150,20 +150,18 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     const { language, affixes } = Common.useAssets();
 
     const { options, selected } = React.useMemo(() => {
-        const options = Object
-            .keys(affixes.definitions[type])
-            .map((id) => ({
+        const options = Object.keys(affixes.definitions[type]).map((id) => ({
+            id,
+            label: Game.getItemAffixText(
                 id,
-                label: Game.getItemAffixText(
-                    id,
-                    language,
-                    type,
-                    -1,
-                    -1,
-                    affixes,
-                    placeholder,
-                ),
-            }));
+                language,
+                type,
+                -1,
+                -1,
+                affixes,
+                placeholder,
+            ),
+        }));
         let selected = value === undefined ? null : options.find((o) => o.id === value);
         if (selected === undefined) {
             options.push({
@@ -174,6 +172,13 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
         }
         return { options, selected };
     }, [affixes, language, placeholder, type, value, i18n]);
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        // Enforce the limit to 850
+        const limitedValue = Math.min(parseInt(inputValue), 850);
+        onChange(limitedValue);
+    };
 
     return (
         <Autocomplete
@@ -189,7 +194,13 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                     })
                     : options}
             onChange={(_, option) => onChange(option?.id)}
-            renderInput={(params) => <TextField {...params} label={label} />}
+            renderInput={(params) => (
+                <TextField
+                    {...params}
+                    label={label}
+                    onChange={handleInputChange}
+                />
+            )}
             renderOption={(props, option, state) => [props, option, state.index] as React.ReactNode}
             fullWidth
             disabled={disabled}
