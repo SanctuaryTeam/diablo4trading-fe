@@ -1,0 +1,8 @@
+{
+  "include": [
+    "test/unit/**/*.ts",
+    "test/ui/**/*.ts",
+    "jest.ui.config.ts",
+    "jest.unit.config.ts"
+  ]
+}

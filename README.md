@@ -1,65 +1,103 @@
-# @sanctuaryteam/web-app
+# sanctuaryteam/diablotrading-fe
+diablo4.trading frontend application
 
-## Pre-requisites
 
-Requires [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/).
+## Windows Installation
+Follow this setup guide - [Windows Setup Instructions](https://github.com/SanctuaryTeam/.github/wiki/WindowsSetUp)
 
-## Project setup
+## Set Up .env
+Docker will user this file for project specific environment variables
+- Create a [new GitHub personal access token](https://github.com/settings/tokens/new) with the following scopes: `read:packages`
 
-1. Create a [new GitHub personal access token](https://github.com/settings/tokens/new) with the following scopes:
+- Update .env File:  run `cp .env.example .env` to create a new .env file. Update the new .env file with SANCTUARYTEAM_AUTH_TOKEN=YOUR_NEW_TOKEN
 
-    ```
-    read:packages
-    ```
+## Running the Application with Docker
 
-2. Set env variable `SANCTUARYTEAM_AUTH_TOKEN` to the token value. You should run `cp .env.example .env` and modify this new file to store your token.
-
-3. Run
-    ```bash
-    yarn install
-    ```
-
-## Compiles and hot-reloads for development
-
+To get your application up and running:
+- Ensure you have both Docker and Docker Compose installed.
+- Navigate to the directory containing your docker-compose.yml file.
 ```bash
-yarn dev
+ cd ~/sanctuaryteam/diablo4trading-fe
+```
+- Run the following command: `docker compose up`
+- Access the Application: Once the containers are up and running, you can access the application in your browser using the URL: http://localhost:5173
+
+## Development
+**start** - Starts the application in development mode.
+```bash
+ yarn run start
 ```
 
-## Running Docker development
-
-Make sure Docker is installed.
-
-If you are on Windows, you should be running the files from within a WSL container. Otherwise, you will not be able to hot reload and file access will be slow.
-
-1. Start Ubuntu (or the distro you installed with WSL/Docker)
-2. Checkout the repositories or copy it from your local filesystem `cp -r /mnt/c/Users/username/Documents/sanctuaryteam/ ~/` (your file path may vary)
-3. Enter the folder in the command line `cd ~/sanctuaryteam/web-app`
-4. Run the following command to start development:
-
+**start:dev** - Starts the application in development mode with watch enabled.
 ```bash
-docker compose up
+ yarn run start:dev
 ```
 
-5. To modify the files on your Windows machine install [Remote WSL for VS Code](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
-6. In your WSL instance, run `code .` inside of the `web-app` folder.
-7. Start VS Code and select the **Remote Explorer** from the left-hand side, and choose the web-app.
-
-## Running commands on Docker service
-
+**start:prod** - Starts the application in production mode.
 ```bash
-docker-compose run web-app yarn add my-package --dev
+ yarn run start:prod
 ```
 
-## Running dprint
-
+**dev** - Starts the Vite development server.
 ```bash
-yarn run format
+ yarn run dev
 ```
 
-## Adding or updating localizations
+**preview** - Previews the production build using Vite.
+```bash
+ yarn run preview
+```
 
-1. Add localizations in English using the string templating pattern that is throughout the project
-2. Run `yarn lingui:extract` to extract the English words to hashes.
-3. Update any localization `.json` files found in `src/modules/common/i18n`, this folder is auto-generated.
-4. Once you have updated the `.json` files run `yarn lingui:compile`.
-5. Check in the changes in a PR
+**tsc** - Runs TypeScript compiler (tsc) without emitting any files.
+```bash
+ yarn run tsc
+```
+
+## Translation
+
+**lingui:extract** -  Extracts translations with LinguiJS, and removes obsolete translations.
+```bash
+ yarn run lingui:extract
+```
+
+**lingui:compile** - Compiles translations with LinguiJS and outputs TypeScript files.
+```bash
+ yarn run lingui:compile
+```
+
+## Build & Deployment
+**prebuild** - Compiles translations before building.
+```bash
+ yarn run prebuild
+```
+**build** - Compiles TypeScript and then builds the project using Vite.
+```bash
+ yarn run build
+```
+## Code Quality (Linting & Formatting)
+**lint** - Lints TypeScript files with ESLint.
+```bash
+ yarn run lint
+```
+**format** - Formats the code using dprint.
+```bash
+ yarn run format
+```
+## Testing
+**test** - Runs both unit and UI tests.
+```bash
+ yarn run test
+```
+
+**test:unit** - Runs unit tests with Jest using a specific configuration.
+```bash
+ yarn run test:unit
+```
+**test:ui** - Runs UI tests with Jest using a specific configuration.
+```bash
+ yarn run test:ui
+```
+**test:coverage** - Runs unit tests with Jest, generating coverage information.
+```bash
+ yarn run test:coverage
+```
