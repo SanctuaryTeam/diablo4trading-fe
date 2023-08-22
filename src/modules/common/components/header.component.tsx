@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
     const tradePath = useResolvedPath('trade');
     const servicesPath = useResolvedPath('services');
     const feedbackPath = useResolvedPath('./feedback');
-    const faqPath = useResolvedPath('./faq');
+    const faqPath = useResolvedPath('.src/modules/route-global/pages/faq.page.tsx');
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
