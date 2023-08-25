@@ -11,7 +11,7 @@ const Content = styled('div')(({ theme }) => ({
     },
 }));
 
-export const PrivacyPage: React.FC = () => {
+export const CookiePage: React.FC = () => {
     return (
         <Content>
             <ReactMarkdown>
