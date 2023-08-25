@@ -415,11 +415,6 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
-"@diablosnaps/assets@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@diablosnaps/assets/-/assets-0.2.6.tgz#2bd18241af9f664442c6af97955f04bea8d09e7c"
-  integrity sha512-pwSnDsWuelbButK2krZk/el8VR7J8FgoguKDoJqAYBTb6rxIugxrC32oTPYrttiYzASKj+Cd1ifwF3thNu9+Jg==
-
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -431,6 +426,13 @@
   integrity sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
+
+"@diablosnaps/assets@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@diablosnaps/assets/-/assets-0.2.6.tgz#2bd18241af9f664442c6af97955f04bea8d09e7c"
+  integrity sha512-pwSnDsWuelbButK2krZk/el8VR7J8FgoguKDoJqAYBTb6rxIugxrC32oTPYrttiYzASKj+Cd1ifwF3thNu9+Jg==
+  dependencies:
+    "@diablosnaps/common" "^0.2.5"
 
 "@diablosnaps/common@^0.2.5":
   version "0.2.5"
@@ -1408,10 +1410,10 @@
     estree-walker "^2.0.2"
     picomatch "^2.3.1"
 
-"@sanctuaryteam/shared@^0.2.0":
-  version "0.2.0"
-  resolved "https://npm.pkg.github.com/download/@sanctuaryteam/shared/0.2.0/afcef274a96acb0c2bc6893d06b6e434ee444d20#afcef274a96acb0c2bc6893d06b6e434ee444d20"
-  integrity sha512-b6nv3RvRklOfpWJYDTLtMVYz/sUdKB321vaV/P2FNxKa0HyJKEKGlwKXX18JaCksi/W01nwFWA82Xl/UcNUkEw==
+"@sanctuaryteam/shared@^0.2.3":
+  version "0.2.4"
+  resolved "https://npm.pkg.github.com/download/@sanctuaryteam/shared/0.2.4/2804c2aefadd9c0cca1859960b06bdbd7d3adf72#2804c2aefadd9c0cca1859960b06bdbd7d3adf72"
+  integrity sha512-bwisrfVXtjlCzTa+nCc4lT9MNOZNFXgCuOAUq9hSdD2xVISOlqGgNz6aXc+JsDAj9GonXYhHq1Af8BTCQRwIlQ==
   dependencies:
     "@diablosnaps/common" "^0.2.5"
     lz-string "^1.5.0"
@@ -5521,10 +5523,10 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
-typescript@^5.1.6:
-  version "5.1.6"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.6.tgz#02f8ac202b6dad2c0dd5e0913745b47a37998274"
-  integrity sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==
+typescript@^5.0.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.2.2.tgz#5ebb5e5a5b75f085f22bc3f8460fba308310fa78"
+  integrity sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
