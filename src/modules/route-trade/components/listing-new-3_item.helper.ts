@@ -42,7 +42,7 @@ export function isListingNewItemFormValid(
             return false;
         }
         return true;
-    }
+    };
     if ((form.inherentAffixes || []).length === 0 || form.inherentAffixes.filter(isAffixValid).length < 1) {
         return false;
     }

@@ -102,9 +102,9 @@ export function createAppTheme(
             MuiAlert: {
                 styleOverrides: {
                     root: {
-                        alignItems: 'center'
-                    }
-                }
+                        alignItems: 'center',
+                    },
+                },
             },
             MuiTooltip: {
                 styleOverrides: {

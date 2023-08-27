@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { API } from '@sanctuaryteam/shared';
 import { ToggleButton, ToggleButtonGroup, useMediaQuery } from '@mui/material';
+import { API } from '@sanctuaryteam/shared';
 import React from 'react';
 
 interface ServiceTagsProps {

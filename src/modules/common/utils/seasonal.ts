@@ -4,7 +4,8 @@ export function isSeasonal(
     serverType: Game.ServerType,
     itemType: Game.ItemType,
 ) {
-    if (itemType !== Game.ItemType.Amulet
+    if (
+        itemType !== Game.ItemType.Amulet
         && itemType !== Game.ItemType.Ring
     ) {
         return false;

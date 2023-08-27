@@ -1,5 +1,5 @@
+import { API } from '@sanctuaryteam/shared';
 import React from 'react';
-import { API } from '@sanctuaryteam/shared'
 import { Search, SearchFilter } from '../components';
 
 export const SearchPage: React.FC = () => {

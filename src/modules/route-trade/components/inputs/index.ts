@@ -6,4 +6,3 @@ export * from './item-type-input.component';
 export * from './item-variant-input.component';
 export * from './language-input.component';
 export * from './number-input.component';
-

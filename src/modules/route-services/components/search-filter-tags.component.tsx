@@ -5,15 +5,15 @@ import React from 'react';
 import { ServiceTags } from './service-tags.component';
 
 interface SearchFilterTagsProps {
-    value: number;
+    // value: number;
     onChange: (value: number) => void;
-    disabled?: boolean;
+    // disabled?: boolean;
 }
 
 export const SearchFilterTags: React.FC<SearchFilterTagsProps> = ({
-    value,
+    // value,
     onChange,
-    disabled,
+    // disabled,
 }) => {
     const { i18n } = useLingui();
 
@@ -22,7 +22,7 @@ export const SearchFilterTags: React.FC<SearchFilterTagsProps> = ({
     const handleTagsSelection = (newTags: number[]) => {
         setSelectedTags(() => newTags);
         const newNumber = newTags.reduce((acc, tag) => acc | tag, 0);
-        onChange(value = newNumber);
+        onChange(newNumber);
     };
 
     return (

@@ -6,8 +6,8 @@ import { styled } from '@mui/material/styles';
 import React from 'react';
 import 'react-virtualized/styles.css';
 import { ServiceSelectors } from '@modules/redux/slices';
-import { useSelector } from 'react-redux';
 import { API } from '@sanctuaryteam/shared';
+import { useSelector } from 'react-redux';
 import { SearchResult } from '.';
 
 const Root = styled('div')(({ theme }) => ({
@@ -24,11 +24,12 @@ export const Search: React.FC<SearchResultsProps> = ({
 }) => {
     const { i18n } = useLingui();
 
-    const { isLoading, isError } = Redux.useServiceSearchQuery(params);
+    const { isError } = Redux.useServiceSearchQuery(params);
     const listings = useSelector(ServiceSelectors.getListings);
 
     return (
-        <Root> {/* TODO: Insert Loading module */}
+        <Root>
+            {/* TODO: Insert Loading module */}
             {/* @ts-ignore */} {/* To disregard error that map does not exist on unknown "listings" */}
             {listings.map(listing => (
                 <SearchResult
@@ -39,8 +40,7 @@ export const Search: React.FC<SearchResultsProps> = ({
                     title={listing?.title}
                     content={listing?.content}
                     tags={API.numberToTags(listing?.tags)}
-                >
-                </SearchResult>
+                />
             ))}
             <Snackbar
                 open={isError}

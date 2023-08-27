@@ -59,7 +59,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <SearchFilterTags
-                                    value={query.tags}
+                                    //                                  value={query.tags}
                                     onChange={(tags) =>
                                         setQuery({
                                             ...query,
