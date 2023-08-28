@@ -5,12 +5,12 @@ import { Box, Checkbox } from '@mui/material';
 
 interface PosNegRatingInputProps {
     value: boolean;
-    onChange: (newValue: boolean) => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   }
 
 export const PosNegRatingInput: React.FC<PosNegRatingInputProps> = ({ onChange, value }) => {
-    const handleThumbsUpChange = () => {
-        onChange(!value); // Toggle the boolean value
+    const handleThumbsUpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(e); // Toggle the boolean value
       };
 
   return (
