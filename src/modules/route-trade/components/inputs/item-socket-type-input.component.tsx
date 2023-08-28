@@ -14,19 +14,24 @@ const ItemSocketTypeIcon = styled('img')(() => ({
 
 interface ItemSocketTypeInputProps {
     value: Game.ItemSocketType;
-    label?: string;
-    disabled?: boolean;
     onChange: (value: Game.ItemSocketType) => void;
+    label?: string;
+    required?: boolean;
+    disabled?: boolean;
+    language?: Game.Language;
 }
 
 export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
     value,
-    label,
-    disabled,
     onChange,
+    label,
+    required,
+    disabled,
+    language: formLanguage,
 }) => {
     const { i18n } = useLingui();
-    const { language, translations } = Common.useAssets();
+    const { language: assetsLanguage, translations } = Common.useAssets();
+    const language = formLanguage ?? assetsLanguage;
 
     const options = Object
         .values(Game.ItemSocketType)
@@ -68,6 +73,7 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                 <TextField
                     {...params}
                     label={label}
+                    required={required}
                     InputProps={{
                         ...params.InputProps,
                         startAdornment: Common.GAME_ITEM_SOCKET_TYPE_ICONS[value]
@@ -81,6 +87,7 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                     }}
                 />
             )}
+            disableClearable={required}
             disabled={disabled}
         />
     );

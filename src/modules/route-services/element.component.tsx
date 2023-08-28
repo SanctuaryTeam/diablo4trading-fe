@@ -24,7 +24,14 @@ export const Element: React.FC = () => {
                         </Common.RouteServerTypeProvider>
                     }
                 />
-                <Route path='listings' element={<ListingsPage />} />
+                <Route
+                    path='listings/:serverType?'
+                    element={
+                        <Common.RouteServerTypeProvider>
+                            <ListingsPage />
+                        </Common.RouteServerTypeProvider>
+                    }
+                />
             </Route>
         </Routes>
     );

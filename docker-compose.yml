@@ -12,6 +12,7 @@ services:
         # Mount the current directory into the container for live code editing
         volumes:
             - .:/app
+            - $SHARED_PATH:/app/shared
         # Expose the development server port (if needed)
         ports:
             - '5173:5173'
@@ -20,5 +21,17 @@ services:
             - sh
             - -c
             - |
-                yarn install
+                node tsconfig.merged.cjs
+                if [ "$$SHARED_LINK" = "true" ]; then
+                    cd /app/shared
+                    yarn install
+                    yarn build
+                    yarn link
+                    cd /app
+                    yarn install
+                    yarn link '@sanctuaryteam/shared'
+                else
+                    cd /app
+                    yarn install
+                fi
                 yarn dev --host

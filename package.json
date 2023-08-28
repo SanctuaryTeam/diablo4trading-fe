@@ -19,8 +19,9 @@
     "test": "yarn run test:unit && yarn run test:ui"
   },
   "dependencies": {
-    "@diablosnaps/assets": "^0.2.5",
+    "@diablosnaps/assets": "^0.2.6",
     "@diablosnaps/common": "^0.2.5",
+    "@diablosnaps/rpc": "^0.2.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/alegreya-sans": "^5.0.5",
@@ -28,8 +29,9 @@
     "@lingui/react": "^4.3.0",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
+    "@mui/x-data-grid": "^6.11.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@sanctuaryteam/shared": "^0.2.0",
+    "@sanctuaryteam/shared": "^0.2.3",
     "lz-string": "^1.5.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",

@@ -14,24 +14,29 @@ const ClassIcon = styled('img')(() => ({
 
 interface CharacterClassInputProps {
     value: Game.Class;
+    onChange: (value: Game.Class) => void;
     label?: string;
     disabled?: boolean;
-    onChange: (value: Game.Class) => void;
+    language?: Game.Language;
 }
 
 export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
     value,
+    onChange,
     label,
     disabled,
-    onChange,
+    language: formLanguage,
 }) => {
     const { i18n } = useLingui();
-    const { language, translations } = Common.useAssets();
+    const { language: assetsLanguage, translations } = Common.useAssets();
+    const language = formLanguage ?? assetsLanguage;
 
-    const options = Object.values(Game.Class).map((characterClass) => ({
-        id: characterClass,
-        label: Game.getCharacterClassText(characterClass, language, translations),
-    }));
+    const options = Object
+        .values(Game.Class)
+        .map((characterClass) => ({
+            id: characterClass,
+            label: Game.getCharacterClassText(characterClass, language, translations),
+        }));
     let selected = value === undefined ? null : options.find((x) => x.id === value);
     if (selected === undefined) {
         options.push({

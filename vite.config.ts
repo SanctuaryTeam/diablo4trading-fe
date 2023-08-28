@@ -9,13 +9,20 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 // eslint-disable-next-line import/no-default-export
+
+const sharedLink = process.env.SHARED_LINK === 'true';
+const sharedAlias: {} = sharedLink ? { '@sanctuaryteam/shared': path.resolve(__dirname, './shared/src') } : {};
+const sharedOptimizeDeps = sharedLink ? ['@sanctuaryteam/shared'] : [];
+
 export default defineConfig({
     resolve: {
         alias: {
             '@assets': path.resolve(__dirname, './src/assets'),
             '@config': path.resolve(__dirname, './src/config.ts'),
             '@modules': path.resolve(__dirname, './src/modules'),
+            ...sharedAlias,
         },
+        preserveSymlinks: true,
     },
     plugins: [
         react({
@@ -27,6 +34,9 @@ export default defineConfig({
         svgr(),
         reactVirtualized(),
     ],
+    optimizeDeps: {
+        exclude: [...sharedOptimizeDeps],
+    },
 });
 
 // https://github.com/uber/baseweb/issues/4129#issuecomment-1208168306

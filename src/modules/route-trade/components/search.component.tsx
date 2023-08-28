@@ -129,6 +129,7 @@ export const Search: React.FC<SearchResultsProps> = ({
                             <SearchResult
                                 item={result.item}
                                 listing={result.listing}
+                                even={index % 2 === 0}
                             />
                         )
                         : undefined}
