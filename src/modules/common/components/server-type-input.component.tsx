@@ -16,12 +16,16 @@ const ServerTypeIcon = styled('img')(() => ({
 interface ServerTypeInputProps {
     value: Game.ServerType;
     onChange: (value: Game.ServerType) => void;
+    label?: string;
+    required?: boolean;
     disabled?: boolean;
 }
 
 export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
     value,
     onChange,
+    label,
+    required,
     disabled,
 }) => {
     const { i18n } = useLingui();
@@ -66,14 +70,18 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    hiddenLabel
+                    label={label}
+                    required={required}
+                    hiddenLabel={!label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
+                        startAdornment: GAME_SERVER_TYPE_ICONS[value] && (
+                            <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />
+                        ),
                     }}
                 />
             )}
-            disableClearable
+            disableClearable={required}
             disabled={disabled}
         />
     );

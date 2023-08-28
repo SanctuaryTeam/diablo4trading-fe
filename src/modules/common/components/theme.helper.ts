@@ -1,4 +1,4 @@
-import { Theme } from '@mui/material';
+import { autocompleteClasses, backdropClasses, Theme } from '@mui/material';
 import { alpha, createTheme } from '@mui/material/styles';
 
 interface AppThemeOptions {
@@ -52,6 +52,15 @@ export function createAppTheme(
                     },
                 },
             },
+            MuiDialog: {
+                styleOverrides: {
+                    root: ({ theme }) => ({
+                        [`& > .${backdropClasses.root}`]: {
+                            backgroundColor: alpha(theme.palette.common.black, 0.9),
+                        },
+                    }),
+                },
+            },
 
             MuiSelect: {
                 defaultProps: {
@@ -62,7 +71,7 @@ export function createAppTheme(
                 styleOverrides: {
                     listbox: {
                         padding: 0,
-                        '& > .MuiAutocomplete-option': {
+                        [`& > .${autocompleteClasses.option}`]: {
                             paddingRight: 9,
                             paddingLeft: 9,
                         },
@@ -89,6 +98,24 @@ export function createAppTheme(
                     },
                 },
             },
+
+            MuiAlert: {
+                styleOverrides: {
+                    root: {
+                        alignItems: 'center',
+                    },
+                },
+            },
+            MuiTooltip: {
+                styleOverrides: {
+                    tooltip: ({ theme }) => ({
+                        ...theme.typography.body2,
+                    }),
+                },
+                defaultProps: {
+                    disableInteractive: true,
+                },
+            },
         },
         palette: {
             primary: {
@@ -96,6 +123,13 @@ export function createAppTheme(
             },
             secondary: {
                 main: '#ffe082',
+            },
+            item: {
+                common: '#ffffff',
+                magic: '#ababf8',
+                rare: '#ffff00',
+                number: '#ffffff',
+                text: '#bfbfbf',
             },
             mode: 'dark',
         },

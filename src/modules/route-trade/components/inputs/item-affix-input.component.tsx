@@ -136,6 +136,7 @@ interface ItemAffixInputProps {
     type?: Game.AffixType;
     placeholder?: string;
     disabled?: boolean;
+    language?: Game.Language;
 }
 
 export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
@@ -145,9 +146,11 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     type = Game.AffixType.Basic,
     placeholder = '#',
     disabled,
+    language: formLanguage,
 }) => {
     const { i18n } = useLingui();
-    const { language, affixes } = Common.useAssets();
+    const { language: assetsLanguage, affixes } = Common.useAssets();
+    const language = formLanguage ?? assetsLanguage;
 
     const { options, selected } = React.useMemo(() => {
         const options = Object
@@ -173,7 +176,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
             selected = options[options.length - 1];
         }
         return { options, selected };
-    }, [affixes, language, placeholder, type, value, i18n]);
+    }, [affixes, type, value, language, placeholder, i18n]);
 
     return (
         <Autocomplete

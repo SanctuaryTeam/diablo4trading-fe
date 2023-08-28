@@ -10,6 +10,7 @@ interface NumberInputProps {
     helperText?: string;
     min?: number;
     max?: number;
+    required?: boolean;
     disabled?: boolean;
 }
 
@@ -20,6 +21,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
     helperText,
     min,
     max,
+    required,
     disabled,
 }) => {
     const [textValue, setTextValue] = React.useState<string>(toString(value));
@@ -57,6 +59,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
                 }
                 setValue(numericValue);
             }}
+            required={required}
             disabled={disabled}
         />
     );

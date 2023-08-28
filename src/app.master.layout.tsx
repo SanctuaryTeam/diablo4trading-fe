@@ -30,7 +30,10 @@ export const MasterLayout: React.FC<MasterLayoutProps> = ({
                     minHeight: `calc(100vh - ${Common.HEADER_HEIGHT}px - ${Common.FOOTER_HEIGHT}px)`,
                 }}
             >
-                <Container maxWidth='xl' sx={{ pt: 2, pb: 2 }}>
+                <Container
+                    maxWidth='xl'
+                    sx={{ pt: 2, pb: 2 }}
+                >
                     {children}
                 </Container>
             </Main>

@@ -17,6 +17,32 @@ import serverTypeSeasonal from '@assets/game/2DUI_Social_ServerType/1780021540.w
 import serverTypeEternal from '@assets/game/2DUI_Social_ServerType/395747417.webp';
 import serverTypeSeasonalHardcore from '@assets/game/2DUI_Social_ServerType/470588524.webp';
 import serverTypeHardcore from '@assets/game/2DUI_Social_ServerType/904762742.webp';
+import tooltipItemAmulet from '@assets/game/2DUI_TooltipItem_Amulet.webp';
+import tooltipItemAxe from '@assets/game/2DUI_TooltipItem_Axe.webp';
+import tooltipItemBoots from '@assets/game/2DUI_TooltipItem_Boots.webp';
+import tooltipItemBow from '@assets/game/2DUI_TooltipItem_Bow.webp';
+import tooltipItemChestArmor from '@assets/game/2DUI_TooltipItem_ChestArmor.webp';
+import {
+    default as tooltipItemCrossbow,
+    default as tooltipItemCrossbow2H,
+} from '@assets/game/2DUI_TooltipItem_Crossbow.webp';
+import tooltipItemDagger from '@assets/game/2DUI_TooltipItem_Dagger.webp';
+import tooltipItemFocus from '@assets/game/2DUI_TooltipItem_Focus.webp';
+import tooltipItemGloves from '@assets/game/2DUI_TooltipItem_Gloves.webp';
+import tooltipItemHelm from '@assets/game/2DUI_TooltipItem_Helm.webp';
+import tooltipItemMace from '@assets/game/2DUI_TooltipItem_Mace.webp';
+import tooltipItemLegs from '@assets/game/2DUI_TooltipItem_Pants.webp';
+import tooltipItemPolearm from '@assets/game/2DUI_TooltipItem_Polearm.webp';
+import tooltipItemRing from '@assets/game/2DUI_TooltipItem_Ring.webp';
+import tooltipItemScythe from '@assets/game/2DUI_TooltipItem_Scythe.webp';
+import tooltipItemShield from '@assets/game/2DUI_TooltipItem_Shield.webp';
+import tooltipItemStaff from '@assets/game/2DUI_TooltipItem_Staff.webp';
+import tooltipItemSword from '@assets/game/2DUI_TooltipItem_Sword.webp';
+import tooltipItemAxe2H from '@assets/game/2DUI_TooltipItem_TwoHandedAxe.webp';
+import tooltipItemMace2H from '@assets/game/2DUI_TooltipItem_TwoHandedMace.webp';
+import tooltipItemScythe2H from '@assets/game/2DUI_TooltipItem_TwoHandedScythe.webp';
+import tooltipItemSword2H from '@assets/game/2DUI_TooltipItem_TwoHandedSword.webp';
+import tooltipItemWand from '@assets/game/2DUI_TooltipItem_Wand.webp';
 import itemSocketTypeIconDefensive from '@assets/game/2DUIItemComponents/1031070640.webp';
 import itemSocketTypeIconUtility from '@assets/game/2DUIItemComponents/1031570266.webp';
 import itemSocketTypeIconOffensive from '@assets/game/2DUIItemComponents/2364632900.webp';
@@ -70,6 +96,33 @@ export const GAME_ITEM_TYPE_ICONS: Record<Game.ItemType, string> = {
     [Game.ItemType.Legs]: itemTypeIconLegs,
     [Game.ItemType.Ring]: itemTypeIconRing,
     [Game.ItemType.Shield]: itemTypeIconShield,
+};
+
+export const GAME_ITEM_TYPE_TOOLTIP_ICONS: Record<Game.ItemType, string> = {
+    [Game.ItemType.Axe]: tooltipItemAxe,
+    [Game.ItemType.Axe2H]: tooltipItemAxe2H,
+    [Game.ItemType.Bow]: tooltipItemBow,
+    [Game.ItemType.Crossbow]: tooltipItemCrossbow,
+    [Game.ItemType.Crossbow2H]: tooltipItemCrossbow2H,
+    [Game.ItemType.Dagger]: tooltipItemDagger,
+    [Game.ItemType.Focus]: tooltipItemFocus,
+    [Game.ItemType.Mace]: tooltipItemMace,
+    [Game.ItemType.Mace2H]: tooltipItemMace2H,
+    [Game.ItemType.Scythe]: tooltipItemScythe,
+    [Game.ItemType.Scythe2H]: tooltipItemScythe2H,
+    [Game.ItemType.Staff]: tooltipItemStaff,
+    [Game.ItemType.Sword]: tooltipItemSword,
+    [Game.ItemType.Sword2H]: tooltipItemSword2H,
+    [Game.ItemType.Polearm]: tooltipItemPolearm,
+    [Game.ItemType.Wand]: tooltipItemWand,
+    [Game.ItemType.Amulet]: tooltipItemAmulet,
+    [Game.ItemType.Boots]: tooltipItemBoots,
+    [Game.ItemType.ChestArmor]: tooltipItemChestArmor,
+    [Game.ItemType.Gloves]: tooltipItemGloves,
+    [Game.ItemType.Helm]: tooltipItemHelm,
+    [Game.ItemType.Legs]: tooltipItemLegs,
+    [Game.ItemType.Ring]: tooltipItemRing,
+    [Game.ItemType.Shield]: tooltipItemShield,
 };
 
 export const GAME_SPINNER_ICON = loadingSpinner;

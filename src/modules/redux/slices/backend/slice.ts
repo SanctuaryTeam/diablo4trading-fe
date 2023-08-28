@@ -48,6 +48,43 @@ export const BackendSlice = createApi({
                 params,
             }),
         }),
+        // service-search
+        serviceSearch: builder.query<API.ServiceGetSearchResponse, API.ServiceGetSearchQuery>({
+            query: params => ({
+                url: '/services',
+                method: 'GET',
+                params,
+            }),
+        }),
+        // service-create
+        createService: builder.mutation({
+            query: (serviceData) => ({
+                url: '/services',
+                method: 'POST',
+                body: serviceData,
+            }),
+        }),
+        // service-bump
+        bumpService: builder.mutation({
+            query: (id) => ({
+                url: `/services/${id}/bump`,
+                method: 'POST',
+            }),
+        }),
+        // service-delete
+        softDeleteService: builder.mutation({
+            query: (id) => ({
+                url: `/services/${id}/soft-delete`,
+                method: 'DELETE',
+            }),
+        }),
+        // service-buy
+        buyService: builder.mutation({
+            query: ({ id, userId }) => ({
+                url: `/services/${id}/claim-slot/${userId}`,
+                method: 'POST',
+            }),
+        }),
     }),
 });
 
@@ -55,5 +92,13 @@ export const {
     // auth
     useAuthDiscordCallbackQuery,
     // trade
+    useTradeSearchQuery,
     useLazyTradeSearchQuery,
+    // service
+    useServiceSearchQuery,
+    useBuyServiceMutation,
+    useBumpServiceMutation,
+    useCreateServiceMutation,
+    useLazyServiceSearchQuery,
+    useSoftDeleteServiceMutation,
 } = BackendSlice;

@@ -1,4 +1,3 @@
-import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
@@ -11,10 +10,6 @@ import React from 'react';
 import { SearchFilterAffix } from './search-filter-affix.component';
 import { SearchFilterItem } from './search-filter-item.component';
 import { SearchFilterSeasonal } from './search-filter-seasonal.component';
-
-const SEASONAL_SERVERS = [Game.ServerType.Seasonal, Game.ServerType.SeasonalHardcore];
-
-const isSeasonalItemType = (type: Game.ItemType) => [Game.ItemType.Amulet, Game.ItemType.Ring].includes(type);
 
 interface SearchFilterProps {
     payload: API.TradeSearchPayload;
@@ -37,7 +32,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     } = payload;
 
     React.useEffect(() => {
-        if (!SEASONAL_SERVERS.includes(serverType) || !isSeasonalItemType(payload.query?.item?.type)) {
+        if (!Common.isSeasonal(serverType, payload?.query?.item?.type)) {
             if (payload.query?.seasonal) {
                 setPayload({
                     ...payload,
@@ -76,7 +71,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                                                 })}
                                         />
                                     </Grid>
-                                    {SEASONAL_SERVERS.includes(serverType) && isSeasonalItemType(query?.item?.type) && (
+                                    {Common.isSeasonal(serverType, query?.item?.type) && (
                                         <Grid item xs={12}>
                                             <SearchFilterSeasonal
                                                 value={query.seasonal}

@@ -24,7 +24,7 @@ export const Element: React.FC = () => {
                         </Common.RouteServerTypeProvider>
                     }
                 />
-                <Route path='listings' element={<ListingsPage />} />
+                <Route path='listings/:id?' element={<ListingsPage />} />
             </Route>
         </Routes>
     );
