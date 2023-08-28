@@ -4,7 +4,7 @@ import { useLingui } from '@lingui/react';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { Link as MuiLink, Stack, SvgIcon, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 import { APP_NAME } from '../constants';
 
 const Link = styled(MuiLink)(() => ({
@@ -62,21 +62,21 @@ export const Footer: React.FC = () => {
                 spacing={1}
             >
                 <Link
-                    href='/global/cookies'
+                    href={useResolvedPath("cookies").pathname}
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Cookies`}
                 </Link>
                 <Link
-                    href='/global/contact'
+                    href={useResolvedPath("contact").pathname}
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Contact`}
                 </Link>
                 <Link
-                    href='/global/privacy'
+                    href={useResolvedPath("privacy").pathname}
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >
