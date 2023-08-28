@@ -62,21 +62,21 @@ export const Footer: React.FC = () => {
                 spacing={1}
             >
                 <Link
-                    href={useResolvedPath("cookies").pathname}
+                    href='/global/cookies'
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Cookies`}
                 </Link>
                 <Link
-                    href={useResolvedPath("contact").pathname}
+                    href='/global/contact'
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Contact`}
                 </Link>
                 <Link
-                    href={useResolvedPath("privacy").pathname}
+                    href='/global/privacy'
                     color='text.secondary'
                     onClick={handleInternalLinkClick}
                 >

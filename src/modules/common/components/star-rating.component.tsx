@@ -5,13 +5,13 @@ import { Box, Rating } from '@mui/material';
 
 interface StarRatingInputProps {    
   value: number;
-  onChange: (newValue: number) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const StarRatingInput: React.FC<StarRatingInputProps> = ({ onChange, value }) => {
 
-  const handleRatingChange = (newValue: number) => {
-    onChange(newValue);
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e);
   };
 
   return (
@@ -20,8 +20,8 @@ export const StarRatingInput: React.FC<StarRatingInputProps> = ({ onChange, valu
         name="star-rating"
         value={value}
         precision={0.5}
-        onChange={(event, newValue) => {
-          handleRatingChange(newValue || 0);
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          handleRatingChange(event);
         }}
         size="large"
         emptyIcon={<StarOutlineIcon />}
