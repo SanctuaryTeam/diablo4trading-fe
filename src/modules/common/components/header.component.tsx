@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
         { ...tradePath, label: t(i18n)`Trade` },
         { ...servicesPath, label: t(i18n)`Services` },
         { ...feedbackPath, label: t(i18n)`Feedback` },
-        { ...faqPath, label: t(i18n)`FAQ` },
+        { ...faqPath, label: t(i18n)`src/modules/common/pages/faq.page.md` },
     ];
 
     const handleRootRedirect = () => {
