@@ -13,6 +13,7 @@ const config: LinguiConfig = {
         'pl-PL',
         'pt-PT',
         'ru-RU',
+        'bg-BG',
         'tr-TR',
         'zh-CN',
         'zh-TW',

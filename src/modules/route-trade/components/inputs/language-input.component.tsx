@@ -27,6 +27,8 @@ const formatLanguage = (language: Game.Language) => {
             return 'Português';
         case Game.Language.Russian:
             return 'Pусский';
+        case Game.Language.Bulgarian:
+            return 'Български';
         case Game.Language.Turkish:
             return 'Türkçe';
         case Game.Language.SimplifiedChinese:

@@ -38,6 +38,8 @@ export function getLanguageName(language: UserLanguage): string {
             return 'Português';
         case UserLanguage.Russian:
             return 'Pусский';
+        case UserLanguage.Bulgarian:
+            return 'Български';
         case UserLanguage.Turkish:
             return 'Türkçe';
         case UserLanguage.SimplifiedChinese:

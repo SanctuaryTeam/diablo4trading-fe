@@ -9,6 +9,7 @@ export enum UserLanguage {
     Polish = 'pl-PL',
     Portuguese = 'pt-PT',
     Russian = 'ru-RU',
+    Bulgarian = 'bg-BG',
     Turkish = 'tr-TR',
     SimplifiedChinese = 'zh-CN',
     TraditionalChinese = 'zh-TW',

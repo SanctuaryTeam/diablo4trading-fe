@@ -8,6 +8,7 @@ export { messages as Korean } from './ko-KR';
 export { messages as Polish } from './pl-PL';
 export { messages as Portuguese } from './pt-PT';
 export { messages as Russian } from './ru-RU';
+export { messages as Bulgarian } from './bg-BG';
 export { messages as Turkish } from './tr-TR';
 export { messages as SimplifiedChinese } from './zh-CN';
 export { messages as TraditionalChinese } from './zh-TW';
