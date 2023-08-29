@@ -22,6 +22,33 @@ To get your application up and running:
 - Run the following command: `docker compose up`
 - Access the Application: Once the containers are up and running, you can access the application in your browser using the URL: http://localhost:5173
 
+## Docker Commands
+**docker-compose up**: This will start the web-app service, which will then:
+- Use the latest version of the Node.js image.
+- Set the working directory inside the container to /app.
+- Mount your current directory into /app in the container for live code editing.
+- Use port 5173 on the host and bind it to port 5173 in the container.
+- Read environment variables from your .env file.
+- Install dependencies with yarn install.
+- Start the development server using yarn dev --host.
+```bash
+    docker-compose up
+```
+
+**docker-compose down**: To gracefully stop the containers spawned by the up command:
+```bash
+    docker-compose down
+```
+
+**docker-compose build web-app**: If you need to build the service without starting it:
+```bash
+docker-compose build web-app
+```
+**ViewLogs**: To view the logs for the web-app service:
+```bash
+    docker-compose logs web-app
+```
+
 ## Development
 **start** - Starts the application in development mode.
 ```bash
