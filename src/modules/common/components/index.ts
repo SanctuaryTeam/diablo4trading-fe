@@ -1,5 +1,7 @@
 export * from './floating-panel.component';
 export * from './footer.component';
+export * from './header-language.component';
+export * from './header-user.component';
 export * from './header.component';
 export * from './item-tooltip.component';
 export * from './language-switch.component';
