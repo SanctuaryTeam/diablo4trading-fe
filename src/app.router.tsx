@@ -16,14 +16,6 @@ export const router = createBrowserRouter([
         ),
     },
     {
-        path: 'global/*',
-        element: (
-            <MasterLayout global>
-                <RouteGlobal.Element />
-            </MasterLayout>
-        ),
-    },
-    {
         path: ':language?',
         element: (
             <Common.RouteLanguageProvider indexPath='trade'>
@@ -47,6 +39,7 @@ export const router = createBrowserRouter([
             { index: true, element: <Navigate to='trade' replace /> },
             { path: 'services/*', element: <RouteServices.Element /> },
             { path: 'trade/*', element: <RouteTrade.Element /> },
+            { path: 'pages/*', element: <RouteGlobal.Element /> },
             { path: '*', element: <Common.NotFoundPage /> },
         ],
     },

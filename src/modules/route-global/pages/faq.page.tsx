@@ -1,7 +1,8 @@
 import { styled } from '@mui/material/styles';
 import ReactMarkdown from 'react-markdown';
-import content from './faq.page.md?raw';
-
+import { Redux } from '@modules/redux';
+import { useSelector } from 'react-redux';
+import * as React from 'react';
 const Content = styled('div')(({ theme }) => ({
     '*': {
         userSelect: 'text',
@@ -11,11 +12,40 @@ const Content = styled('div')(({ theme }) => ({
     },
 }));
 
+
+
 export const FaqPage: React.FC = () => {
+    const [content, setContent] = React.useState('');
+    const language = useSelector(Redux.UserSelectors.getLanguage);
+
+    React.useEffect(() => {
+        const loadMarkdown = async () => {
+            let contentPath = '';
+            switch(language) {
+                case Redux.UserLanguage.English:
+                default:
+                    contentPath = './faq.page.enUs.md?raw';
+                break;
+                case Redux.UserLanguage.Spanish:
+                    contentPath = './faq.page.enEs.md?raw';
+                break;
+            }
+            
+            try {
+                const markdownModule = await import(contentPath);
+                setContent(markdownModule.default);
+            } catch (error) {
+                console.log('Failed to load markdown:', error);
+            }
+        };
+    
+        loadMarkdown();
+    }, [language]); 
+
     return (
         <Content>
             <ReactMarkdown>
-                {content}
+              {content}
             </ReactMarkdown>
         </Content>
     );
