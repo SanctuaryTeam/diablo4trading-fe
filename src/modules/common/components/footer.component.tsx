@@ -20,7 +20,6 @@ const Root = styled('footer')(({ theme }) => ({
 export const FOOTER_HEIGHT = 136;
 
 export const Footer: React.FC = () => {
-
     const { i18n } = useLingui();
 
     const year = new Date().getFullYear();
