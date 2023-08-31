@@ -32,13 +32,7 @@ export const UserRating: React.FC<UserRatingProps> = ({
                 <Box>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <Grid container spacing={1}>
-                            <Grid item xs={12} md={6}>
-                                <Avatar
-                                    src='https://placekitten.com/40/40'
-                                    sx={{ mr: 1 }}
-                                />
-                            </Grid>
-                            <Grid item xs={12} md={6}>
+                            <Grid item xs={12}>
                                 <Box>
                                     <Typography
                                         variant='subtitle1'
