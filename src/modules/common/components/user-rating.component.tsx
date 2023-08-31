@@ -46,16 +46,16 @@ export const UserRating: React.FC<UserRatingProps> = ({
                                     >
                                         {user}
                                     </Typography>
-                                        <Box sx={{ display: 'flex' }}>
-                                            {Array.from({ length: fullStars }).map((_, index) => (
-                                                <StarIcon fontSize='small' color='secondary' key={index} />
-                                            ))}
-                                            {hasHalfStar && <StarHalfIcon fontSize='small' color='secondary' />}
-                                            {Array.from({ length: emptyStars }).map((_, index) => (
-                                                <StarOutlineIcon fontSize='small' color='secondary' key={index} />
-                                            ))}
-                                            <Typography>({score})</Typography>
-                                        </Box>
+                                    <Box sx={{ display: 'flex' }}>
+                                        {Array.from({ length: fullStars }).map((_, index) => (
+                                            <StarIcon fontSize='small' color='secondary' key={index} />
+                                        ))}
+                                        {hasHalfStar && <StarHalfIcon fontSize='small' color='secondary' />}
+                                        {Array.from({ length: emptyStars }).map((_, index) => (
+                                            <StarOutlineIcon fontSize='small' color='secondary' key={index} />
+                                        ))}
+                                        <Typography>({score})</Typography>
+                                    </Box>
                                 </Box>
                             </Grid>
                         </Grid>
