@@ -5,12 +5,11 @@ on:
     branches:
       - main
       - develop
-      - Task/add-git-actions
+      - Task/add-actions
   pull_request:
     branches:
       - main
       - develop
-      - Task/add-actions
 
 jobs:
   build-check:
