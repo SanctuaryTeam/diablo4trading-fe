@@ -6,7 +6,7 @@ import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Avatar, Box, Button, Card, Chip, Collapse, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Card, Chip, Collapse, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 
 interface ServiceListingProps {
@@ -87,27 +87,7 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                         }}
                     >
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                            <Box>
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                    <Grid container spacing={1}>
-                                        <Grid item xs={12} md={6}>
-                                            <Avatar
-                                                src='https://placekitten.com/40/40'
-                                                sx={{ mr: 1 }}
-                                            />
-                                        </Grid>
-                                        <Grid item xs={12} md={6}>
-                                            <Box>
-                                                <Typography variant='subtitle1' fontWeight='bold'>
-                                                    {user}
-                                                </Typography>
-                                                <Common.UserRating rating={6} score={456} />
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                            </Box>
-
+                            <Common.UserRating user={user} rating={6} score={456} />
                             <Grid container>
                                 <Grid item xs={3} md={12}>
                                     <Button

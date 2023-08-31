@@ -7,7 +7,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import TollIcon from '@mui/icons-material/Toll';
-import { Avatar, Box, Button, Card, Chip, Collapse, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Card, Chip, Collapse, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -117,20 +117,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({
                     }}
                 >
                     <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                        <Box>
-                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                                <Avatar
-                                    src='https://placekitten.com/40/40'
-                                    sx={{ mr: 1 }}
-                                />
-                                <Box>
-                                    <Typography variant='subtitle1' fontWeight='bold'>
-                                        {user}
-                                    </Typography>
-                                    <Common.UserRating rating={6} score={456} />
-                                </Box>
-                            </Box>
-                        </Box>
+                        <Common.UserRating user={user} rating={6} score={456} />
                         <Button
                             color='success'
                             variant='outlined'
