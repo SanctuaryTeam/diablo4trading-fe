@@ -26,8 +26,8 @@ jobs:
       run: docker-compose up -d
 
     - name: TypeScript build check
-        run: docker-compose run web-app yarn tsc
+      run: docker-compose run web-app yarn tsc
 
     # Uncomment the following lines to enable unit tests
     #- name: Run unit tests inside Docker
-    #  run: docker-compose exec web-app yarn test:unit
+    #  run: docker-compose run web-app yarn test:unit
