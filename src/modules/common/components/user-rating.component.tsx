@@ -1,7 +1,7 @@
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
-import { Avatar, Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 
 interface UserRatingProps {
     user: string;
