@@ -1,6 +1,6 @@
 import { Common } from '@modules/common';
 import { RouteAuth } from '@modules/route-auth';
-import { RouteGlobal } from '@modules/route-global';
+import { RoutePages } from '@modules/route-pages';
 import { RouteServices } from '@modules/route-services';
 import { RouteTrade } from '@modules/route-trade';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
@@ -12,14 +12,6 @@ export const router = createBrowserRouter([
         element: (
             <MasterLayout hideNavigation>
                 <RouteAuth.Element />
-            </MasterLayout>
-        ),
-    },
-    {
-        path: 'global/*',
-        element: (
-            <MasterLayout hideNavigation>
-                <RouteGlobal.Element />
             </MasterLayout>
         ),
     },
@@ -47,6 +39,7 @@ export const router = createBrowserRouter([
             { index: true, element: <Navigate to='trade' replace /> },
             { path: 'services/*', element: <RouteServices.Element /> },
             { path: 'trade/*', element: <RouteTrade.Element /> },
+            { path: 'pages/*', element: <RoutePages.Element /> },
             { path: '*', element: <Common.NotFoundPage /> },
         ],
     },

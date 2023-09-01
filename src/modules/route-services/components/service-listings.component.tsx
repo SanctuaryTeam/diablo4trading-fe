@@ -1,9 +1,9 @@
-import { Grid } from '@mui/material';
-import React from 'react';
-import { API } from '@sanctuaryteam/shared'
 import { useRouteServerType } from '@modules/common/providers';
 import { AuthSelectors, useServiceSearchQuery } from '@modules/redux/slices';
 import { ServiceSelectors } from '@modules/redux/slices';
+import { Grid } from '@mui/material';
+import { API } from '@sanctuaryteam/shared';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { ServiceListing } from '../components';
 

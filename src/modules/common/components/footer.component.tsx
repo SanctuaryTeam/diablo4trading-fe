@@ -4,12 +4,12 @@ import { useLingui } from '@lingui/react';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { Link as MuiLink, Stack, SvgIcon, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useResolvedPath } from 'react-router-dom';
 import { APP_NAME } from '../constants';
 
 const Link = styled(MuiLink)(() => ({
     display: 'inline-flex',
-}));
+})) as typeof MuiLink;
 
 const Root = styled('footer')(({ theme }) => ({
     backgroundColor: theme.palette.common.black,
@@ -20,19 +20,9 @@ const Root = styled('footer')(({ theme }) => ({
 export const FOOTER_HEIGHT = 136;
 
 export const Footer: React.FC = () => {
-    const navigate = useNavigate();
-
     const { i18n } = useLingui();
 
     const year = new Date().getFullYear();
-
-    const handleInternalLinkClick = (
-        event: React.MouseEvent<HTMLAnchorElement>,
-    ) => {
-        event.preventDefault();
-        const url = new URL(event.currentTarget.href);
-        navigate(url.pathname);
-    };
 
     return (
         <Root>
@@ -62,23 +52,23 @@ export const Footer: React.FC = () => {
                 spacing={1}
             >
                 <Link
-                    href='/global/cookies'
+                    component={RouterLink}
+                    to={useResolvedPath('./pages/cookies')}
                     color='text.secondary'
-                    onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Cookies`}
                 </Link>
                 <Link
-                    href='/global/contact'
+                    component={RouterLink}
+                    to={useResolvedPath('./pages/contact')}
                     color='text.secondary'
-                    onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Contact`}
                 </Link>
                 <Link
-                    href='/global/privacy'
+                    component={RouterLink}
+                    to={useResolvedPath('./pages/privacy')}
                     color='text.secondary'
-                    onClick={handleInternalLinkClick}
                 >
                     {t(i18n)`Privacy`}
                 </Link>

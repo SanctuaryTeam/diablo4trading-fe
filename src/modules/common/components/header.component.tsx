@@ -17,9 +17,8 @@ import {
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { matchPath, useMatches, useNavigate, useResolvedPath } from 'react-router-dom';
+import { HeaderLanguage, HeaderUser } from '../components';
 import { APP_NAME } from '../constants';
-import { HeaderLanguage } from './header-language.component';
-import { HeaderUser } from './header-user.component';
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     ...theme.typography.body1,
@@ -51,8 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
     // TODO: add routes
     const tradePath = useResolvedPath('trade');
     const servicesPath = useResolvedPath('services');
-    const feedbackPath = useResolvedPath('./feedback');
-    const faqPath = useResolvedPath('./faq');
+    const feedbackPath = useResolvedPath('feedback');
+    const faqPath = useResolvedPath('./pages/faq');
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
