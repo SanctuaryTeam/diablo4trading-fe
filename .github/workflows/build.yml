@@ -19,14 +19,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install TypeScript
-      run: npm install -g typescript
+    - name: Install TypeScript and Yarn
+      run: |
+        npm install -g typescript yarn
 
     - name: Set up .env
       run: cp .env.example .env
 
     - name: Build and start the Docker containers
       run: docker-compose up -d
+
+    - name: Wait for services to be ready
+      run: docker-compose exec -T web-app sh -c "while ! nc -z localhost 5173; do sleep 1; done"
 
     - name: TypeScript build check
       run: docker-compose run web-app yarn tsc

@@ -21,7 +21,6 @@ services:
             - sh
             - -c
             - |
-                yarn global add typescript   # Install TypeScript globally
                 node tsconfig.merged.cjs
                 if [ "$$SHARED_LINK" = "true" ]; then
                     cd /app/shared
