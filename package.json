@@ -19,9 +19,9 @@
     "test": "yarn run test:unit && yarn run test:ui"
   },
   "dependencies": {
-    "@diablosnaps/assets": "^0.2.6",
-    "@diablosnaps/common": "^0.2.5",
-    "@diablosnaps/rpc": "^0.2.5",
+    "@diablosnaps/assets": "^1.0.1",
+    "@diablosnaps/common": "^1.0.1",
+    "@diablosnaps/rpc": "^1.0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/alegreya-sans": "^5.0.5",
