@@ -45,6 +45,9 @@ jobs:
           ${{ runner.os }}-yarn-
 
     - name: Debug installed packages
+      run: yarn cache clean
+
+    - name: Debug installed packages
       run: yarn list --pattern @diablosnaps
 
     - name: Install dependencies
