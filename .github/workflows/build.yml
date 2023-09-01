@@ -44,6 +44,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-yarn-
 
+    - name: Debug installed packages
+      run: yarn list --pattern @diablosnaps
+
     - name: Install dependencies
       run: yarn install # --frozen-lockfile
 
