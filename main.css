@@ -1,0 +1,159 @@
+@font-face {
+    font-family: 'Diablo';
+    src: url('../fonts/Diablo\ Light.ttf');
+  }
+  
+  html {
+    height: 100%;
+    margin: 0;
+    background-image: url('../images/body.png');
+  }
+  
+  body {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  #overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh; /* Use vh instead of % for full viewport height */
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Style for the overlay image */
+  #overlay img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  #footer {
+    background-image: url(../images/footer.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+    margin-top: 50px;
+    height: 500px;
+    border-top: 8px solid #524d4d36;
+    -webkit-border-image: url(../images/border.png) 8 8 round;
+    -moz-border-image: url(../images/border.png) 8 8 round;
+    -ms-border-image: url(../images/border.png) 8 8 round;
+    -o-border-image: url(../images/border.png) 8 8 round;
+    border-image: url(../images/border.png) 8 8 round;
+  }
+  
+  #container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    max-width: 700px;
+    background: #524d4d36!important;
+    align-items: center;
+    flex-wrap: nowrap;
+    border: 8px solid #524d4d36;
+    -webkit-border-image: url(../images/border.png) 8 8 round;
+    -moz-border-image: url(../images/border.png) 8 8 round;
+    -ms-border-image: url(../images/border.png) 8 8 round;
+    -o-border-image: url(../images/border.png) 8 8 round;
+    border-image: url(../images/border.png) 8 8 round;
+  }
+  
+  .logo {
+    padding: 25px;
+    display: flex;
+    background-image: url(../images/poggers.gif);
+    background-size: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 300px;
+    min-height: 145px;
+  }
+  
+  li {
+    padding: 20px;
+  }
+  
+  #banner {
+    width: 100%;
+    height: 275px;
+    background-position: center;
+  
+    background-image: url('../images/banner.jpg');
+    border-bottom:  8px solid #524d4d36;
+    -webkit-border-image:  url('../images/border.png') 8 8 round;
+    -moz-border-image:  url('../images/border.png') 8 8 round;
+    -ms-border-image:  url('../images/border.png') 8 8 round;
+    -o-border-image:  url('../images/border.png') 8 8 round;
+    border-image:  url('../images/border.png') 8 8 round;
+  }
+  
+  .info {
+    width: 500px;
+    display: flex;
+    font-family: 'Diablo';
+    color: #e5e0c8;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #content {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .button {
+    cursor: pointer;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-wrap: wrap;
+    font-family: 'Diablo';
+    font-weight: bold;
+    font-size: 15px;
+    color: #e5e0c8;
+    width: 260px;
+    height: 80px;
+    padding: 5px;
+    background: url('../images/button/1.png'), url('../images/button/2.png'), url('../images/button/3.png'), url('../images/button/4.png'), url('../images/button/5.png'), url('../images/button/6.png');
+    background-size: auto 100%, auto 100%, auto 100%, auto calc(100% - 20px), auto calc(100% - 20px), calc(100% - 21px) calc(100% - 20px);
+    background-repeat: no-repeat;
+    background-position: left center, right center, center center, 10px center, calc(100% - 10px) center, center center;
+    position: unset;
+    border: unset;
+    box-shadow: unset
+  }
+  
+  .button:hover {
+    background: url('../images/button/1.png'), url('../images/button/2.png'), url('../images/button/3.png'), url('../images/button/4-hover.png'), url('../images/button/5-hover.png'), url('../images/button/6-hover.png');
+    background-size: auto 100%, auto 100%, auto 100%, auto calc(100% - 20px), auto calc(100% - 20px), calc(100% - 21px) calc(100% - 20px);
+    background-repeat: no-repeat;
+    background-position: left center, right center, center center, 10px center, calc(100% - 10px) center, center center;
+    position: unset;
+    border: unset;
+    box-shadow: unset
+  }

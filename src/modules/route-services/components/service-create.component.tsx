@@ -39,7 +39,7 @@ interface ServiceData {
 }
 
 export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCancel }) => {
-    const userId = parseInt(useSelector(AuthSelectors.getUser).id, 10);
+    const user = useSelector(AuthSelectors.getUser) ?? null;
     const [createService] = useCreateServiceMutation();
     const [serverType, setServerType] = useRouteServerType();
 
@@ -47,7 +47,7 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
         realmType: serverType,
         title: '',
         content: '',
-        userId,
+        userId: parseInt(user?.id, 10),
         tags: 0,
         deleted: false,
         maxAcceptedSlots: 3,

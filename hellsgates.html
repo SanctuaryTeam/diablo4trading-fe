@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" href="/images/logo-discord.png">
+
+  <title>Sanctuary - Trading</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
+
+  <!-- jquery-ui -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+  <script src="script.js"></script>
+
+  <style>
+    /* Add this new style for centering main text */
+    .main-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+      flex-direction: column;
+    }
+
+    /* Add a style for the checkbox */
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px; /* Add margin for spacing */
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="overlay">
+    <img src="public/images/entry.gif" alt="img">
+  </div>
+
+  <div id="banner"></div>
+  <div id="container">
+    <!-- Apply the new "main-content" class here -->
+    <div class="info main-content">
+      <h1>SANCTUARY - TRADING</h1>
+      <p>
+        YOU ARE REQUIRED TO READ THIS BEFORE ENTERING THE DIABLO 4 SANCTUARY TRADING WEBSITE
+      </p>
+      <br />
+      <p>THIS PROVIDES CERTAIN SAFETY FEATURES FOR TRADING:</p>
+      <ul>
+        <li>YOU KNOW WHO YOU'RE TRADING WITH.</li>
+        <li>YOU'RE GATED INTO A 1 TAG : 1 DISCORD SYSTEM, THAT CAN'T BE ABUSED EASILY.</li>
+        <li>EVERYONE CAN EARN KARMA & PRACTICE SAFE TRADING EASIER</li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <!-- Move checkbox container above the button -->
+      <div class="checkbox-container">
+        <input type="checkbox" id="termsCheckbox">
+        <label for="termsCheckbox">I agree to the Sanctuary rules</label>
+      </div>
+
+      <!-- Change the button to a link that redirects -->
+      <a class="button login" id="submitButton" href="http://localhost:5173/en/trade/search/seasonal" target="_blank" disabled>Through The Gates Of Hell</a>
+    </div>
+  </div>
+
+  <!-- Gates of hell footer -->
+  <div id="footer"></div>
+
+  <!-- Add a script to enable/disable button based on checkbox -->
+  <script>
+    const termsCheckbox = document.getElementById('termsCheckbox');
+    const submitButton = document.getElementById('submitButton');
+
+    termsCheckbox.addEventListener('change', function() {
+      submitButton.disabled = !this.checked;
+    });
+  </script>
+</body>
+</html>

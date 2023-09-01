@@ -1,6 +1,6 @@
 # FAQ
 
-Welcome to Diablo4.trading. This is a small FAQ section where it will answer basic questions. Please check out our full guide [here](https://discord.com/invite/diablo4).
+Welcome to Diablo4.trading. This is a small FAQ dedicated to the Sanctuary Website. Please check out our full guide [here](https://discord.com/invite/diablo4).
 
 ---
 
@@ -16,7 +16,7 @@ Any abuse towards the website, users, vouch system and so on, will result in you
 
 ## Login
 
-**How to Access the Trading System**
+**Discord & Battlenet Authorization**
 - Q: How do I access the trading system?
 - A: Connect your discord account by clicking the "Login" button at the top right of the website to log in to the website.
 
@@ -24,35 +24,50 @@ Any abuse towards the website, users, vouch system and so on, will result in you
 
 ## Trade System
 
-- Q: What is the trading system for?
+**Trading**
+- Q: What is the trading system?
 - A: The trading system is a platform open-sourced by the Diablo 4 Sanctuary Discord Dev team for players to buy, sell, and trade in-game items securely.
 
+**Buying Items**
 - Q. How can I buy items?
-- A. Browse the listing page, select an item and follow the provided instructions to acquire the item.
-  
+- A. Browse the [listing page](http://localhost:5173/en/trade/search/seasonal), select an item and follow the provided instructions to acquire the item.
+
+**Selling Items**
 - Q. How can I sell items?
-- A. You can sell items by clicking on the "Trade" page, selecting "My Listings" and then clicking "Create New Listing".
+- A. You can sell items by clicking on the "Trade" page, selecting "My Listings" and then clicking [Create New Listing](http://localhost:5173/en/trade/listings/new).
 
 ---
 
 ## Services System
 
+**Services**
 - Q. What is the service system?
 - A. The service system enables players to offer and request in-game services from each other like Nightmare Dungeon help, renown and levelling. 
 
-- Q. How do I buy services from someone?
-- A. Browse the service listings, choose a seller, and follow the provided instructions to acquire the service.
+**Buying Services**
+- Q. How do I buy services?
+- A. Browse the [service listings](http://localhost:5173/en/services/search/seasonal), choose a seller, and follow the provided instructions to acquire the service.
+
+**Selling Services**
+- Q. How do I sell services?
+- A. To sell your own services go to the [my services page](http://localhost:5173/en/services/listings/seasonal), choose a seller, and follow the provided instructions to acquire the service.
+
 
 ---
 
 ## Reporting System
 
+**Reporting**
 - Q. What is the Reporting System?
 - A. The reporting system is a system in place to take community guideline action against users who break rules.
 
+**Reporting Users**
 - Q. How do I report a user?
 - A. You can report a user by selecting on the user page, clicking the "report" button and then following the instructions.
   
+**What To Report**
+- Q. What things should I be aware of when using the website?
+- A. Using the website eliminates the risk of users "scam" bidding or attempts to manipulate the post the trade/service. Check out our [rules]() page for full information regarding rules.
 ---
 
 ## Vouch System
