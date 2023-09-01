@@ -28,9 +28,9 @@ jobs:
       run: |
         npm install -g typescript yarn
 
-    - name: Clear Yarn cache
-      run: yarn cache clean
-      
+    #- name: Clear Yarn cache
+     # run: yarn cache clean
+
     - name: Set up .env
       run: cp .env.example .env
 
