@@ -50,5 +50,5 @@ jobs:
     - name: TypeScript build check
       run: yarn tsc
 
-    - name: Run unit tests inside Docker
+    - name: Run unit tests
       run: yarn test:unit
