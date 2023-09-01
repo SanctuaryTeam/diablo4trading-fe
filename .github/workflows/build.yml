@@ -18,6 +18,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
 
     - name: Install TypeScript and Yarn
       run: |
@@ -28,6 +33,11 @@ jobs:
 
     - name: Build and start the Docker containers
       run: docker-compose up -d
+
+    - name: Install dependencies and TypeScript build
+      run: |
+        docker-compose exec web-app yarn install
+        docker-compose exec web-app yarn tsc
 
     - name: TypeScript build check
       run: docker-compose run web-app yarn tsc
