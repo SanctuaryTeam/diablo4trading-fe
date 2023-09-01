@@ -17,7 +17,18 @@
     height: auto;
     object-fit: contain;
   }
+
+  .checkbox-container {
+    height: 0px;
+    margin-bottom: 0px; 
+    padding: 0px;
+  }
   
+  .white-text {
+    color: white;
+  }
+
+
   #overlay {
     display: flex;
     position: fixed;

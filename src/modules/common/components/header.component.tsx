@@ -52,14 +52,12 @@ export const Header: React.FC<HeaderProps> = ({
     const servicesPath = useResolvedPath('services');
     const feedbackPath = useResolvedPath('feedback');
     const faqPath = useResolvedPath('./pages/faq');
-    const rulesPath = useResolvedPath('./pages/rules');
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
         { ...servicesPath, label: t(i18n)`Services` },
         { ...feedbackPath, label: t(i18n)`Feedback` },
         { ...faqPath, label: t(i18n)`FAQ` },
-        { ...rulesPath, label: t(i18n)`Rules` },
     ];
 
     const handleRootRedirect = () => {

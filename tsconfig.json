@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.merged.json",
-  "include": ["src"],
+  "include": ["src", "script.js"],
   "references": [
     {
       "path": "./tsconfig.node.json"

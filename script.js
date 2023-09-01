@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
   function showImage() {
     // Hide other content and display only the image
-    document.body.innerHTML = '<div id="overlay"><img src="public/images/entry.gif" alt="img"></div>';
+    document.body.innerHTML = '<div id="overlay"><img src="images/entry.gif" alt="img"></div>';
     setTimeout(redirectToLink, 0); // Redirect after 5 seconds
   }
 
