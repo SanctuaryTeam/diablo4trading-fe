@@ -12,13 +12,11 @@ on:
       - develop
 
 jobs:
-  build:
+  build-check:
     runs-on: ubuntu-latest
     env:
       SANCTUARYTEAM_AUTH_TOKEN: ${{ secrets.SANCTUARYTEAM_AUTH_TOKEN }}
-  build-check:
-    runs-on: ubuntu-latest
-
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
