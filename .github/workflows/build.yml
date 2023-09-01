@@ -29,9 +29,6 @@ jobs:
     - name: Build and start the Docker containers
       run: docker-compose up -d
 
-    - name: Wait for services to be ready
-      run: docker-compose logs -f web-app | grep -m1 "Service is ready"
-
     - name: TypeScript build check
       run: docker-compose run web-app yarn tsc
 
