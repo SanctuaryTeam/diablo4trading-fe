@@ -12,6 +12,10 @@ on:
       - develop
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SANCTUARYTEAM_AUTH_TOKEN: ${{ secrets.SANCTUARYTEAM_AUTH_TOKEN }}
   build-check:
     runs-on: ubuntu-latest
 
@@ -39,9 +43,7 @@ jobs:
 
     - name: Yarn install with retries inside Docker
       run: |
-        for i in {1..5}; do
-          docker-compose exec -T web-app yarn install && break || sleep 15
-        done
+        docker-compose exec -T web-app yarn install
 
     - name: TypeScript build check
       run: docker-compose exec -T web-app yarn tsc
