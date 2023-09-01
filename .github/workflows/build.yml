@@ -19,6 +19,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Install TypeScript
+      run: npm install -g typescript
+
     - name: Set up .env
       run: cp .env.example .env
 
