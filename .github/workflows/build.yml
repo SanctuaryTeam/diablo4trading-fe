@@ -34,7 +34,7 @@ jobs:
     - name: Build and start the Docker containers
       run: docker-compose up -d
 
-     - name: Yarn install
+    - name: Yarn install
       run: docker-compose exec -T web-app yarn install
 
     - name: TypeScript build check
