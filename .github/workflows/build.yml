@@ -34,13 +34,11 @@ jobs:
     - name: Build and start the Docker containers
       run: docker-compose up -d
 
-    - name: Install dependencies and TypeScript build
-      run: |
-        docker-compose exec web-app yarn install
-        docker-compose exec web-app yarn tsc
+     - name: Yarn install
+      run: docker-compose exec -T web-app yarn install
 
     - name: TypeScript build check
-      run: docker-compose run web-app yarn tsc
+      run: docker-compose exec -T web-app yarn tsc
 
     # Uncomment the following lines to enable unit tests
     #- name: Run unit tests inside Docker
