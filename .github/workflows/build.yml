@@ -37,8 +37,11 @@ jobs:
     - name: Build and start the Docker containers
       run: docker-compose up -d
 
-    - name: Yarn install
-      run: docker-compose exec -T web-app yarn install
+    - name: Yarn install with retries inside Docker
+      run: |
+        for i in {1..5}; do
+          docker-compose exec -T web-app yarn install && break || sleep 15
+        done
 
     - name: TypeScript build check
       run: docker-compose exec -T web-app yarn tsc
