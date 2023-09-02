@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      SANCTUARYTEAM_AUTH_TOKEN: ${{ secrets.SANCTUARYTEAM_AUTH_TOKEN }}
+      SANCTUARYTEAM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     steps:
     - name: Checkout code
