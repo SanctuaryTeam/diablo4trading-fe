@@ -15,6 +15,7 @@ const ROUTE_MAPPING: Record<Redux.UserLanguage, string> = {
     [Redux.UserLanguage.Polish]: 'pl',
     [Redux.UserLanguage.Portuguese]: 'pt',
     [Redux.UserLanguage.Russian]: 'ru',
+    [Redux.UserLanguage.Bulgarian]: 'bg',
     [Redux.UserLanguage.Turkish]: 'tr',
     [Redux.UserLanguage.SimplifiedChinese]: 'zh-cn',
     [Redux.UserLanguage.TraditionalChinese]: 'zh-tw',
