@@ -3,7 +3,7 @@ import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
 import { PosNegRatingInput } from '@modules/common/components/posneg-rating.component';
 import { StarRatingInput } from '@modules/common/components/star-rating.component';
-import { Avatar, Box, Button, Card, Grid, TextField, Typography } from '@mui/material';
+import { Button, Card, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
 
 interface VouchData {
@@ -61,7 +61,6 @@ export const VouchPage: React.FC = () => {
                                             xs={12}
                                             sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                                         >
-                                            
                                             <Common.UserRating user={'SparkyOnyx#1187'} rating={6} score={456} />
                                         </Grid>
                                     </Grid>

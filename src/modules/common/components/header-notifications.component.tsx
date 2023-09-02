@@ -36,7 +36,8 @@ export const HeaderNotifications: React.FC = () => {
                         <MenuItem
                             onClick={handleCloseMenu}
                         >
-                            {/* <Grid
+                            {
+                                /* <Grid
                                 container
                                 spacing={1}
                                 display={'flex'}
@@ -60,7 +61,8 @@ export const HeaderNotifications: React.FC = () => {
                                         Has bought your service
                                     </Typography>
                                 </Grid>
-                            </Grid> */}
+                            </Grid> */
+                            }
                         </MenuItem>
                     </Card>
                 </Menu>
