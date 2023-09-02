@@ -13,6 +13,7 @@ import {
     Polish,
     Portuguese,
     Russian,
+    Bulgarian,
     SimplifiedChinese,
     Spanish,
     TraditionalChinese,
@@ -30,6 +31,7 @@ i18n.load(Redux.UserLanguage.Korean, Korean);
 i18n.load(Redux.UserLanguage.Polish, Polish);
 i18n.load(Redux.UserLanguage.Portuguese, Portuguese);
 i18n.load(Redux.UserLanguage.Russian, Russian);
+i18n.load(Redux.UserLanguage.Bulgarian, Bulgarian);
 i18n.load(Redux.UserLanguage.Turkish, Turkish);
 i18n.load(Redux.UserLanguage.SimplifiedChinese, SimplifiedChinese);
 i18n.load(Redux.UserLanguage.TraditionalChinese, TraditionalChinese);

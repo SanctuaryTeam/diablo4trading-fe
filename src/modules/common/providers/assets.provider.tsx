@@ -42,6 +42,8 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
                 return Game.Language.Portuguese;
             case Redux.UserLanguage.Russian:
                 return Game.Language.Russian;
+            case Redux.UserLanguage.Bulgarian:
+                return Game.Language.Bulgarian;
             case Redux.UserLanguage.Turkish:
                 return Game.Language.Turkish;
             case Redux.UserLanguage.SimplifiedChinese:
