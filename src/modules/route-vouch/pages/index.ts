@@ -1,0 +1,1 @@
+export * from './vouch.page';

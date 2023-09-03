@@ -11,6 +11,18 @@ Docker will user this file for project specific environment variables
 
 - Update .env File:  run `cp .env.example .env` to create a new .env file. Update the new .env file with SANCTUARYTEAM_AUTH_TOKEN=YOUR_NEW_TOKEN
 
+### Local Shared Package Development
+
+The recommended project structure is to checkout all repositories in the same folder:
+
+```bash
+diablo4trading-be
+diablo4trading-fe
+shared
+```
+
+If you set `SHARED_LINK=true` in your `.env` file, docker will run `yarn link` and merge in some options in `tsconfig.json` and `vite.config.ts` that will allow for local package usage of the shared folder. This merging is handled by the script `tsconfig.merged.cjs`. In the environment file the `SHARED_PATH=../shared` is the local path on your system relative to this repository which contains the shared libraries between frontend and backend.
+
 ## Running the Application with Docker
 
 To get your application up and running:

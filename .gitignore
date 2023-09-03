@@ -28,3 +28,9 @@ dist-ssr
 
 # Coverage reports
 coverage
+
+# Shared symlink
+shared
+
+# Shared generated tsconfig json
+tsconfig.merged.json

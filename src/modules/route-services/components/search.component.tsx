@@ -30,7 +30,6 @@ export const Search: React.FC<SearchResultsProps> = ({
     return (
         <Root>
             {/* TODO: Insert Loading module */}
-            {/* @ts-ignore */} {/* To disregard error that map does not exist on unknown "listings" */}
             {listings.map(listing => (
                 <SearchResult
                     key={listing?.id}

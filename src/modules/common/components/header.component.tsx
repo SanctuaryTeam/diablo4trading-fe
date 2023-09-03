@@ -17,9 +17,8 @@ import {
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { matchPath, useMatches, useNavigate, useResolvedPath } from 'react-router-dom';
+import { HeaderLanguage, HeaderNotifications, HeaderUser } from '../components';
 import { APP_NAME } from '../constants';
-import { HeaderLanguage } from './header-language.component';
-import { HeaderUser } from './header-user.component';
 
 const Tab = styled(MuiTab)(({ theme }) => ({
     ...theme.typography.body1,
@@ -51,13 +50,13 @@ export const Header: React.FC<HeaderProps> = ({
     // TODO: add routes
     const tradePath = useResolvedPath('trade');
     const servicesPath = useResolvedPath('services');
-    const feedbackPath = useResolvedPath('./feedback');
-    const faqPath = useResolvedPath('./faq');
+    const feedbackPath = useResolvedPath('vouch');
+    const faqPath = useResolvedPath('./pages/faq');
 
     const items = [
         { ...tradePath, label: t(i18n)`Trade` },
         { ...servicesPath, label: t(i18n)`Services` },
-        { ...feedbackPath, label: t(i18n)`Feedback` },
+        { ...feedbackPath, label: t(i18n)`Vouch` },
         { ...faqPath, label: t(i18n)`FAQ` },
     ];
 
@@ -133,6 +132,7 @@ export const Header: React.FC<HeaderProps> = ({
                         <Box flexGrow={1} />
                         {!hideNavigation && (
                             <Stack direction='row' gap={1}>
+                                <HeaderNotifications />
                                 <HeaderUser />
                                 <HeaderLanguage />
                             </Stack>

@@ -23,7 +23,6 @@ export const ServiceListings: React.FC = () => {
 
     return (
         <Grid item xs={12} md={12} sx={{}}>
-            {/* @ts-ignore */} {/* To disregard error that map does not exist on unknown "listings" */}
             {listings
                 ? listings.map(listing => (
                     <ServiceListing
