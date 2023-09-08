@@ -39,9 +39,9 @@ interface ErrorMessage {
     };
 }
 
-export type RejectedAction = PayloadAction<ErrorMessage>;
+type RejectedActionWithMessage = PayloadAction<ErrorMessage>;
 
-export const isRejectedActionWithMessage = (action: AnyAction): action is RejectedAction => {
+export const isRejectedActionWithMessage = (action: AnyAction): action is RejectedActionWithMessage => {
     return action?.type?.endsWith('/rejected') && typeof action?.payload?.data?.message === 'string';
 };
 
@@ -69,7 +69,7 @@ export const SnackbarSlice = createSlice({
         builder
             .addMatcher(
                 isRejectedActionWithMessage,
-                (state, action: RejectedAction) => {
+                (state, action: RejectedActionWithMessage) => {
                     state.message = action.payload.data.message;
                     state.active = true;
                 },
