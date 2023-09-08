@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { handleErrorWithSnackbar, isRejectedActionWithMessage } from '../slices';
+import { handleSnackbarTimeout, isRejectedActionWithMessage } from '../slices';
 import { BackendSlice } from '../slices/backend/slice';
 import { ROOT_STATE_INITIAL, rootReducer } from '../slices/root';
 import { retrieveLanguageFromNavigator, UserLanguage } from '../slices/user';
@@ -13,7 +13,7 @@ interface StoreProviderProps {
 
 const rejectedActionMiddleware = (store) => (next) => (action) => {
     if (isRejectedActionWithMessage(action)) {
-        store.dispatch(handleErrorWithSnackbar());
+        store.dispatch(handleSnackbarTimeout());
     }
     return next(action);
 };

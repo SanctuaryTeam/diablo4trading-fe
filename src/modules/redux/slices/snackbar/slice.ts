@@ -15,7 +15,7 @@ export const SNACKBAR_STATE_INITIAL: SnackbarState = {
     timeout: null,
 };
 
-export const handleErrorWithSnackbar = createAsyncThunk<{ timeout: number }, void, {
+export const handleSnackbarTimeout = createAsyncThunk<{ timeout: number }, void, {
     state: RootState;
     dispatch: Dispatch<AnyAction>;
 }>(
