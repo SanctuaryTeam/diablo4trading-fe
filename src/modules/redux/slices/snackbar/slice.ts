@@ -61,9 +61,6 @@ export const SnackbarSlice = createSlice({
         setTimeout: (state, action: PayloadAction<number>) => {
             state.timeout = action.payload;
         },
-        setState: (state, action: PayloadAction<SnackbarState>) => {
-            state = action.payload;
-        },
     },
     extraReducers: builder => {
         builder
