@@ -31,20 +31,8 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
     const [visible, setVisible] = React.useState<boolean>(false);
     const [bumpService] = useBumpServiceMutation();
     const [softDeleteService] = useSoftDeleteServiceMutation();
-
-    function handleBump() {
-        bumpService(id);
-        // setTimeout(() => {
-        //     return window.location.reload();
-        // }, 1500);
-    }
-
-    function handleSoftDelete() {
-        softDeleteService(id);
-        // setTimeout(() => {
-        //     return window.location.reload();
-        // }, 1500);
-    }
+    const handleBump = () => bumpService(id);
+    const handleSoftDelete = () => softDeleteService(id);
 
     if (user && id && title && content) {
         return (
