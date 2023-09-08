@@ -35,7 +35,7 @@ export const ServiceSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.createService.matchFulfilled,
                 (state, action) => {
-                    state.listings.push(action.payload)
+                    state.listings.push(action.payload);
                 },
             )
             .addMatcher(
@@ -61,13 +61,12 @@ export const ServiceSlice = createSlice({
                 (state, action) => {
                     state.listings.map((_, index) => {
                         if (action.payload.deleted) {
-                            return state.listings.splice(index, 1)
+                            return state.listings.splice(index, 1);
                         }
-                    })
+                    });
                 },
             );
     },
 });
-
 
 export default ServiceSlice.reducer;

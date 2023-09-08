@@ -1,15 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { handleErrorWithSnackbar, isRejectedActionWithMessage } from '../slices';
 import { BackendSlice } from '../slices/backend/slice';
 import { ROOT_STATE_INITIAL, rootReducer } from '../slices/root';
 import { retrieveLanguageFromNavigator, UserLanguage } from '../slices/user';
 import { STORAGE } from '../utils';
-import { handleErrorWithSnackbar, isRejectedActionWithMessage } from '../slices/snackbar/slice';
 
 interface StoreProviderProps {
     children: React.ReactNode;
 }
+
+const rejectedActionMiddleware = (store) => (next) => (action) => {
+    if (isRejectedActionWithMessage(action)) {
+        store.dispatch(handleErrorWithSnackbar());
+    }
+    return next(action);
+};
 
 export const StoreProvider: React.FC<StoreProviderProps> = ({
     children,
@@ -29,17 +36,10 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
         if (!preloadedState.user.language) {
             preloadedState.user.language = retrieveLanguageFromNavigator(UserLanguage.English);
         }
-
-        const rejectedActionMiddleware = (store) => (next) => (action) => {
-            if (isRejectedActionWithMessage(action)) {
-                store.dispatch(handleErrorWithSnackbar());
-            }
-            return next(action);
-        };
-
         const store = configureStore({
             reducer: rootReducer,
-            middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(BackendSlice.middleware, rejectedActionMiddleware),
+            middleware: (getDefaultMiddleware) =>
+                getDefaultMiddleware().concat(BackendSlice.middleware, rejectedActionMiddleware),
             preloadedState,
         });
         let next = { ...store.getState() };
@@ -53,7 +53,7 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
             }
         });
         return store;
-    }, []);   
+    }, []);
 
     return (
         <Provider store={store}>

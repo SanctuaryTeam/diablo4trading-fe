@@ -3,8 +3,8 @@ import { AnyAction, combineReducers, Store } from '@reduxjs/toolkit';
 import { AUTH_STATE_INITIAL, AuthSlice } from './auth/slice';
 import { BackendSlice } from './backend/slice';
 import { SERVICE_STATE_INITIAL, ServiceSlice } from './service/slice';
-import { USER_STATE_INITIAL, UserSlice } from './user/slice';
 import { SNACKBAR_STATE_INITIAL, SnackbarSlice } from './snackbar/slice';
+import { USER_STATE_INITIAL, UserSlice } from './user/slice';
 
 export const rootReducer = combineReducers({
     [AuthSlice.name]: AuthSlice.reducer,

@@ -24,17 +24,17 @@ export const Search: React.FC<SearchResultsProps> = ({
 
     return (
         <Root>
-        {listings.map(listing => (
-            <SearchResult
-                key={listing?.id}
-                user={listing?.user?.battleNetTag}
-                id={listing?.id}
-                lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
-                title={listing?.title}
-                content={listing?.content}
-                tags={API.numberToTags(listing?.tags)}
-            />
-        ))}
+            {listings.map(listing => (
+                <SearchResult
+                    key={listing?.id}
+                    user={listing?.user?.battleNetTag}
+                    id={listing?.id}
+                    lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
+                    title={listing?.title}
+                    content={listing?.content}
+                    tags={API.numberToTags(listing?.tags)}
+                />
+            ))}
         </Root>
     );
 };
