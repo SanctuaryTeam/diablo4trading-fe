@@ -35,16 +35,6 @@ export const ServiceSlice = createSlice({
                 BackendSlice.endpoints.createService.matchFulfilled,
                 (state, action) => {
                     state.listings.push(action.payload);
-                    console.log('API Call: Create Service was succesful. Data:\n' + JSON.stringify(action.payload));
-                },
-            )
-            .addMatcher(
-                BackendSlice.endpoints.createService.matchRejected,
-                (state, action) => {
-                    console.log(
-                        'API Call: Create Service was **NOT** succesful. Data:\n' + JSON.stringify(action.payload)
-                            + '\n\nListings:\n' + JSON.stringify(state.listings),
-                    );
                 },
             )
             .addMatcher(
@@ -53,7 +43,7 @@ export const ServiceSlice = createSlice({
                     const { id: serviceId } = action.meta.arg.originalArgs;
                     state.listings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            return state.listings[index].updatedAt = new Date();
+                            return state.listings[index].updatedAt = new Date().toISOString();
                         }
                     });
                 },
@@ -61,49 +51,24 @@ export const ServiceSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.buyService.matchFulfilled,
                 (state, action) => {
-                    console.log('API Call: Buy Service started. Data:\n' + JSON.stringify(action.payload));
-
                     state.listings.map((listing, index) => {
-                        if (parseInt(listing.id, 10) == action.payload.id) {
+                        if (listing.id == action.payload.id) {
                             return state.listings[index] = action.payload;
                         }
                     });
                 },
             )
             .addMatcher(
-                BackendSlice.endpoints.buyService.matchRejected,
-                (state, action) => {
-                    console.log(
-                        'API Call: Buy Service was **NOT** succesful. Data:\n' + JSON.stringify(action.payload)
-                            + '\n\nListings:\n' + JSON.stringify(state.listings),
-                    );
-                },
-            )
-            .addMatcher(
                 BackendSlice.endpoints.softDeleteService.matchFulfilled,
                 (state, action) => {
-                    console.log('API Call: Soft Delete Service started. Data:\n' + JSON.stringify(action));
                     const { id: serviceId } = action.meta.arg.originalArgs;
                     state.listings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            console.log(
-                                'API Call: Soft Delete Service was succesful. Data:\n' + JSON.stringify(action)
-                                    + '\n\nListings:\n' + JSON.stringify(state.listings),
-                            );
                             return state.listings.splice(index, 1);
                         }
                     });
                 },
             )
-            .addMatcher(
-                BackendSlice.endpoints.softDeleteService.matchRejected,
-                (state, action) => {
-                    console.log(
-                        'API Call: Soft Delete Service was **NOT** succesful. Data:\n' + JSON.stringify(action.payload)
-                            + '\n\nListings:\n' + JSON.stringify(state.listings),
-                    );
-                },
-            );
     },
 });
 

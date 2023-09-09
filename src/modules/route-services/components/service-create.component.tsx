@@ -75,8 +75,8 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
 
     const handleSubmit = (e) => {
         onSubmit(serviceData);
-        e.preventDefault();
         createService(serviceData);
+        e.preventDefault();
     };
 
     const { i18n } = useLingui();
