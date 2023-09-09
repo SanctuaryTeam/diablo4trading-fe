@@ -125,8 +125,8 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
                         />
                     </Grid>
                     <Grid item xs={9}>
-                        <FormControl variant="filled" sx={{ minWidth: 120 }} size='small'>
-                            <InputLabel id="slot-select-field-label">Slots</InputLabel>
+                        <FormControl variant='filled' sx={{ minWidth: 120 }} size='small'>
+                            <InputLabel id='slot-select-field-label'>Slots</InputLabel>
                             <Select
                                 labelId='slot-select-field-label'
                                 id='slot-select-field'
