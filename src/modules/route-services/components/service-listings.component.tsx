@@ -1,4 +1,3 @@
-import { useRouteServerType } from '@modules/common/providers';
 import { useServiceSearchQuery } from '@modules/redux/slices';
 import { ServiceSelectors } from '@modules/redux/slices';
 import { Grid } from '@mui/material';
