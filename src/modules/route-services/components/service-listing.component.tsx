@@ -48,7 +48,7 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
     const handleSoftDelete = () => softDeleteService({ id });
     const handleReport = () => null;
 
-    const currentUserId = useSelector(AuthSelectors.getUser).id;
+    const currentUserId = useSelector(AuthSelectors.getUser)?.id;
 
     const isServiceOwner = currentUserId == userId;
 
