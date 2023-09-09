@@ -66,7 +66,7 @@ export const BackendSlice = createApi({
         }),
         // service-bump
         bumpService: builder.mutation({
-            query: (id) => ({
+            query: ({ id }: { id: string }) => ({
                 url: `/services/${id}/bump`,
                 method: 'POST',
                 body: id,
@@ -74,7 +74,7 @@ export const BackendSlice = createApi({
         }),
         // service-delete
         softDeleteService: builder.mutation({
-            query: (id) => ({
+            query: ({ id }: { id: string }) => ({
                 url: `/services/${id}/soft-delete`,
                 method: 'DELETE',
                 body: id,
@@ -82,10 +82,10 @@ export const BackendSlice = createApi({
         }),
         // service-buy
         buyService: builder.mutation({
-            query: ({ id, userId }) => ({
-                url: `/services/${id}/claim-slot/${userId}`,
+            query: ({ id }: { id: string }) => ({
+                url: `/services/${id}/claim-slot/`,
                 method: 'POST',
-                body: { id, userId },
+                body: { id },
             }),
         }),
     }),

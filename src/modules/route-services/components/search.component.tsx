@@ -5,7 +5,7 @@ import 'react-virtualized/styles.css';
 import { ServiceSelectors } from '@modules/redux/slices';
 import { API } from '@sanctuaryteam/shared';
 import { useSelector } from 'react-redux';
-import { SearchResult } from '.';
+import { ServiceListing } from '.';
 
 const Root = styled('div')(({ theme }) => ({
     marginTop: theme.spacing(2),
@@ -25,10 +25,10 @@ export const Search: React.FC<SearchResultsProps> = ({
     return (
         <Root>
             {listings.map(listing => (
-                <SearchResult
+                <ServiceListing
                     key={listing?.id}
-                    user={listing?.user?.battleNetTag}
-                    userId={listing?.user?.id}
+                    battleNetTag={listing?.user?.battleNetTag}
+                    userId={listing?.userId}
                     id={listing?.id}
                     lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
                     title={listing?.title}

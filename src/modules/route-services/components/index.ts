@@ -2,7 +2,6 @@ export * from './nav.component';
 export * from './search-filter-tags.component';
 export * from './search-filter-title.component';
 export * from './search-filter.component';
-export * from './search-result.component';
 export * from './search.component';
 export * from './service-create.component';
 export * from './service-listing.component';

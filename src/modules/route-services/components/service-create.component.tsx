@@ -34,7 +34,7 @@ interface ServiceData {
     realmType: string;
     title: string;
     content: string;
-    userId: number;
+    userId: string;
     tags: number;
     deleted: boolean;
     maxAcceptedSlots: number;
@@ -48,7 +48,7 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
         realmType: serverType,
         title: '',
         content: '',
-        userId: parseInt(user.id, 10),
+        userId: user.id,
         tags: 0,
         deleted: false,
         maxAcceptedSlots: 3,
@@ -73,15 +73,10 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
         setServiceData({ ...serviceData, tags: newTags.reduce((acc, tag) => acc | tag, 0) });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         onSubmit(serviceData);
         e.preventDefault();
-
-        try {
-            await createService(serviceData);
-        } catch (error) {
-            console.error('Error creating service:', error);
-        }
+        createService(serviceData);
     };
 
     const { i18n } = useLingui();
@@ -132,6 +127,7 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
                                 id='slot-select-field'
                                 label='Slots'
                                 onChange={handleSlotsChange}
+                                defaultValue=''
                             >
                                 <MenuItem value={1}>1</MenuItem>
                                 <MenuItem value={2}>2</MenuItem>
