@@ -1,3 +1,5 @@
+import * as enEs from '@assets/faq.page.enEs.md';
+import * as enUs from '@assets/faq.page.enUs.md';
 import { Redux } from '@modules/redux';
 import { styled } from '@mui/material/styles';
 import * as React from 'react';
@@ -22,10 +24,10 @@ export const FaqPage: React.FC = () => {
             switch (language) {
                 case Redux.UserLanguage.English:
                 default:
-                    contentPath = './faq.page.enUs.md?raw';
+                    contentPath = enUs.default + '?raw';
                     break;
                 case Redux.UserLanguage.Spanish:
-                    contentPath = './faq.page.enEs.md?raw';
+                    contentPath = enEs.default + '?raw';
                     break;
             }
 

@@ -34,6 +34,11 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     };
 
     const handleClear = () => {
+        setQuery({
+            ...query,
+            title: '',
+            tags: 0,
+        });
         setVisible(true);
     };
 

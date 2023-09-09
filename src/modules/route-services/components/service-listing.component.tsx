@@ -74,15 +74,20 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                             alignItems: 'flex-end',
                         }}
                     >
+                        <Common.UserRating user={user} rating={6} score={456} />
                         <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                            <Common.UserRating user={user} rating={6} score={456} />
                             <Grid container>
-                                <Grid item xs={3} md={12}>
+                                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <Typography variant='body2' color='textSecondary'>
+                                        {lastUpdated}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                                     <Button
                                         color='info'
                                         variant='outlined'
                                         startIcon={<ArrowCircleUpOutlinedIcon />}
-                                        sx={{ ml: matches ? 40 : 3 }}
+                                        sx={{ ml: 1 }}
                                         onClick={handleBump}
                                     >
                                         {t(i18n)`Bump`}
@@ -91,18 +96,13 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                                         color='error'
                                         variant='outlined'
                                         startIcon={<DeleteForeverIcon />}
-                                        sx={{ ml: matches ? 1 : 3, mt: matches ? 0 : 1 }}
+                                        sx={{ ml: 1 }}
                                         onClick={handleSoftDelete}
                                     >
                                         {t(i18n)`Delete Service`}
                                     </Button>
                                 </Grid>
                             </Grid>
-                        </Box>
-                        <Box>
-                            <Typography variant='body2' color='textSecondary'>
-                                {lastUpdated}
-                            </Typography>
                         </Box>
                     </Box>
                 </Box>

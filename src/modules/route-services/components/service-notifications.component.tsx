@@ -1,10 +1,14 @@
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Box, Card, Divider, Typography } from '@mui/material';
+import { API } from '@sanctuaryteam/shared';
 import React from 'react';
-import { ServiceOffer } from '../components';
 
-export const ServiceOffers: React.FC = () => {
+interface ServiceOfferProps {
+    user: API.AuthUser;
+}
+
+export const ServiceOffers: React.FC<ServiceOfferProps> = () => {
     const { i18n } = useLingui();
 
     return (
@@ -14,11 +18,13 @@ export const ServiceOffers: React.FC = () => {
                     {t(i18n)`Notifications`}
                 </Typography>
                 <Divider />
-                <ServiceOffer
+                {
+                    /* <ServiceOffer
                     score={4.3}
-                    buyer={'Billybob#0382'}
+                    buyer={user.battleNetTag}
                     service={'T4 Capstone Dungeon'}
-                />
+                /> */
+                }
             </Box>
         </Card>
     );

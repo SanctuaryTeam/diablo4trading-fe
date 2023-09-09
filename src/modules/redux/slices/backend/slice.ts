@@ -43,7 +43,7 @@ export const BackendSlice = createApi({
         // trade
         tradeSearch: builder.query<API.TradeGetSearchResponse, API.TradeGetSearchQuery>({
             query: params => ({
-                url: '/trade/search',
+                url: '/listings/search',
                 method: 'GET',
                 params,
             }),
@@ -69,6 +69,7 @@ export const BackendSlice = createApi({
             query: (id) => ({
                 url: `/services/${id}/bump`,
                 method: 'POST',
+                body: id,
             }),
         }),
         // service-delete
@@ -76,6 +77,7 @@ export const BackendSlice = createApi({
             query: (id) => ({
                 url: `/services/${id}/soft-delete`,
                 method: 'DELETE',
+                body: id,
             }),
         }),
         // service-buy
@@ -83,6 +85,7 @@ export const BackendSlice = createApi({
             query: ({ id, userId }) => ({
                 url: `/services/${id}/claim-slot/${userId}`,
                 method: 'POST',
+                body: { id, userId },
             }),
         }),
     }),

@@ -1,5 +1,5 @@
 import { useRouteServerType } from '@modules/common/providers';
-import { AuthSelectors, useServiceSearchQuery } from '@modules/redux/slices';
+import { useServiceSearchQuery } from '@modules/redux/slices';
 import { ServiceSelectors } from '@modules/redux/slices';
 import { Grid } from '@mui/material';
 import { API } from '@sanctuaryteam/shared';
@@ -7,13 +7,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { ServiceListing } from '../components';
 
-export const ServiceListings: React.FC = () => {
+interface ServiceListingsProps {
+    user: API.AuthUser;
+}
+
+export const ServiceListings: React.FC<ServiceListingsProps> = ({ user }) => {
     const [serverType] = useRouteServerType();
-    const userId = useSelector(AuthSelectors.getUser) ?? null;
 
     const serviceGetSearchQuery: API.ServiceGetSearchQuery = {
         serverType,
-        userId: parseInt(userId?.id) ?? null,
+        userId: parseInt(user.id, 10),
         deleted: false,
         limit: 3,
     };
@@ -27,9 +30,8 @@ export const ServiceListings: React.FC = () => {
                 ? listings.map(listing => (
                     <ServiceListing
                         key={listing?.id}
-                        user={listing?.user.battleNetTag}
+                        user={listing?.user?.battleNetTag}
                         id={listing?.id}
-                        // lastUpdated={'Today at 9:21 pm'}
                         lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
                         title={listing?.title}
                         content={listing?.content}

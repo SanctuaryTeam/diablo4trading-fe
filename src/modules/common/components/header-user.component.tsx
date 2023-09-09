@@ -10,7 +10,7 @@ export const HeaderUser: React.FC = () => {
     const { i18n } = useLingui();
     const navigate = useNavigate();
 
-    const user = useSelector(Redux.AuthSelectors.getUser);
+    const user = useSelector(Redux.AuthSelectors.getUser) ?? null;
     if (!user) {
         return (
             <Button

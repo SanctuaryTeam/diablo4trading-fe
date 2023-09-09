@@ -34,6 +34,7 @@ export default defineConfig({
         svgr(),
         reactVirtualized(),
     ],
+    assetsInclude: ['**/*.md'],
     optimizeDeps: {
         exclude: [...sharedOptimizeDeps],
     },

@@ -28,6 +28,7 @@ export const Search: React.FC<SearchResultsProps> = ({
                 <SearchResult
                     key={listing?.id}
                     user={listing?.user?.battleNetTag}
+                    userId={listing?.user?.id}
                     id={listing?.id}
                     lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
                     title={listing?.title}
