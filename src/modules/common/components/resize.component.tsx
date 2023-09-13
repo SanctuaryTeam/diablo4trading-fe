@@ -18,6 +18,9 @@ export const Resize: React.FC<ResizeProps> = ({
     const element = useRef<HTMLElement>();
     const resizer = useRef(
         new ResizeObserver(() => {
+            if (!element.current) {
+                return;
+            }
             let { offsetWidth: width, offsetHeight: height } = element.current;
             width += offsetWidth;
             height += offsetHeight;

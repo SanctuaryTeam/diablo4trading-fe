@@ -13,7 +13,7 @@ export const DiscordAuthPage: React.FC = () => {
     const [params] = useSearchParams({
         code: '',
     });
-    const code = params.get('code');
+    const code = params.get('code') ?? '';
 
     const { isFetching, isError, isSuccess } = Redux.useAuthDiscordCallbackQuery({ code });
 

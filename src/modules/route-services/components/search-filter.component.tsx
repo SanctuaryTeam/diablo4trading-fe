@@ -38,6 +38,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             ...query,
             title: '',
             tags: 0,
+            deleted: false,
         });
         setVisible(true);
     };

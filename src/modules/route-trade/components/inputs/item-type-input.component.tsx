@@ -13,8 +13,8 @@ const ItemTypeIcon = styled('img')(() => ({
 }));
 
 interface ItemTypeInputProps {
-    value: Game.ItemType;
-    onChange: (value: Game.ItemType) => void;
+    value?: Game.ItemType;
+    onChange: (value?: Game.ItemType) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;

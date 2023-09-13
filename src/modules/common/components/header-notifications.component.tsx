@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const HeaderNotifications: React.FC = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
-    const handleOpenMenu = (event) => {
+    const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(event.currentTarget);
     };
 

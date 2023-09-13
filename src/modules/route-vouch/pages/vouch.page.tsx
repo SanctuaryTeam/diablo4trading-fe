@@ -96,7 +96,6 @@ export const VouchPage: React.FC = () => {
                                 <Button
                                     variant='outlined'
                                     fullWidth
-                                    onClick={null}
                                 >
                                     {t(i18n)`Submit`}
                                 </Button>

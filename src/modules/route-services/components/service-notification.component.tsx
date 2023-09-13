@@ -21,9 +21,9 @@ export const ServiceOffer: React.FC<ServiceOfferProps> = ({
     const [editSlotState] = useEditSlotStateMutation();
     const handleEdit = (newState: API.ServiceSlotStates) => editSlotState({ id: slot.id, state: newState });
 
-    const [notification, setNotification] = React.useState<string>(null);
-    const [yes, setYes] = React.useState<API.ServiceSlotStates>(null);
-    const [no, setNo] = React.useState<API.ServiceSlotStates>(null);
+    const [notification, setNotification] = React.useState<string | null>(null);
+    const [yes, setYes] = React.useState<API.ServiceSlotStates | null>(null);
+    const [no, setNo] = React.useState<API.ServiceSlotStates | null>(null);
 
     React.useEffect(() => {
         switch (slot.state) {

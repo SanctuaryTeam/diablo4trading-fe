@@ -17,7 +17,7 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
     const [loading, setLoading] = React.useState<boolean>(true);
 
     const [affixes, setAffixes] = React.useState<Game.Affixes>();
-    // const [items, setItems] = React.useState<Game.Items>();
+
     const [translations, setTranslations] = React.useState<Game.Translations>();
 
     const language = React.useMemo(() => {
@@ -56,13 +56,14 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
     const value = React.useMemo(() => {
         const ctx: AssetsContext = {
             loading,
+            // @ts-ignore
             affixes,
-            // items,
+            // @ts-ignore
             translations,
             language,
         };
         return ctx;
-    }, [loading, affixes, /*items,*/ translations, language]);
+    }, [loading, affixes, translations, language]);
 
     useEffect(() => {
         if (!loading) {
@@ -70,12 +71,10 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
         }
         Promise.all([
             Assets.loadAffixes(),
-            // Assets.loadItems(),
             Assets.loadTranslations(),
         ])
-            .then(([affixes, /*items,*/ translations]) => {
+            .then(([affixes, translations]) => {
                 setAffixes(affixes);
-                // setItems(items);
                 setTranslations(translations);
                 setLoading(false);
             })
@@ -86,7 +85,7 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
 
     return (
         <AssetsContext.Provider value={value}>
-            {children(loading)}
+            {children ? children(loading) : <></>}
         </AssetsContext.Provider>
     );
 };

@@ -20,9 +20,8 @@ export const ListingsPage: React.FC = () => {
 
     const { id }: ListingsParam = useParams();
 
-    const hasId = id?.length > 0;
-    const setId = (id: string) => {
-        navigate(hasId ? `./../${id}` : `./${id}`);
+    const setId = (newId: string) => {
+        navigate(id ? `./../${newId}` : `./${newId}`);
     };
 
     const handleNewClick = () => {
@@ -43,8 +42,8 @@ export const ListingsPage: React.FC = () => {
                 onNewClick={handleNewClick}
                 onDetailClick={setId}
             />
-            <Dialog open={hasId}>
-                {hasId && (
+            <Dialog open={id ? true : false}>
+                {id && (
                     id === NEW_ID
                         ? (
                             <ListingNew

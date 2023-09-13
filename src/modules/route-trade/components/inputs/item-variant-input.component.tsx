@@ -6,7 +6,7 @@ import { Autocomplete, TextField } from '@mui/material';
 import { matchSorter } from 'match-sorter';
 
 interface ItemVariantInputProps {
-    value: Game.ItemVariant;
+    value?: Game.ItemVariant;
     onChange: (value: Game.ItemVariant) => void;
     label?: string;
     required?: boolean;

@@ -109,12 +109,14 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             align: 'center',
             headerAlign: 'center',
             renderCell: (params: GridRenderCellParams<Row, Game.ServerType>) => (
-                <Tooltip title={Game.getServerTypeText(params.value, language, translations)}>
-                    <Icon
-                        src={Common.GAME_SERVER_TYPE_ICONS[params.value]}
-                        alt={t(i18n)`${Game.getServerTypeText(params.value, language, translations)}'s icon`}
-                    />
-                </Tooltip>
+                params.value && (
+                    <Tooltip title={Game.getServerTypeText(params.value, language, translations)}>
+                        <Icon
+                            src={Common.GAME_SERVER_TYPE_ICONS[params.value]}
+                            alt={t(i18n)`${Game.getServerTypeText(params.value, language, translations)}'s icon`}
+                        />
+                    </Tooltip>
+                )
             ),
         },
         {
@@ -124,13 +126,15 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             align: 'center',
             headerAlign: 'center',
             renderCell: (params: GridRenderCellParams<Row, Game.ItemType>) => (
-                <Tooltip title={Game.getItemTypeText(params.value, language, translations)}>
-                    <Icon
-                        src={Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[params.value]}
-                        alt={t(i18n)`${Game.getItemTypeText(params.value, language, translations)}'s icon`}
-                        data-large
-                    />
-                </Tooltip>
+                params.value && (
+                    <Tooltip title={Game.getItemTypeText(params.value, language, translations)}>
+                        <Icon
+                            src={Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[params.value]}
+                            alt={t(i18n)`${Game.getItemTypeText(params.value, language, translations)}'s icon`}
+                            data-large
+                        />
+                    </Tooltip>
+                )
             ),
         },
         {
@@ -153,7 +157,7 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             sortable: false,
             renderCell: (params: GridRenderCellParams<Row, string[]>) => (
                 <Affixes>
-                    {params.value.map((affix, index) => (
+                    {params.value && params.value.map((affix, index) => (
                         <Line key={index}>
                             {reactStringReplace(affix, /(\d+)/g, (value, index) => {
                                 return <Number key={index}>{value}</Number>;
@@ -171,11 +175,13 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             align: 'right',
             headerAlign: 'right',
             renderCell: (params: GridRenderCellParams<Row, Date>) => (
-                <Tooltip title={i18n.date(params.value, { dateStyle: 'long', timeStyle: 'medium' })}>
-                    <span>
-                        <Common.Timer until={params.value.getTime()} />
-                    </span>
-                </Tooltip>
+                params.value && (
+                    <Tooltip title={i18n.date(params.value, { dateStyle: 'long', timeStyle: 'medium' })}>
+                        <span>
+                            <Common.Timer until={params.value.getTime()} />
+                        </span>
+                    </Tooltip>
+                )
             ),
         },
     ];

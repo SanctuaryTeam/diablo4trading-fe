@@ -14,6 +14,7 @@ import {
     InputLabel,
     MenuItem,
     Select,
+    SelectChangeEvent,
     TextField,
     Typography,
     useMediaQuery,
@@ -61,7 +62,7 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
         setServiceData({ ...serviceData, content: event.target.value });
     };
 
-    const handleSlotsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSlotsChange = (event: SelectChangeEvent<string>) => {
         setServiceData({ ...serviceData, maxAcceptedSlots: parseInt(event.target.value) });
     };
 
@@ -72,7 +73,7 @@ export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCa
         setServiceData({ ...serviceData, tags: newTags.reduce((acc, tag) => acc | tag, 0) });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         onSubmit(serviceData);
         createService(serviceData);
         e.preventDefault();
