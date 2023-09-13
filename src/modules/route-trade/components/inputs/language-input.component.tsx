@@ -39,7 +39,7 @@ const formatLanguage = (language: Game.Language) => {
 };
 
 interface LanguageInputProps {
-    value: Game.Language;
+    value?: Game.Language;
     label?: string;
     disabled?: boolean;
     required?: boolean;
@@ -55,7 +55,7 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
 }) => {
     const { i18n } = useLingui();
 
-    const options = Object
+    const options: { id?: Game.Language; label: string }[] = Object
         .values(Game.Language)
         .map((language) => ({
             id: language,
@@ -80,7 +80,7 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option?.id && onChange(option?.id)}
             renderInput={(params) => (
                 <TextField
                     {...params}

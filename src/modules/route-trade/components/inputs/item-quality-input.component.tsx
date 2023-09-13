@@ -26,7 +26,10 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options = [Game.ItemQuality.Common, Game.ItemQuality.Magic, Game.ItemQuality.Rare]
+    const options: {
+        id?: Game.ItemQuality;
+        label: string;
+    }[] = [Game.ItemQuality.Common, Game.ItemQuality.Magic, Game.ItemQuality.Rare]
         .map((type) => ({
             id: type,
             label: Game.getItemQualityText(type, language, translations),
