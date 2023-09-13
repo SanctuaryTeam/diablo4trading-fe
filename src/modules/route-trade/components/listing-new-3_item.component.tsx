@@ -127,7 +127,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
                             </Grid>
                         </Grid>
                     </Grid>
-                    {Common.isSeasonal(serverType, value.type) && (
+                    {value.type && Common.isSeasonal(serverType, value.type) && (
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <Typography variant='subtitle2' color='text.secondary'>

@@ -40,7 +40,7 @@ export const ListingNewImport: React.FC<ListingNewImport> = ({
     const root = React.useRef<HTMLDivElement>(null);
     const input = React.useRef<HTMLInputElement>(null);
 
-    const importFile = React.useCallback((file: File) => {
+    const importFile = React.useCallback((file: File | undefined) => {
         if (!file || file.type.indexOf(`${TYPE}/`) !== 0) {
             return;
         }

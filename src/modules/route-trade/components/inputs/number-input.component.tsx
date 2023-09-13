@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 
-const toString = (value: number) => (value === undefined ? '' : value.toString());
+const toString = (value: number | undefined) => (value === undefined ? '' : value.toString());
 
 interface NumberInputProps {
     value?: number;
