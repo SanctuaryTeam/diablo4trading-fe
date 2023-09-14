@@ -7,7 +7,7 @@ import { matchSorter } from 'match-sorter';
 
 interface ItemVariantInputProps {
     value?: Game.ItemVariant;
-    onChange: (value: Game.ItemVariant) => void;
+    onChange: (value?: Game.ItemVariant) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -28,11 +28,11 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
 
     const options = Object
         .values(Game.ItemVariant)
-        .map((type) => ({
+        .map<{id?: Game.ItemVariant; label: string}>((type) => ({
             id: type,
             label: Game.getItemVariantText(type, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
+    let selected = value === undefined ? undefined : options.find((x) => x.id === value);
     if (selected === undefined) {
         options.push({
             id: value,

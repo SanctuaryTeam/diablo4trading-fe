@@ -155,7 +155,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     const { options, selected } = React.useMemo(() => {
         const options = Object
             .keys(affixes.definitions[type])
-            .map((id) => ({
+            .map<{ id?: string; label: string; }> ((id) => ({
                 id,
                 label: Game.getItemAffixText(
                     id,
@@ -191,7 +191,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option?.id && onChange(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} />}
             renderOption={(props, option, state) => [props, option, state.index] as React.ReactNode}
             fullWidth

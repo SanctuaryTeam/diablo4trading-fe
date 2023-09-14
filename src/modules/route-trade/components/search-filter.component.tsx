@@ -32,7 +32,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     } = payload;
 
     React.useEffect(() => {
-        if (!Common.isSeasonal(serverType, payload?.query?.item?.type)) {
+        const itemType = payload?.query?.item?.type;
+        if (itemType && !Common.isSeasonal(serverType, itemType)) {
             if (payload.query?.seasonal) {
                 setPayload({
                     ...payload,
@@ -71,7 +72,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                                                 })}
                                         />
                                     </Grid>
-                                    {Common.isSeasonal(serverType, query?.item?.type) && (
+                                    {query?.item?.type && Common.isSeasonal(serverType, query?.item?.type) && (
                                         <Grid item xs={12}>
                                             <SearchFilterSeasonal
                                                 value={query.seasonal}

@@ -23,8 +23,8 @@ function getCountRange(options: API.TradeAffixOption[]) {
 }
 
 interface SearchFilterAffixProp {
-    value: API.TradeAffixFilter;
-    onChange: (value: API.TradeAffixFilter) => void;
+    value?: API.TradeAffixFilter;
+    onChange: (value?: API.TradeAffixFilter) => void;
     disabled?: boolean;
 }
 
@@ -39,11 +39,13 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
 
     const getNewCount = (newOptions: API.TradeAffixOption[]) => {
         const range = getCountRange(newOptions);
-        let newCount: number = undefined;
+        let newCount: number | undefined = undefined;
         if (range.count >= 1) {
             newCount = Math.min(range.count, ITEM_AFFIX_MAX_COUNT - 1);
-            if (!isNaN(value.count)) {
-                if (value.count > newCount && value.count <= range.max) {
+            const valueCount = value.count ?? NaN;
+            const rangeMax = range.max ?? 0;
+            if (!isNaN(valueCount)) {
+                if (valueCount > newCount && valueCount <= rangeMax) {
                     newCount = value.count;
                 }
             }
@@ -101,7 +103,7 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
                 const option = options[i] || {
                     id: undefined,
                 };
-                const placeholder = isNaN(option.minValue) ? '#' : `${option.minValue}`;
+                const placeholder = isNaN(option.minValue ?? NaN) ? '#' : `${option.minValue}`;
                 return (
                     <Grid key={i} item xs={12}>
                         <Grid container spacing={0.5}>
@@ -153,7 +155,7 @@ export const SearchFilterAffix: React.FC<SearchFilterAffixProp> = ({
                                 max={range.max}
                                 disabled={disabled || range.min === undefined || range.max === undefined}
                                 label={t(i18n)`Minimum Affixes Required`}
-                                helperText={count >= 1 && range.count !== count
+                                helperText={count && count >= 1 && range.count !== count
                                     ? t(i18n)`At least ${count} of the ${range.count} affixes will be present`
                                     : undefined}
                             />

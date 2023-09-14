@@ -5,8 +5,8 @@ import { API } from '@sanctuaryteam/shared';
 import { CharacterClassInput, ItemTypeInput, NumberInput } from './inputs';
 
 interface SearchFilterItemProps {
-    value: API.TradeItemFilter;
-    onChange: (value: API.TradeItemFilter) => void;
+    value?: API.TradeItemFilter;
+    onChange: (value?: API.TradeItemFilter) => void;
     disabled?: boolean;
 }
 

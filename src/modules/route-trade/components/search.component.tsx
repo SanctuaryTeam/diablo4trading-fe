@@ -71,7 +71,7 @@ export const Search: React.FC<SearchResultsProps> = ({
         throw new Error('Unable to fetch search results');
     }, [fetch]);
 
-    const loader = React.useRef<InfiniteLoader>();
+    const loader = React.createRef<InfiniteLoader>();
     React.useLayoutEffect(() => {
         if (!isNaN(timestamp)) {
             return;
