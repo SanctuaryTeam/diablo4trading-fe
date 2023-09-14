@@ -31,8 +31,8 @@ interface ListingNewItemProps {
     value: ListingNewItemFormValue;
     onChange: (update: (prev: ListingNewItemFormValue) => ListingNewItemFormValue) => void;
     image: string;
-    language: Game.Language;
-    serverType: Game.ServerType;
+    language?: Game.Language;
+    serverType?: Game.ServerType;
 }
 
 export const ListingNewItem: React.FC<ListingNewItemProps> = ({
@@ -48,8 +48,10 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
         return onChange(prev => ({ ...prev, ...next }));
     }, [onChange]);
 
+    const isSeasonal = serverType && value.type && !Common.isSeasonal(serverType, value.type);
+
     React.useEffect(() => {
-        if (value.type && !Common.isSeasonal(serverType, value.type)) {
+        if (isSeasonal) {
             handleChange({ socketType: undefined });
         }
     }, [handleChange, serverType, value.type]);
@@ -127,7 +129,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
                             </Grid>
                         </Grid>
                     </Grid>
-                    {value.type && Common.isSeasonal(serverType, value.type) && (
+                    {isSeasonal && (
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <Typography variant='subtitle2' color='text.secondary'>

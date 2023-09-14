@@ -15,7 +15,7 @@ export const Resize: React.FC<ResizeProps> = ({
     offsetHeight = 0,
     children,
 }) => {
-    const element = useRef<HTMLElement>();
+    const element = useRef<HTMLDivElement | null>(null);
     const resizer = useRef(
         new ResizeObserver(() => {
             if (!element.current) {
@@ -39,13 +39,13 @@ export const Resize: React.FC<ResizeProps> = ({
     }, []);
 
     const setElement = (
-        ref: HTMLElement,
+        ref: HTMLDivElement | null,
     ) => {
         if (element.current) {
             resizer.current.unobserve(element.current);
         }
         element.current = ref;
-        if (ref) {
+        if (element.current && ref) {
             let { offsetWidth: width, offsetHeight: height } = element.current;
             width += offsetWidth;
             height += offsetHeight;
