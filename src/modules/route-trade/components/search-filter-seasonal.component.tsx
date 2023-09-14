@@ -5,8 +5,8 @@ import { API } from '@sanctuaryteam/shared';
 import { ItemSocketTypeInput } from './inputs';
 
 interface SearchFilterSeasonalProps {
-    value: API.TradeSeasonalFilter;
-    onChange: (value: API.TradeSeasonalFilter) => void;
+    value?: API.TradeSeasonalFilter;
+    onChange: (value?: API.TradeSeasonalFilter) => void;
     disabled?: boolean;
 }
 

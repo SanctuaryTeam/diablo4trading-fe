@@ -93,7 +93,7 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
                         -1,
                         -1,
                         affixes,
-                        `${isNaN(affix.value) ? '?' : affix.value}`,
+                        `${isNaN(affix.value ?? NaN) ? '?' : affix.value}`,
                     )
                 )
                 : [],
