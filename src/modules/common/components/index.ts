@@ -16,3 +16,4 @@ export * from './star-rating.component';
 export * from './theme.component';
 export * from './timer.component';
 export * from './user-rating.component';
+export * from './notification-card.component';
