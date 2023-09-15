@@ -70,7 +70,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                 user={entity?.client?.name}
                                 rating={0}
                                 score={0}
-                             />
+                            />
                             <Typography variant='subtitle1' fontWeight='bold'>
                                 {message}
                             </Typography>
@@ -83,7 +83,8 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                         variant='outlined'
                                         onClick={() => handleEdit(yes)}
                                         sx={{ ml: 1 }}
-                                    >Yes
+                                    >
+                                        Yes
                                     </Button>
                                 )
                                 : <></>}
@@ -94,7 +95,8 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                         variant='outlined'
                                         onClick={() => handleEdit(no)}
                                         sx={{ ml: 1 }}
-                                    >No
+                                    >
+                                        No
                                     </Button>
                                 )
                                 : <></>}
