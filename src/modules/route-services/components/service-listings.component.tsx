@@ -11,6 +11,8 @@ export const ServiceListings: React.FC = () => {
         userId: useSelector(AuthSelectors.getUserId),
         deleted: false,
         limit: 3,
+        title: '',
+        tags: 0,
     };
 
     useServiceSearchQuery(serviceGetSearchQuery);
@@ -21,14 +23,14 @@ export const ServiceListings: React.FC = () => {
             {listings
                 ? listings.map(listing => (
                     <ServiceListing
-                        key={listing?.id}
-                        battleNetTag={listing?.user?.battleNetTag}
-                        userId={listing?.userId}
+                        key={listing.id}
+                        battleNetTag={listing.user.battleNetTag}
+                        userId={listing.userId}
                         id={listing?.id}
-                        lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
-                        title={listing?.title}
-                        content={listing?.content}
-                        tags={API.numberToTags(listing?.tags)}
+                        lastUpdated={new Date(listing.updatedAt).toLocaleString()}
+                        title={listing.title}
+                        content={listing.content}
+                        tags={API.numberToTags(listing.tags)}
                     />
                 ))
                 : <></>}

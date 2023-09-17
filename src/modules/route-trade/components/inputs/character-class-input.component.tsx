@@ -13,7 +13,7 @@ const ClassIcon = styled('img')(() => ({
 }));
 
 interface CharacterClassInputProps {
-    value: Game.Class;
+    value?: Game.Class;
     onChange: (value: Game.Class) => void;
     label?: string;
     disabled?: boolean;

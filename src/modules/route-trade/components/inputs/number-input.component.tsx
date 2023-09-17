@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 const toString = (value: number) => (value === undefined ? '' : value.toString());
 
 interface NumberInputProps {
-    value: number;
+    value?: number;
     onChange: (value: number) => void;
     label?: string;
     helperText?: string;
@@ -46,7 +46,7 @@ export const NumberInput: React.FC<NumberInputProps> = ({
             onBlur={() => {
                 const numericValue = parseInt(textValue);
                 if (isNaN(numericValue)) {
-                    setValue(undefined);
+                    setValue(NaN);
                     return;
                 }
                 if (min !== undefined && numericValue < min) {

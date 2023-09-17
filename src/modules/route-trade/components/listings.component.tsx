@@ -20,7 +20,7 @@ export const Listings: React.FC<ListingsProps> = ({
     const query = Redux.useTradeSearchQuery({
         page: 1,
         pageSize: 30,
-        payload: undefined,
+        payload: '',
         // no server type filter
         serverType: Game.ServerType.Eternal,
     });

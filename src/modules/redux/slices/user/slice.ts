@@ -8,7 +8,7 @@ interface UserState {
 }
 
 export const USER_STATE_INITIAL: UserState = {
-    language: null,
+    language: UserLanguage.English,
     serverType: Game.ServerType.Seasonal,
 };
 

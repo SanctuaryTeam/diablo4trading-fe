@@ -34,7 +34,7 @@ export const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
             </Grid>
             <Grid item xs={12} lg={6}>
                 <NumberInput
-                    value={value.minPower}
+                    value={value.minPower ?? 0}
                     onChange={(minPower) => onChange({ ...value, minPower })}
                     min={0}
                     max={850}
@@ -52,7 +52,7 @@ export const SearchFilterItem: React.FC<SearchFilterItemProps> = ({
             </Grid>
             <Grid item xs={12} lg={6}>
                 <NumberInput
-                    value={value.maxRequiredLevel}
+                    value={value.maxRequiredLevel ?? 0}
                     onChange={(maxRequiredLevel) => onChange({ ...value, maxRequiredLevel })}
                     min={0}
                     max={80}

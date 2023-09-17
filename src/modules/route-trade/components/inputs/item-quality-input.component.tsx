@@ -6,8 +6,8 @@ import { Autocomplete, TextField } from '@mui/material';
 import { matchSorter } from 'match-sorter';
 
 interface ItemQualityInputProps {
-    value: Game.ItemQuality;
-    onChange: (value: Game.ItemQuality) => void;
+    value?: Game.ItemQuality;
+    onChange: (value?: Game.ItemQuality) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
