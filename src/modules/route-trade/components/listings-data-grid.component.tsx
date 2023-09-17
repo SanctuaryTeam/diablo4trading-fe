@@ -10,7 +10,7 @@ import React from 'react';
 import reactStringReplace from 'react-string-replace';
 import { ListingsDataGridRow as Row } from './listings-data-grid.types';
 
-const DataGrid = styled(MuiDataGrid)(({ theme }) => ({
+const DataGrid = styled(MuiDataGrid<Row>)(({ theme }) => ({
     '& .MuiDataGrid-row': {
         cursor: 'pointer',
         [`& > .MuiDataGrid-cell[data-field="${Common.getObjectField<Row>('itemTypeLine')}"]`]: {
@@ -82,9 +82,10 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             serverType: Game.ServerType.Seasonal,
             itemQuality: item.quality,
             itemType: item.type,
+            // @ts-ignore
             itemTypeLine: Game.getItemTypeLine(item.variant, item.quality, item.type, language, translations),
             itemPower: item.power,
-            itemAffixes: item.affixes?.length > 0
+            itemAffixes: item.affixes
                 ? item.affixes.map((affix) =>
                     Game.getItemAffixText(
                         affix.id,

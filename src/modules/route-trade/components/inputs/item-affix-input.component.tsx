@@ -13,17 +13,16 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { matchSorter } from 'match-sorter';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ListChildComponentProps, VariableSizeList } from 'react-window';
 
 const LISTBOX_PADDING = 8; // px
 
 function renderRow(
-    props: ListChildComponentProps<
-        [React.HTMLAttributes<HTMLLIElement>, { id: string; label: string }][]
+    { data, index, style }: ListChildComponentProps<
+        [React.HTMLAttributes<HTMLLIElement>, OptionType][]
     >,
 ) {
-    const { data, index, style } = props;
     const [componentProps, option] = data[index];
     const inlineStyle = {
         ...style,
@@ -66,16 +65,15 @@ function useResetCache(data: unknown) {
     return ref;
 }
 
+type OptionType = {
+    id: number;
+    label: string;
+};
+
 const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLElement>>(
-    function ListboxComponent(props, ref) {
+    (props, ref) => {
         const { children, ...other } = props;
-        const itemData: React.ReactElement[] = [];
-        (children as React.ReactElement[]).forEach(
-            (item: React.ReactElement & { children?: React.ReactElement[] }) => {
-                itemData.push(item);
-                itemData.push(...(item.children || []));
-            },
-        );
+        const itemData = children as [React.HTMLAttributes<HTMLLIElement>, OptionType][];
 
         const theme = useTheme();
         const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
@@ -88,26 +86,23 @@ const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
             return itemSize;
         };
 
-        const getHeight = () => {
-            if (itemCount > 8) {
-                return 8 * itemSize;
-            }
-            return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
-        };
+        const height = useMemo(() => {
+            return (itemData.length || 8) * itemSize;
+        }, [itemData.length, itemSize]);
 
         const gridRef = useResetCache(itemCount);
 
         return (
             <div ref={ref}>
                 <OuterElementContext.Provider value={other}>
-                    <VariableSizeList
+                    <VariableSizeList<[React.HTMLAttributes<HTMLLIElement>, OptionType][]>
                         itemData={itemData}
-                        height={getHeight() + 2 * LISTBOX_PADDING}
+                        height={height + 2 * LISTBOX_PADDING}
                         width='100%'
                         ref={gridRef}
                         outerElementType={OuterElementType}
                         innerElementType='ul'
-                        itemSize={() => getChildSize()}
+                        itemSize={getChildSize}
                         overscanCount={5}
                         itemCount={itemCount}
                     >
@@ -155,7 +150,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     const { options, selected } = React.useMemo(() => {
         const options = Object
             .keys(affixes.definitions[type])
-            .map<{ id?: string; label: string; }> ((id) => ({
+            .map<{ id?: string; label: string }>((id) => ({
                 id,
                 label: Game.getItemAffixText(
                     id,

@@ -33,7 +33,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
 
     const options = Object
         .values(Game.Class)
-        .map((characterClass) => ({
+        .map<{ id?: Game.Class; label: string }>((characterClass) => ({
             id: characterClass,
             label: Game.getCharacterClassText(characterClass, language, translations),
         }));
@@ -56,16 +56,18 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option?.id && onChange(option.id)}
             renderOption={(props, option) => (
-                <li {...props}>
-                    <ClassIcon
-                        src={Common.GAME_CLASS_ICONS[option.id]}
-                        alt={t(i18n)`${Game.getCharacterClassText(option.id, language, translations)}'s icon`}
-                    />
-                    &nbsp;
-                    {option.label}
-                </li>
+                option.id && (
+                    <li {...props}>
+                        <ClassIcon
+                            src={Common.GAME_CLASS_ICONS[option.id]}
+                            alt={t(i18n)`${Game.getCharacterClassText(option.id, language, translations)}'s icon`}
+                        />
+                        &nbsp;
+                        {option.label}
+                    </li>
+                )
             )}
             renderInput={(params) => (
                 <TextField
@@ -73,7 +75,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                     label={label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: Common.GAME_CLASS_ICONS[value]
+                        startAdornment: value
                             ? (
                                 <ClassIcon
                                     src={Common.GAME_CLASS_ICONS[value]}
