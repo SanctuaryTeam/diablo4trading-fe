@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "strict": false,
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
@@ -28,6 +28,10 @@
       ],
       "@modules/*": [
         "./src/modules/*"
+      ],
+      "@sanctuaryteam/shared": [
+        "../shared/src",
+        "./shared"
       ]
     }
   }

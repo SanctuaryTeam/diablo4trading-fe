@@ -35,7 +35,7 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
 
     const options = Object
         .values(Game.ItemType)
-        .map((type) => ({
+        .map<{ id?: Game.ItemType; label: string }>((type) => ({
             id: type,
             label: Game.getItemTypeText(type, language, translations),
         }));
@@ -60,14 +60,16 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
                     : options}
             onChange={(_, option) => onChange(option?.id)}
             renderOption={(props, option) => (
-                <li {...props}>
-                    <ItemTypeIcon
-                        src={Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[option.id]}
-                        alt={t(i18n)`${Game.getItemTypeText(option.id, language, translations)}'s icon`}
-                    />
-                    &nbsp;
-                    {option.label}
-                </li>
+                option.id && (
+                    <li {...props}>
+                        <ItemTypeIcon
+                            src={Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[option.id]}
+                            alt={t(i18n)`${Game.getItemTypeText(option.id, language, translations)}'s icon`}
+                        />
+                        &nbsp;
+                        {option.label}
+                    </li>
+                )
             )}
             renderInput={(params) => (
                 <TextField
@@ -76,7 +78,7 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
                     required={required}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[value]
+                        startAdornment: value && Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[value]
                             ? (
                                 <ItemTypeIcon
                                     src={Common.GAME_ITEM_TYPE_TOOLTIP_ICONS[value]}

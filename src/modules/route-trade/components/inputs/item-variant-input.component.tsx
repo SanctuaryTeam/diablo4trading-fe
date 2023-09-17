@@ -28,7 +28,7 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
 
     const options = Object
         .values(Game.ItemVariant)
-        .map<{id?: Game.ItemVariant; label: string}>((type) => ({
+        .map<{ id?: Game.ItemVariant; label: string }>((type) => ({
             id: type,
             label: Game.getItemVariantText(type, language, translations),
         }));
