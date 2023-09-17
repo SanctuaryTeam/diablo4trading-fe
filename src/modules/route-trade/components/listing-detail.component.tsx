@@ -3,7 +3,6 @@ import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
 import { Box, Button, Grid, Stack } from '@mui/material';
-import { API } from '@sanctuaryteam/shared';
 import React from 'react';
 
 interface ListingDetailProps {
@@ -30,28 +29,23 @@ export const ListingDetail: React.FC<ListingDetailProps> = ({
         return <Common.Spinner />;
     }
 
-    const result: API.TradeSearchResult = {
-        item: {
-            language: Game.Language.English,
-            quality: Game.ItemQuality.Rare,
-            variant: Game.ItemVariant.Ancestral,
-            type: Game.ItemType.Crossbow,
-            power: 949,
-            requiredLevel: 86,
-            classRestriction: Game.Class.Druid,
-            inherentAffixes: [
-                { id: '1322036', value: 1 },
-            ],
-            affixes: [
-                { id: '761190', value: 2 },
-                { id: '577073', value: 3 },
-                { id: '1295786', value: 4 },
-                { id: '1318304', value: 5 },
-            ],
-        },
-        listing: {
-            id: '1',
-        },
+    const mockItem: Game.Item = {
+        language: Game.Language.English,
+        quality: Game.ItemQuality.Rare,
+        variant: Game.ItemVariant.Ancestral,
+        type: Game.ItemType.Crossbow,
+        power: 949,
+        requiredLevel: 86,
+        classRestriction: Game.Class.Druid,
+        inherentAffixes: [
+            { id: '1322036', value: 1 },
+        ],
+        affixes: [
+            { id: '761190', value: 2 },
+            { id: '577073', value: 3 },
+            { id: '1295786', value: 4 },
+            { id: '1318304', value: 5 },
+        ],
     };
 
     const isValid = false;
@@ -78,7 +72,7 @@ export const ListingDetail: React.FC<ListingDetailProps> = ({
                         justifyContent='center'
                     >
                         <Common.ItemTooltip
-                            item={result.item}
+                            item={mockItem}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
