@@ -11,7 +11,7 @@ export const ServiceNotifications: React.FC = () => {
     const { i18n } = useLingui();
     const userId = useSelector(AuthSelectors.getUserId);
     const serviceSlotGetSearchQuery: API.ServiceSlotGetSearchQuery = {
-        userId
+        userId,
     };
 
     useServiceSlotSearchQuery(serviceSlotGetSearchQuery);

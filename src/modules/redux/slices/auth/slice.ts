@@ -80,13 +80,11 @@ export const AuthSlice = createSlice({
                     });
 
                     if (followUp) {
-
                         state.notifications.push({
                             entity: action.payload,
                             recipient: recipient2,
                             message: message2,
                         });
-
                     }
 
                     console.log(state.notifications);
