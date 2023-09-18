@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
-import { AuthSelectors, ServiceSelectors, useServiceSlotSearchQuery } from '@modules/redux/slices';
+import { AuthSelectors, useServiceSlotSearchQuery } from '@modules/redux/slices';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { API } from '@sanctuaryteam/shared';
 import React from 'react';
@@ -9,8 +9,9 @@ import { useSelector } from 'react-redux';
 
 export const ServiceNotifications: React.FC = () => {
     const { i18n } = useLingui();
+    const userId = useSelector(AuthSelectors.getUserId);
     const serviceSlotGetSearchQuery: API.ServiceSlotGetSearchQuery = {
-        userId: useSelector(AuthSelectors.getUserId),
+        userId
     };
 
     useServiceSlotSearchQuery(serviceSlotGetSearchQuery);
