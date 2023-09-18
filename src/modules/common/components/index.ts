@@ -7,6 +7,7 @@ export * from './header.component';
 export * from './item-tooltip.component';
 export * from './language-switch.component';
 export * from './nav-tabs.component';
+export * from './notification-card.component';
 export * from './posneg-rating.component';
 export * from './resize.component';
 export * from './server-type-input.component';

@@ -1,20 +1,22 @@
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
-import { AuthSelectors, ServiceSelectors, useServiceSlotSearchQuery } from '@modules/redux/slices';
+import { Common } from '@modules/common';
+import { AuthSelectors, useServiceSlotSearchQuery } from '@modules/redux/slices';
 import { Box, Card, Divider, Typography } from '@mui/material';
 import { API } from '@sanctuaryteam/shared';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ServiceNotification } from './service-notification.component';
 
 export const ServiceNotifications: React.FC = () => {
     const { i18n } = useLingui();
+    const userId = useSelector(AuthSelectors.getUserId);
     const serviceSlotGetSearchQuery: API.ServiceSlotGetSearchQuery = {
-        ownerId: parseInt(useSelector(AuthSelectors.getUserId), 10),
+        userId,
     };
 
     useServiceSlotSearchQuery(serviceSlotGetSearchQuery);
-    const slots = useSelector(ServiceSelectors.getUserSlots);
+    const notifications = useSelector(AuthSelectors.getNotifications);
+    // TODO: Change to use notifications once seeded with notifications set to be created too.
 
     return (
         <Card sx={{ p: 2, pt: 0 }}>
@@ -23,14 +25,13 @@ export const ServiceNotifications: React.FC = () => {
                     {t(i18n)`Notifications`}
                 </Typography>
                 <Divider />
-                {slots
-                    ? slots.map(slot => (
-                        <ServiceNotification
-                            key={slot?.id}
-                            slot={slot}
-                            service={slot?.service}
-                            score={4.3}
-                            buyer={slot?.client?.battleNetTag}
+                {notifications
+                    ? notifications.map(notification => (
+                        <Common.NotificationCard
+                            key={notification?.entity?.id}
+                            entity={notification?.entity}
+                            message={notification?.message}
+                            recipient={notification?.recipient}
                         />
                     ))
                     : <></>}
