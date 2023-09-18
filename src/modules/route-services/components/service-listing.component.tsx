@@ -18,6 +18,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 interface ServiceListingProps {
+    realmType: string;
     battleNetTag: string;
     userId: string;
     id: string;
@@ -28,6 +29,7 @@ interface ServiceListingProps {
 }
 
 export const ServiceListing: React.FC<ServiceListingProps> = ({
+    realmType,
     battleNetTag,
     id,
     userId,
@@ -69,7 +71,7 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                     }}
                 >
                     <Typography variant='h6' fontWeight='bold'>
-                        {title}
+                        [{realmType}] {title}
                     </Typography>
                     <Button
                         variant='outlined'

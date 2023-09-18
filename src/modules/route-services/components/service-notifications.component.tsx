@@ -14,7 +14,7 @@ export const ServiceNotifications: React.FC = () => {
     };
 
     useServiceSlotSearchQuery(serviceSlotGetSearchQuery);
-    const slots = useSelector(ServiceSelectors.getUserSlots);
+    const notifications = useSelector(AuthSelectors.getNotifications);
     // TODO: Change to use notifications once seeded with notifications set to be created too.
 
     return (
@@ -24,20 +24,13 @@ export const ServiceNotifications: React.FC = () => {
                     {t(i18n)`Notifications`}
                 </Typography>
                 <Divider />
-                {slots
-                    ? slots.map(slot => (
-                        // <ServiceNotification
-                        //     key={slot?.id}
-                        //     slot={slot}
-                        //     service={slot?.service}
-                        //     score={4.3}
-                        //     buyer={slot?.client?.battleNetTag}
-                        // />
+                {notifications
+                    ? notifications.map(notification => (
                         <Common.NotificationCard
-                            key={slot?.id}
-                            entity={slot}
-                            message={slot?.service?.title}
-                            recipient={slot?.client}
+                            key={notification?.entity?.id}
+                            entity={notification?.entity}
+                            message={notification?.message}
+                            recipient={notification?.recipient}
                         />
                     ))
                     : <></>}

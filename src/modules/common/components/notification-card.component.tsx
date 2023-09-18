@@ -59,7 +59,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                         alignItems: 'center',
                     }}
                 >
-                    <Grid container spacing={2}>
+                    <Grid container spacing={1}>
                         <Grid item xs={12}>
                             <Typography variant='h5' fontWeight='bold'>
                                 {entity?.service?.title}
@@ -67,9 +67,9 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                         </Grid>
                         <Grid item xs={12}>
                             <Common.UserRating
-                                user={entity?.client?.name}
-                                rating={0}
-                                score={0}
+                                user={entity?.client?.battleNetTag}
+                                rating={entity?.client?.vouchRating}
+                                score={entity?.client?.vouchScore}
                             />
                             <Typography variant='subtitle1' fontWeight='bold'>
                                 {message}
