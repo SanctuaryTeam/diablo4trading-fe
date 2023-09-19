@@ -3,12 +3,14 @@ import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import { BackendSlice } from './../backend/slice';
 
 interface ServiceState {
-    listings: API.ServiceListing[];
+    searchListings: API.ServiceListing[];
+    userListings: API.ServiceListing[];
     slots: API.ServiceSlot[];
 }
 
 export const SERVICE_STATE_INITIAL: ServiceState = {
-    listings: [],
+    searchListings: [],
+    userListings: [],
     slots: [],
 };
 
@@ -21,31 +23,47 @@ export const ServiceSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.serviceSearch.matchFulfilled,
                 (state, action) => {
-                    state.listings = state.listings.map(listing => {
+                    state.searchListings = []
+
+                    action.payload.forEach(result => {
+                        if (!state.searchListings.find(listing => listing.id === result.id)) {
+                            state.searchListings.push(result);
+                        }
+                    });
+
+                    console.log(state.searchListings)
+                },
+            )
+            .addMatcher(
+                BackendSlice.endpoints.userServiceSearch.matchFulfilled,
+                (state, action) => {
+                    state.userListings = state.userListings.map(listing => {
                         const updatedResult = action.payload.find(result => result.id === listing.id);
                         return updatedResult ? updatedResult : listing;
                     });
 
                     action.payload.forEach(result => {
-                        if (!state.listings.find(listing => listing.id === result.id)) {
-                            state.listings.push(result);
+                        if (!state.userListings.find(listing => listing.id === result.id)) {
+                            state.userListings.push(result);
                         }
                     });
+
+                    console.log("User Listings: " + state.userListings)
                 },
             )
             .addMatcher(
                 BackendSlice.endpoints.createService.matchFulfilled,
                 (state, action) => {
-                    state.listings.push(action.payload);
+                    state.userListings.push(action.payload);
                 },
             )
             .addMatcher(
                 BackendSlice.endpoints.bumpService.matchFulfilled,
                 (state, action) => {
                     const { id: serviceId } = action.meta.arg.originalArgs;
-                    state.listings.map((listing, index) => {
+                    state.userListings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            return state.listings[index].updatedAt = new Date().toISOString();
+                            return state.userListings[index].updatedAt = new Date().toISOString();
                         }
                     });
                 },
@@ -54,9 +72,9 @@ export const ServiceSlice = createSlice({
                 BackendSlice.endpoints.softDeleteService.matchFulfilled,
                 (state, action) => {
                     const { id: serviceId } = action.meta.arg.originalArgs;
-                    state.listings.map((listing, index) => {
+                    state.userListings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            return state.listings.splice(index, 1);
+                            return state.userListings.splice(index, 1);
                         }
                     });
                 },
