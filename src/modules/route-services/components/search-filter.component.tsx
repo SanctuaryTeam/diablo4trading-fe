@@ -1,3 +1,4 @@
+import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
@@ -9,7 +10,6 @@ import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import React from 'react';
 import { SearchFilterTags } from './search-filter-tags.component';
 import { SearchFilterTitle } from './search-filter-title.component';
-import { Game } from '@diablosnaps/common';
 
 interface SearchFilterProps {
     onSearch: (query: API.ServiceGetSearchQuery) => void;
@@ -19,7 +19,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     onSearch,
 }) => {
     const { i18n } = useLingui();
-    const [serverType] = Common.useRouteServerType();
+    const [serverType, setServerType] = Common.useRouteServerType();
     const [visible, setVisible] = React.useState<boolean>(true);
     const [query, setQuery] = React.useState<API.ServiceGetSearchQuery>({
         serverType,
@@ -39,6 +39,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             ...query,
             serverType,
         });
+        setServerType(serverType);
     };
 
     const handleClear = () => {
@@ -47,7 +48,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
             title: '',
             tags: 0,
             deleted: false,
-            serverType
+            serverType,
         });
         setVisible(true);
     };
