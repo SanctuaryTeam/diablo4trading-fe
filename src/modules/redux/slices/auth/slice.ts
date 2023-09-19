@@ -4,7 +4,7 @@ import { BackendSlice } from './../backend/slice';
 
 interface AuthState {
     token: string;
-    user: API.AuthUser;
+    user: API.UserDto;
     notifications: API.Notification[];
 }
 
@@ -37,7 +37,7 @@ export const AuthSlice = createSlice({
                 (state, action) => {
                     const { state: newState } = action.meta.arg.originalArgs;
                     let message: string, message2: string;
-                    let recipient: API.AuthUser, recipient2: API.AuthUser;
+                    let recipient: API.UserDto, recipient2: API.UserDto;
                     let followUp: boolean = false;
 
                     switch (newState) {
@@ -73,7 +73,7 @@ export const AuthSlice = createSlice({
                         message,
                     });
 
-                    if (followUp) {
+                    if (followUp && recipient2 && message2) {
                         state.notifications.push({
                             entity: action.payload,
                             recipient: recipient2,

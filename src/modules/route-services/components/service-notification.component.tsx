@@ -6,8 +6,8 @@ import { API } from '@sanctuaryteam/shared';
 import React from 'react';
 
 interface ServiceNotificationProps {
-    slot: API.ServiceSlot;
-    service: API.ServiceListing;
+    slot: API.ServiceSlotDto;
+    service: API.ServiceDto;
     buyer: string;
     score: number;
 }

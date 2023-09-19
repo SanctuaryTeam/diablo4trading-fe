@@ -5,8 +5,8 @@ import React from 'react';
 import { Common } from '..';
 
 interface NotificationCardProps {
-    recipient: API.AuthUser;
-    entity: API.ServiceSlot; // | API.TradeBidListing ? (when we start refactoring to include trades)
+    recipient: API.UserDto;
+    entity: API.ServiceSlotDto; // || API.TradeBidDto || API.VouchDto ? (when we start refactoring to include trades/vouches)
     message: string;
 }
 

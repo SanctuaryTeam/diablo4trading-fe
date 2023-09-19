@@ -3,9 +3,9 @@ import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import { BackendSlice } from './../backend/slice';
 
 interface ServiceState {
-    searchListings: API.ServiceListing[];
-    userListings: API.ServiceListing[];
-    slots: API.ServiceSlot[];
+    searchListings: API.ServiceDto[];
+    userListings: API.ServiceDto[];
+    slots: API.ServiceSlotDto[];
 }
 
 export const SERVICE_STATE_INITIAL: ServiceState = {
@@ -61,7 +61,7 @@ export const ServiceSlice = createSlice({
                     const { id: serviceId } = action.meta.arg.originalArgs;
                     state.userListings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            return state.userListings[index].updatedAt = new Date().toISOString();
+                            return state.userListings[index].updatedAt = new Date();
                         }
                     });
                 },
