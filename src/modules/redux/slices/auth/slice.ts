@@ -40,12 +40,6 @@ export const AuthSlice = createSlice({
                     let recipient: API.AuthUser, recipient2: API.AuthUser;
                     let followUp: boolean = false;
 
-                    if (action.payload.id === serviceSlotId) {
-                        console.log('Id check good');
-                    } else {
-                        console.log('Id check failed');
-                    }
-
                     switch (newState) {
                         case API.ServiceSlotStates.Accepted:
                             recipient = action?.payload?.client;
@@ -86,8 +80,6 @@ export const AuthSlice = createSlice({
                             message: message2,
                         });
                     }
-
-                    console.log(state.notifications);
                 },
             );
     },

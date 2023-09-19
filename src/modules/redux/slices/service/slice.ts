@@ -23,15 +23,13 @@ export const ServiceSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.serviceSearch.matchFulfilled,
                 (state, action) => {
-                    state.searchListings = []
+                    state.searchListings = [];
 
                     action.payload.forEach(result => {
                         if (!state.searchListings.find(listing => listing.id === result.id)) {
                             state.searchListings.push(result);
                         }
                     });
-
-                    console.log(state.searchListings)
                 },
             )
             .addMatcher(
@@ -47,8 +45,6 @@ export const ServiceSlice = createSlice({
                             state.userListings.push(result);
                         }
                     });
-
-                    console.log("User Listings: " + state.userListings)
                 },
             )
             .addMatcher(
