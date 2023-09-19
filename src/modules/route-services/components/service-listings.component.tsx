@@ -24,6 +24,8 @@ export const ServiceListings: React.FC = () => {
                         key={listing?.id}
                         realmType={listing?.realmType}
                         battleNetTag={listing?.user?.battleNetTag}
+                        vouchRating={listing?.user?.vouchRating}
+                        vouchScore={listing?.user?.vouchScore}
                         userId={listing?.userId}
                         id={listing?.id}
                         lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
