@@ -49,21 +49,6 @@ export const ServiceSlice = createSlice({
                     });
                 },
             )
-            // .addMatcher(
-            //     BackendSlice.endpoints.userServiceSearch.matchFulfilled,
-            //     (state, action) => {
-            //         state.userListings = state.userListings.map(listing => {
-            //             const updatedResult = action.payload.find(result => result.id === listing.id);
-            //             return updatedResult ? updatedResult : listing;
-            //         });
-
-            //         action.payload.forEach(result => {
-            //             if (!state.userListings.find(listing => listing.id === result.id)) {
-            //                 state.userListings.push(result);
-            //             }
-            //         });
-            //     },
-            // )
             .addMatcher(
                 BackendSlice.endpoints.createService.matchFulfilled,
                 (state, action) => {

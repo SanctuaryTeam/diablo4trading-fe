@@ -59,14 +59,6 @@ export const BackendSlice = createApi({
                 params,
             }),
         }),
-        // userService-search
-        userServiceSearch: builder.query<API.ServiceGetSearchResponse, API.ServiceGetSearchQuery>({
-            query: params => ({
-                url: '/services',
-                method: 'GET',
-                params,
-            }),
-        }),
         // service-slot-search
         serviceSlotSearch: builder.query<API.ServiceSlotGetSearchResponse, API.ServiceSlotGetSearchQuery>({
             query: params => ({
@@ -126,14 +118,12 @@ export const {
     useLazyTradeSearchQuery,
     // service
     useServiceSearchQuery,
-    useUserServiceSearchQuery,
     useServiceSlotSearchQuery,
     useBuyServiceMutation,
     useBumpServiceMutation,
     useEditSlotStateMutation,
     useCreateServiceMutation,
     useLazyServiceSearchQuery,
-    useLazyUserServiceSearchQuery,
     useLazyServiceSlotSearchQuery,
     useSoftDeleteServiceMutation,
 } = BackendSlice;
