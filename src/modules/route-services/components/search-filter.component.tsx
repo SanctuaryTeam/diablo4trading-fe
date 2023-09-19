@@ -9,6 +9,7 @@ import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import React from 'react';
 import { SearchFilterTags } from './search-filter-tags.component';
 import { SearchFilterTitle } from './search-filter-title.component';
+import { Game } from '@diablosnaps/common';
 
 interface SearchFilterProps {
     onSearch: (query: API.ServiceGetSearchQuery) => void;
@@ -18,7 +19,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
     onSearch,
 }) => {
     const { i18n } = useLingui();
-    const [serverType, setServerType] = Common.useRouteServerType();
+    const [serverType] = Common.useRouteServerType();
     const [visible, setVisible] = React.useState<boolean>(true);
     const [query, setQuery] = React.useState<API.ServiceGetSearchQuery>({
         serverType,
@@ -33,11 +34,20 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         setVisible(false);
     };
 
+    const handleSetServerType = (serverType: Game.ServerType) => {
+        setQuery({
+            ...query,
+            serverType,
+        });
+    };
+
     const handleClear = () => {
         setQuery({
             ...query,
             title: '',
             tags: 0,
+            deleted: false,
+            serverType
         });
         setVisible(true);
     };
@@ -82,8 +92,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={12} md={3}>
                             <Common.ServerTypeInput
-                                value={serverType}
-                                onChange={setServerType}
+                                value={query.serverType}
+                                onChange={handleSetServerType}
                             />
                         </Grid>
                         <Grid md={1} item sx={{ display: { xs: 'none', md: 'block' } }} />
