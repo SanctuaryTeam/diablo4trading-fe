@@ -13,7 +13,10 @@ export const ServiceListings: React.FC = () => {
         limit: 3,
     };
 
-    useServiceSearchQuery(serviceGetSearchQuery);
+    useServiceSearchQuery({
+        params: serviceGetSearchQuery,
+        isUserSearch: true,
+    });
     const listings = useSelector(ServiceSelectors.getUserListings);
 
     return (
