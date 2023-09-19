@@ -35,7 +35,7 @@ export const AuthSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.editSlotState.matchFulfilled,
                 (state, action) => {
-                    const { id: serviceSlotId, state: newState } = action.meta.arg.originalArgs;
+                    const { state: newState } = action.meta.arg.originalArgs;
                     let message: string, message2: string;
                     let recipient: API.AuthUser, recipient2: API.AuthUser;
                     let followUp: boolean = false;
