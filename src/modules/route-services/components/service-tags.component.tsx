@@ -25,7 +25,7 @@ export const ServiceTags: React.FC<ServiceTagsProps> = ({ selectedTags, onSelect
                 <ToggleButton value={API.TAGS.BOSS_HELP}>{t(i18n)`Boss Help`}</ToggleButton>
                 <ToggleButton value={API.TAGS.UBER_LILITH}>{t(i18n)`Uber Lilith`}</ToggleButton>
                 <ToggleButton value={API.TAGS.CAPSTONE_BOOST}>{t(i18n)`Capstone Boost`}</ToggleButton>
-                <Divider flexItem orientation="vertical" sx={{ mx: 0.5, my: 1 }} />
+                <Divider flexItem orientation='vertical' sx={{ mx: 0.5, my: 1 }} />
                 <ToggleButton value={API.TAGS.EUROPE}>{t(i18n)`Europe`}</ToggleButton>
                 <ToggleButton value={API.TAGS.ASIA}>{t(i18n)`Asia`}</ToggleButton>
                 <ToggleButton value={API.TAGS.AMERICA}>{t(i18n)`America`}</ToggleButton>

@@ -28,7 +28,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
             case API.ServiceSlotStates.Accepted:
                 setYes(API.ServiceSlotStates.Ended);
                 setYesText('End');
-                setNoText(null)
+                setNoText(null);
                 setNo(null);
                 break;
             case API.ServiceSlotStates.Rejected:

@@ -27,7 +27,8 @@ export const ServiceNotifications: React.FC = () => {
                 {notifications
                     ? notifications.map(notification => (
                         <Common.NotificationCard
-                            key={'serv-notification-' + notification?.entity?.id + '-' + notification?.recipient?.battleNetTag}
+                            key={'serv-notification-' + notification?.entity?.id + '-'
+                                + notification?.recipient?.battleNetTag}
                             entity={notification?.entity}
                             message={notification?.message}
                             recipient={notification?.recipient}

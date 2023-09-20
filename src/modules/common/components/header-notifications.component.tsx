@@ -39,7 +39,8 @@ export const HeaderNotifications: React.FC = () => {
                         {notifications
                             ? notifications.map(notification => (
                                 <MenuItem
-                                    key={'navbar-notification-' + notification?.entity?.id + '-' + notification?.recipient?.id}
+                                    key={'navbar-notification-' + notification?.entity?.id + '-'
+                                        + notification?.recipient?.id}
                                     onClick={handleCloseMenu}
                                 >
                                     <Common.NotificationCard

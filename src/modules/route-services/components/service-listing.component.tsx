@@ -13,7 +13,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import TollIcon from '@mui/icons-material/Toll';
-import { Box, Button, Card, Chip, Collapse, Divider, Grid, Typography, styled, useMediaQuery } from '@mui/material';
+import { Box, Button, Card, Chip, Collapse, Divider, Grid, styled, Typography, useMediaQuery } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -82,11 +82,10 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                     }}
                 >
                     <Typography variant='h6' fontWeight='bold'>
-                        
-                    [&nbsp;<ServerTypeIcon
-                        src={Common.GAME_SERVER_TYPE_ICONS[realmType]}
-                        alt={`${realmType}'s icon`}
-                    />&nbsp;] {title}
+                        [&nbsp;<ServerTypeIcon
+                            src={Common.GAME_SERVER_TYPE_ICONS[realmType]}
+                            alt={`${realmType}'s icon`}
+                        />&nbsp;] {title}
                     </Typography>
                     <Button
                         variant='outlined'
