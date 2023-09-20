@@ -61,7 +61,7 @@ export const ServiceSlice = createSlice({
                     const { id: serviceId } = action.meta.arg.originalArgs;
                     state.userListings.map((listing, index) => {
                         if (listing.id === serviceId) {
-                            return state.userListings[index].updatedAt = new Date();
+                            return state.userListings[index].updatedAt = new Date().toISOString();
                         }
                     });
                 },
