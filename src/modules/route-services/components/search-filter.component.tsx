@@ -1,3 +1,4 @@
+import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
@@ -33,12 +34,21 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         setVisible(false);
     };
 
+    const handleSetServerType = (serverType: Game.ServerType) => {
+        setQuery({
+            ...query,
+            serverType,
+        });
+        setServerType(serverType);
+    };
+
     const handleClear = () => {
         setQuery({
             ...query,
             title: '',
             tags: 0,
             deleted: false,
+            serverType,
         });
         setVisible(true);
     };
@@ -83,8 +93,8 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={12} md={3}>
                             <Common.ServerTypeInput
-                                value={serverType}
-                                onChange={setServerType}
+                                value={query.serverType}
+                                onChange={handleSetServerType}
                             />
                         </Grid>
                         <Grid md={1} item sx={{ display: { xs: 'none', md: 'block' } }} />

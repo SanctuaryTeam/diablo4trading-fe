@@ -19,8 +19,10 @@ interface SearchResultsProps {
 export const Search: React.FC<SearchResultsProps> = ({
     params,
 }) => {
-    Redux.useServiceSearchQuery(params);
-    const listings = useSelector(ServiceSelectors.getListings);
+    Redux.useServiceSearchQuery({
+        params,
+    });
+    const listings = useSelector(ServiceSelectors.getSearchListings);
 
     return (
         <Root>
@@ -29,6 +31,8 @@ export const Search: React.FC<SearchResultsProps> = ({
                     key={listing?.id}
                     realmType={listing?.realmType}
                     battleNetTag={listing?.user?.battleNetTag}
+                    vouchRating={listing?.user?.vouchRating}
+                    vouchScore={listing?.user?.vouchScore}
                     userId={listing?.userId}
                     id={listing?.id}
                     lastUpdated={new Date(listing?.updatedAt).toLocaleString()}

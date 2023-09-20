@@ -35,16 +35,10 @@ export const AuthSlice = createSlice({
             .addMatcher(
                 BackendSlice.endpoints.editSlotState.matchFulfilled,
                 (state, action) => {
-                    const { id: serviceSlotId, state: newState } = action.meta.arg.originalArgs;
+                    const { state: newState } = action.meta.arg.originalArgs;
                     let message: string, message2: string;
                     let recipient: API.AuthUser, recipient2: API.AuthUser;
                     let followUp: boolean = false;
-
-                    if (action.payload.id === serviceSlotId) {
-                        console.log('Id check good');
-                    } else {
-                        console.log('Id check failed');
-                    }
 
                     switch (newState) {
                         case API.ServiceSlotStates.Accepted:
@@ -86,8 +80,6 @@ export const AuthSlice = createSlice({
                             message: message2,
                         });
                     }
-
-                    console.log(state.notifications);
                 },
             );
     },

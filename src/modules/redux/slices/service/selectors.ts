@@ -2,19 +2,14 @@ import { createSelector as createReselector } from 'reselect';
 import { AuthSelectors } from '..';
 import { createRootSelector } from '../root.selector';
 
-const getListings = createRootSelector((state) => state.service.listings);
+const getSearchListings = createRootSelector((state) => state.service.searchListings);
+const getUserListings = createRootSelector((state) => state.service.userListings);
 const getSlots = createRootSelector((state) => state.service.slots);
 
 export const ServiceSelectors = {
-    getListings,
+    getSearchListings,
+    getUserListings,
     getSlots,
-    getUserListings: createReselector(
-        AuthSelectors.getUserId,
-        getListings,
-        (userId, listings) => {
-            return listings.filter(listing => listing.userId === userId);
-        },
-    ),
     getUserSlots: createReselector(
         AuthSelectors.getUserId,
         getSlots,

@@ -49,14 +49,17 @@ export const BackendSlice = createApi({
             }),
         }),
         // service-search
-        serviceSearch: builder.query<API.ServiceGetSearchResponse, API.ServiceGetSearchQuery>({
-            query: params => ({
+        serviceSearch: builder.query<
+            API.ServiceGetSearchResponse,
+            { params: API.ServiceGetSearchQuery; isUserSearch?: boolean }
+        >({
+            query: ({ params }) => ({
                 url: '/services',
                 method: 'GET',
                 params,
             }),
         }),
-        // service-search
+        // service-slot-search
         serviceSlotSearch: builder.query<API.ServiceSlotGetSearchResponse, API.ServiceSlotGetSearchQuery>({
             query: params => ({
                 url: '/service-slots',

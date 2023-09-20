@@ -26,6 +26,8 @@ interface ServiceListingProps {
     title: string;
     content: string;
     tags: string[];
+    vouchRating: number;
+    vouchScore: number;
 }
 
 export const ServiceListing: React.FC<ServiceListingProps> = ({
@@ -37,6 +39,8 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
     title,
     content,
     tags,
+    vouchRating,
+    vouchScore,
 }) => {
     const { i18n } = useLingui();
     const matches = useMediaQuery('(min-width:600px)');
@@ -97,7 +101,7 @@ export const ServiceListing: React.FC<ServiceListingProps> = ({
                         alignItems: 'flex-end',
                     }}
                 >
-                    <Common.UserRating user={battleNetTag} rating={6} score={456} />
+                    <Common.UserRating user={battleNetTag} rating={vouchRating} score={vouchScore} />
                     <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
                         <Grid container>
                             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>

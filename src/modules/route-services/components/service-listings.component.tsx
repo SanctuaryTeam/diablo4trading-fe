@@ -15,7 +15,10 @@ export const ServiceListings: React.FC = () => {
         tags: 0,
     };
 
-    useServiceSearchQuery(serviceGetSearchQuery);
+    useServiceSearchQuery({
+        params: serviceGetSearchQuery,
+        isUserSearch: true,
+    });
     const listings = useSelector(ServiceSelectors.getUserListings);
 
     return (
@@ -27,6 +30,8 @@ export const ServiceListings: React.FC = () => {
                         realmType={listing.realmType}
                         battleNetTag={listing.user.battleNetTag}
                         userId={listing.userId}
+                        vouchRating={listing.user.vouchRating}
+                        vouchScore={listing.user.vouchScore}
                         id={listing?.id}
                         lastUpdated={new Date(listing.updatedAt).toLocaleString()}
                         title={listing.title}
