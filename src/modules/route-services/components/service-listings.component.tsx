@@ -34,8 +34,6 @@ export const ServiceListings: React.FC = () => {
                         battleNetTag={listing.user.battleNetTag}
                         userId={listing.userId}
                         id={listing.id}
-                        userId={listing.userId}
-                        id={listing?.id}
                         lastUpdated={new Date(listing.updatedAt).toLocaleString()}
                         title={listing.title}
                         content={listing.content}
