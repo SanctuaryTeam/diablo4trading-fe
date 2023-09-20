@@ -28,7 +28,7 @@ export const Search: React.FC<SearchResultsProps> = ({
         <Root>
             {listings.map(listing => (
                 <ServiceListing
-                    key={listing?.id}
+                    key={'search-service-listing' + listing?.id}
                     realmType={listing?.realmType}
                     battleNetTag={listing?.user?.battleNetTag}
                     vouchRating={listing?.user?.vouchRating}

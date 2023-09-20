@@ -1,8 +1,10 @@
 import { Redux } from '@modules/redux';
+import { AuthSelectors } from '@modules/redux/slices';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { Card, IconButton, Menu, MenuItem } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Common } from '..';
 
 export const HeaderNotifications: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -16,6 +18,7 @@ export const HeaderNotifications: React.FC = () => {
     };
 
     const user = useSelector(Redux.AuthSelectors.getUser) ?? null;
+    const notifications = useSelector(AuthSelectors.getNotifications);
     if (user) {
         return (
             <React.Fragment>
@@ -33,37 +36,20 @@ export const HeaderNotifications: React.FC = () => {
                         elevation={2}
                         sx={{ outlineColor: 'error' }}
                     >
-                        <MenuItem
-                            onClick={handleCloseMenu}
-                        >
-                            {
-                                /* <Grid
-                                container
-                                spacing={1}
-                                display={'flex'}
-                                justifyContent={'center'}
-                                alignItems={'center'}
-                            >
-                                <Grid
-                                    item
-                                    xs={6}
-                                    display={'flex'}
-                                    justifyContent={'flex-start'}
-                                    alignItems={'flex-start'}
+                        {notifications
+                            ? notifications.map(notification => (
+                                <MenuItem
+                                    key={'navbar-notification-' + notification?.entity?.id + '-' + notification?.recipient?.id}
+                                    onClick={handleCloseMenu}
                                 >
-                                    <UserRating user={user?.battleNetTag} rating={6} score={200} />
-                                </Grid>
-                                <Grid item xs={6} display={'flex'} justifyContent={'flex-end'} alignItems={'flex-end'}>
-                                    <Typography
-                                        variant='body2'
-                                        sx={{ ml: 5 }}
-                                    >
-                                        Has bought your service
-                                    </Typography>
-                                </Grid>
-                            </Grid> */
-                            }
-                        </MenuItem>
+                                    <Common.NotificationCard
+                                        entity={notification?.entity}
+                                        message={notification?.message}
+                                        recipient={notification?.recipient}
+                                    />
+                                </MenuItem>
+                            ))
+                            : <></>}
                     </Card>
                 </Menu>
             </React.Fragment>

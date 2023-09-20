@@ -19,12 +19,16 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
     const handleEdit = (newState: API.ServiceSlotStates) => editSlotState({ id: entity.id, state: newState });
 
     const [yes, setYes] = React.useState<API.ServiceSlotStates>(null);
+    const [yesText, setYesText] = React.useState<string>('Yes');
     const [no, setNo] = React.useState<API.ServiceSlotStates>(null);
+    const [noText, setNoText] = React.useState<string>('No');
 
     React.useEffect(() => {
         switch (entity.state) {
             case API.ServiceSlotStates.Accepted:
                 setYes(API.ServiceSlotStates.Ended);
+                setYesText('End');
+                setNoText(null)
                 setNo(null);
                 break;
             case API.ServiceSlotStates.Rejected:
@@ -39,7 +43,9 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
             default:
                 API.ServiceSlotStates.Pending;
                 setYes(API.ServiceSlotStates.Accepted);
+                setYesText('Accept');
                 setNo(API.ServiceSlotStates.Rejected);
+                setNoText('Reject');
                 break;
         }
     });
@@ -84,7 +90,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                         onClick={() => handleEdit(yes)}
                                         sx={{ ml: 1 }}
                                     >
-                                        Yes
+                                        {yesText}
                                     </Button>
                                 )
                                 : <></>}
@@ -96,7 +102,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                         onClick={() => handleEdit(no)}
                                         sx={{ ml: 1 }}
                                     >
-                                        No
+                                        {noText}
                                     </Button>
                                 )
                                 : <></>}

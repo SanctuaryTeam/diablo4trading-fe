@@ -17,6 +17,7 @@ export const ServiceListings: React.FC = () => {
         params: serviceGetSearchQuery,
         isUserSearch: true,
     });
+
     const listings = useSelector(ServiceSelectors.getUserListings);
 
     return (
@@ -24,7 +25,7 @@ export const ServiceListings: React.FC = () => {
             {listings
                 ? listings.map(listing => (
                     <ServiceListing
-                        key={listing?.id}
+                        key={'user-service-listing-' + listing?.id}
                         realmType={listing?.realmType}
                         battleNetTag={listing?.user?.battleNetTag}
                         vouchRating={listing?.user?.vouchRating}

@@ -16,7 +16,6 @@ export const ServiceNotifications: React.FC = () => {
 
     useServiceSlotSearchQuery(serviceSlotGetSearchQuery);
     const notifications = useSelector(AuthSelectors.getNotifications);
-    // TODO: Change to use notifications once seeded with notifications set to be created too.
 
     return (
         <Card sx={{ p: 2, pt: 0 }}>
@@ -28,7 +27,7 @@ export const ServiceNotifications: React.FC = () => {
                 {notifications
                     ? notifications.map(notification => (
                         <Common.NotificationCard
-                            key={notification?.entity?.id}
+                            key={'serv-notification-' + notification?.entity?.id + '-' + notification?.recipient?.battleNetTag}
                             entity={notification?.entity}
                             message={notification?.message}
                             recipient={notification?.recipient}
