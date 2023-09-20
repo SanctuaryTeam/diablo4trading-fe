@@ -4,7 +4,7 @@ import { BackendSlice } from './../backend/slice';
 
 interface AuthState {
     token: string;
-    user: API.UserDto;
+    user: API.UserDto | null;
     notifications: API.Notification[];
 }
 

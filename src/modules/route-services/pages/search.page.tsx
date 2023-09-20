@@ -3,7 +3,7 @@ import React from 'react';
 import { Search, SearchFilter } from '../components';
 
 export const SearchPage: React.FC = () => {
-    const [params, setParams] = React.useState<API.ServiceGetSearchQuery>(null);
+    const [params, setParams] = React.useState<API.ServiceGetSearchQuery | null>(null);
 
     return (
         <React.Fragment>

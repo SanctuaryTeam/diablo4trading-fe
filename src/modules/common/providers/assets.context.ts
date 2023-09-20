@@ -9,7 +9,12 @@ export interface AssetsContext {
     language: Game.Language;
 }
 
-export const AssetsContext = React.createContext<AssetsContext>(undefined);
+export const AssetsContext = React.createContext<AssetsContext>({
+    loading: true,
+    language: Game.Language.English,
+    affixes: null as unknown as Game.Affixes,
+    translations: null as unknown as Game.Translations,
+});
 
 export const useAssets = () => {
     return React.useContext(AssetsContext);

@@ -14,7 +14,7 @@ const ServerTypeIcon = styled('img')(() => ({
 }));
 
 interface ServerTypeInputProps {
-    value: Game.ServerType;
+    value?: Game.ServerType;
     onChange: (value: Game.ServerType) => void;
     label?: string;
     required?: boolean;
@@ -30,8 +30,10 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
 }) => {
     const { i18n } = useLingui();
     const { language, translations } = useAssets();
-
-    const options = Object
+    const options: {
+        id?: Game.ServerType;
+        label: string;
+    }[] = Object
         .values(Game.ServerType)
         .map((type) => ({
             id: type,
@@ -56,13 +58,15 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option?.id && onChange(option.id)}
             renderOption={(props, option) => (
                 <li {...props}>
-                    <ServerTypeIcon
-                        src={GAME_SERVER_TYPE_ICONS[option.id]}
-                        alt={t(i18n)`${Game.getServerTypeText(option.id, language, translations)}'s icon`}
-                    />
+                    {option.id && (
+                        <ServerTypeIcon
+                            src={GAME_SERVER_TYPE_ICONS[option.id]}
+                            alt={t(i18n)`${Game.getServerTypeText(option.id, language, translations)}'s icon`}
+                        />
+                    )}
                     &nbsp;
                     {option.label}
                 </li>
@@ -75,9 +79,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                     hiddenLabel={!label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: GAME_SERVER_TYPE_ICONS[value] && (
-                            <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />
-                        ),
+                        startAdornment: value && <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
                     }}
                 />
             )}

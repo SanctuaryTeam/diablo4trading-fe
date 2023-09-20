@@ -130,7 +130,7 @@ const StyledPopper = styled(Popper)({
 });
 
 interface ItemAffixInputProps {
-    value: Game.AffixId;
+    value?: Game.AffixId;
     onChange: (value: Game.AffixId) => void;
     label?: string;
     type?: Game.AffixType;

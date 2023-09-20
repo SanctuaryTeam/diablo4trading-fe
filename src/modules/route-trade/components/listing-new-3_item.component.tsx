@@ -49,7 +49,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
     }, [onChange]);
 
     React.useEffect(() => {
-        if (!Common.isSeasonal(serverType, value.type)) {
+        if (value.type && !Common.isSeasonal(serverType, value.type)) {
             handleChange({ socketType: undefined });
         }
     }, [handleChange, serverType, value.type]);
@@ -157,7 +157,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
                             length: 2,
                         }).map((_, i) => {
                             const option = value.inherentAffixes?.[i] || {};
-                            const placeholder = isNaN(option.value) ? '?' : `${option.value}`;
+                            const placeholder = isNaN(option.value ?? NaN) ? '?' : `${option.value}`;
 
                             const handleOptionChange = (index: number, update: Partial<Game.ItemAffix>) => {
                                 onChange(prev => {
@@ -205,7 +205,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
                             length: 4,
                         }).map((_, i) => {
                             const option = value.affixes?.[i] || {};
-                            const placeholder = isNaN(option.value) ? '?' : `${option.value}`;
+                            const placeholder = isNaN(option.value ?? NaN) ? '?' : `${option.value}`;
 
                             const handleOptionChange = (index: number, update: Partial<Game.ItemAffix>) => {
                                 onChange(prev => {

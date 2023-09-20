@@ -13,12 +13,17 @@ const ItemSocketTypeIcon = styled('img')(() => ({
 }));
 
 interface ItemSocketTypeInputProps {
-    value: Game.ItemSocketType;
-    onChange: (value: Game.ItemSocketType) => void;
+    value?: Game.ItemSocketType;
+    onChange: (value: Game.ItemSocketType | undefined) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
     language?: Game.Language;
+}
+
+interface FilterOptions {
+    id?: Game.ItemSocketType;
+    label: string;
 }
 
 export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
@@ -33,13 +38,13 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options = Object
+    const options: FilterOptions[] = Object
         .values(Game.ItemSocketType)
         .map((type) => ({
             id: type,
             label: Game.getItemSocketTypeText(type, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
+    let selected = value === undefined ? undefined : options.find((x) => x.id === value);
     if (selected === undefined) {
         options.push({
             id: value,
@@ -61,10 +66,14 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
             onChange={(_, option) => onChange(option?.id)}
             renderOption={(props, option) => (
                 <li {...props}>
-                    <ItemSocketTypeIcon
-                        src={Common.GAME_ITEM_SOCKET_TYPE_ICONS[option.id]}
-                        alt={t(i18n)`${Game.getItemSocketTypeText(option.id, language, translations)}'s icon`}
-                    />
+                    {option.id
+                        ? (
+                            <ItemSocketTypeIcon
+                                src={Common.GAME_ITEM_SOCKET_TYPE_ICONS[option.id]}
+                                alt={t(i18n)`${Game.getItemSocketTypeText(option.id, language, translations)}'s icon`}
+                            />
+                        )
+                        : <></>}
                     &nbsp;
                     {option.label}
                 </li>
@@ -76,7 +85,7 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                     required={required}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: Common.GAME_ITEM_SOCKET_TYPE_ICONS[value]
+                        startAdornment: value
                             ? (
                                 <ItemSocketTypeIcon
                                     src={Common.GAME_ITEM_SOCKET_TYPE_ICONS[value]}

@@ -6,20 +6,22 @@ export function isListingNewItemFormValid(
     form: ListingNewItemFormValue,
     serverType: Game.ServerType,
 ): boolean {
-    // item
-    if (form.variant !== undefined && !Object.values(Game.ItemVariant).includes(form.variant)) {
+    const power = form.power ?? NaN;
+    const requiredLevel = form.requiredLevel ?? NaN;
+
+    if (!form.variant || !Object.values(Game.ItemVariant).includes(form.variant)) {
         return false;
     }
-    if (!Object.values(Game.ItemQuality).includes(form.quality)) {
+    if (!form.quality || !Object.values(Game.ItemQuality).includes(form.quality)) {
         return false;
     }
-    if (!Object.values(Game.ItemType).includes(form.type)) {
+    if (!form.type || !Object.values(Game.ItemType).includes(form.type)) {
         return false;
     }
-    if (isNaN(form.power) || form.power < 0 || form.power > 1000) {
+    if (isNaN(power) || power < 0 || power > 1000) {
         return false;
     }
-    if (isNaN(form.requiredLevel) || form.requiredLevel < 0 || form.requiredLevel > 80) {
+    if (isNaN(requiredLevel) || requiredLevel < 0 || requiredLevel > 80) {
         return false;
     }
     if (form.classRestriction !== undefined && !Object.values(Game.Class).includes(form.classRestriction)) {
@@ -27,10 +29,11 @@ export function isListingNewItemFormValid(
     }
 
     // seasonal
-    if (Common.isSeasonal(serverType, form.type)) {
-        if (!Object.values(Game.ItemSocketType).includes(form.socketType)) {
-            return false;
-        }
+    if (
+        Common.isSeasonal(serverType, form.type)
+        && (!form.socketType || !Object.values(Game.ItemSocketType).includes(form.socketType))
+    ) {
+        return false;
     }
 
     // affixes
@@ -38,15 +41,23 @@ export function isListingNewItemFormValid(
         if (affix.id === undefined) {
             return false;
         }
-        if (isNaN(affix.value) || affix.value < 0) {
+
+        const value = affix.value ?? NaN;
+
+        if (isNaN(value) || value < 0) {
             return false;
         }
         return true;
     };
-    if ((form.inherentAffixes || []).length === 0 || form.inherentAffixes.filter(isAffixValid).length < 1) {
+
+    if (
+        (form.inherentAffixes || []).length === 0
+        || form.inherentAffixes && form.inherentAffixes.filter(isAffixValid).length < 1
+    ) {
         return false;
     }
-    if ((form.affixes || []).length === 0 || form.affixes.filter(isAffixValid).length < 2) {
+
+    if ((form.affixes || []).length === 0 || form.affixes && form.affixes.filter(isAffixValid).length < 2) {
         return false;
     }
 

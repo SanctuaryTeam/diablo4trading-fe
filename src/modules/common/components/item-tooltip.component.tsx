@@ -133,7 +133,8 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
     const { language, translations, affixes } = useAssets();
 
     const label = Game.getItemTypeLine(
-        item.variant,
+        // @ts-ignore
+        item.variant, // Fix upstream
         item.quality,
         item.type,
         language,
@@ -147,17 +148,18 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
     };
 
     const itemPower = replaceVariables(translations[language]['UIItemPower'], {
-        s1: `${isNaN(item.power) ? 1 : item.power}`,
+        s1: `${isNaN(item.power ?? NaN) ? 1 : item.power}`,
     }).trim();
 
-    const requiredLevel = item.requiredLevel > 0
+    const requiredLevel = item.requiredLevel ?? 0 > 0
         ? replaceVariables(translations[language]['RequiredLevel'], {
             value: `${item.requiredLevel}`,
         }).trim()
         : undefined;
 
-    const classRestriction = item.classRestriction?.length > 0
-        ? Game.getCharacterClassText(item.classRestriction, language, translations)
+    const classRestriction = item.classRestriction?.length ?? 0 > 0
+        // @ts-ignore
+        ? Game.getCharacterClassText(item.classRestriction, language, translations) // Fix upstream
         : undefined;
 
     const renderAffixes = (entries: Game.ItemAffix[]) => {
@@ -173,7 +175,7 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
                                 -1,
                                 -1,
                                 affixes,
-                                `${isNaN(entry.value) ? '?' : entry.value}`,
+                                `${isNaN(entry.value ?? NaN) ? '?' : entry.value}`,
                             ).replace(/\{([^}]+)\}/g, '#'),
                         )}
                     </li>
@@ -184,17 +186,17 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
 
     return (
         <Tooltip data-quality={item.quality}>
-            <Icon style={{ backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />
+            <Icon style={item.type ? { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` } : {}} />
             <TypeLine data-quality={item.quality}>{label}</TypeLine>
             <Power>{highlightNumbers(itemPower)}</Power>
             <Separator data-left />
-            {item.inherentAffixes?.length > 0 && (
+            {(item.inherentAffixes?.length ?? 0) > 0 && (
                 <>
-                    {renderAffixes(item.inherentAffixes)}
+                    {renderAffixes(item.inherentAffixes ?? [])}
                     <Separator />
                 </>
             )}
-            {item.affixes?.length > 0 && renderAffixes(item.affixes)}
+            {(item.affixes?.length ?? 0) > 0 && renderAffixes(item.affixes ?? [])}
             {(requiredLevel !== undefined || classRestriction !== undefined) && (
                 <Extras>
                     {requiredLevel !== undefined && <Number>{requiredLevel}</Number>}

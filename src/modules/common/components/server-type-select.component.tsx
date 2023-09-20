@@ -39,10 +39,12 @@ export const ServerTypeSelect: React.FC = () => {
                 >
                     <ArrowBackIosIcon fontSize='large' />
                 </IconButton>
-                <ServerTypeIcon
-                    src={Common.GAME_SERVER_TYPE_ICONS[serverType]}
-                    alt={t(i18n)`${Game.getServerTypeText(serverType, language, translations)}'s icon`}
-                />
+                {serverType && (
+                    <ServerTypeIcon
+                        src={Common.GAME_SERVER_TYPE_ICONS[serverType]}
+                        alt={t(i18n)`${Game.getServerTypeText(serverType, language, translations)}'s icon`}
+                    />
+                )}
                 <IconButton
                     color='primary'
                     onClick={() => handleServerTypeClick(1)}

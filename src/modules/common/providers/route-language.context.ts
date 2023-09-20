@@ -6,7 +6,7 @@ export type RouteLanguageContext = [
     Redux.UserLanguage,
     (language: Redux.UserLanguage, location: Location) => void,
 ];
-export const RouteLanguageContext = React.createContext<RouteLanguageContext>(undefined);
+export const RouteLanguageContext = React.createContext<RouteLanguageContext>([Redux.UserLanguage.English, () => null]);
 
 export const useRouteLanguage = () => {
     return React.useContext(RouteLanguageContext);

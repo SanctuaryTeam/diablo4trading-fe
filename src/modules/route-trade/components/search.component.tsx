@@ -76,7 +76,7 @@ export const Search: React.FC<SearchResultsProps> = ({
         if (!isNaN(timestamp)) {
             return;
         }
-        next(serverType, payload, 1, undefined)
+        next(serverType, payload, 1, NaN)
             .then(result => {
                 loader.current?.resetLoadMoreRowsCache(true);
                 onTimestampChange(result.data.timestamp);

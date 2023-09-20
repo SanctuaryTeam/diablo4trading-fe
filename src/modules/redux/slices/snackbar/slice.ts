@@ -4,8 +4,8 @@ import { RootState } from '..';
 interface SnackbarState {
     error: boolean;
     active: boolean;
-    message: string;
-    timeout: number;
+    message: string | null;
+    timeout: number | null;
 }
 
 export const SNACKBAR_STATE_INITIAL: SnackbarState = {
@@ -55,7 +55,7 @@ export const SnackbarSlice = createSlice({
         setActive: (state, action: PayloadAction<boolean>) => {
             state.active = action.payload;
         },
-        setMessage: (state, action: PayloadAction<string>) => {
+        setMessage: (state, action: PayloadAction<string | null>) => {
             state.message = action.payload;
         },
         setTimeout: (state, action: PayloadAction<number>) => {
