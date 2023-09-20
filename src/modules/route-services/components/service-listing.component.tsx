@@ -19,7 +19,6 @@ import { useSelector } from 'react-redux';
 
 const ServerTypeIcon = styled('img')(() => ({
     paddingTop: 2,
-    // backgroundColor: 'red',
     width: 15,
     height: 15,
 }));
