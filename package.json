@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "postinstall": "node tsconfig.merged.cjs",
     "dev": "vite",
     "tsc": "tsc --noEmit",
     "lingui:extract": "lingui extract --clean",
