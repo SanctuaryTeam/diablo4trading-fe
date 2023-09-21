@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-    web-app:
+    vite:
         # Use the image built from the Dockerfile in the current directory
         image: node:latest
         # Read environment variables from the .env file
