@@ -28,17 +28,17 @@ export const Search: React.FC<SearchResultsProps> = ({
         <Root>
             {listings.map(listing => (
                 <ServiceListing
-                    key={'search-service-listing' + listing?.id}
-                    realmType={listing?.realmType}
-                    battleNetTag={listing?.user?.battleNetTag}
-                    vouchRating={listing?.user?.vouchRating}
-                    vouchScore={listing?.user?.vouchScore}
-                    userId={listing?.userId}
-                    id={listing?.id}
-                    lastUpdated={new Date(listing?.updatedAt).toLocaleString()}
-                    title={listing?.title}
-                    content={listing?.content}
-                    tags={API.numberToTags(listing?.tags)}
+                    key={'search-service-listing' + listing.id}
+                    realmType={listing.realmType}
+                    battleNetTag={listing.user.battleNetTag}
+                    vouchRating={listing.user.vouchRating}
+                    vouchScore={listing.user.vouchScore}
+                    userId={listing.userId}
+                    id={listing.id}
+                    lastUpdated={new Date(listing.updatedAt).toLocaleString()}
+                    title={listing.title}
+                    content={listing.content}
+                    tags={API.numberToTags(listing.tags)}
                 />
             ))}
         </Root>

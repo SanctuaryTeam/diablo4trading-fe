@@ -8,7 +8,7 @@ export interface ListingsDataGridRow {
     itemTypeLine: string;
     itemPower?: number;
     itemAffixes: string[];
-    expiresAt: Date;
+    expiresAt?: Date;
 }
 
 export type ListingsDataGridColumn = keyof ListingsDataGridRow;

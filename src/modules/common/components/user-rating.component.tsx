@@ -5,8 +5,8 @@ import { Box, Grid, Typography } from '@mui/material';
 
 interface UserRatingProps {
     user: string;
-    rating: number;
-    score: number;
+    rating: number | undefined;
+    score: number | undefined;
 }
 
 // there is also https://mui.com/material-ui/react-rating/
@@ -15,9 +15,9 @@ export const UserRating: React.FC<UserRatingProps> = ({
     rating,
     score,
 }) => {
-    const fullStars = Math.floor(rating / 2);
-    const hasHalfStar = rating % 2 !== 0;
-    const emptyStars = Math.max(0, 5 - Math.ceil(rating / 2));
+    const fullStars = Math.floor(rating ? rating / 2 : 0);
+    const hasHalfStar = rating ? rating % 2 !== 0 : 0;
+    const emptyStars = Math.max(0, 5 - Math.ceil(rating ? rating / 2: 0));
 
     return (
         <Box

@@ -39,25 +39,25 @@ export const AuthSlice = createSlice({
                     state.notifications = [];
 
                     action.payload.forEach(result => {
-                        const notification = {
+                        const notification : API.Notification = {
                             entity: result,
-                            message: null,
-                            recipient: null,
+                            message: '',
+                            recipient: result.client,
                         };
 
                         switch (userId) {
-                            case result?.clientUserId:
-                                notification.recipient = result?.client;
+                            case result.clientUserId:
+                                notification.recipient = result.client;
                                 break;
                             default:
-                                result?.serviceOwnerUserId;
-                                notification.recipient = result?.serviceOwner;
+                                result.serviceOwnerUserId;
+                                notification.recipient = result.serviceOwner;
                                 break;
                         }
 
-                        switch (result?.state) {
+                        switch (result.state) {
                             case API.ServiceSlotStates.Accepted:
-                                if (notification.recipient == result?.client) {
+                                if (notification.recipient == result.client) {
                                     notification.message =
                                         'Your purhase was approved. Please mark when the service has ended.';
                                 } else {
@@ -65,12 +65,12 @@ export const AuthSlice = createSlice({
                                 }
                                 break;
                             case API.ServiceSlotStates.Rejected:
-                                if (notification.recipient == result?.client) {
+                                if (notification.recipient == result.client) {
                                     notification.message = 'Your purhase was rejected.';
                                 }
                                 break;
                             case API.ServiceSlotStates.Ended:
-                                if (notification.recipient == result?.client) {
+                                if (notification.recipient == result.client) {
                                     notification.message = `Please rate the service.`;
                                 } else {
                                     notification.message = `Please rate the client.`;
@@ -78,9 +78,9 @@ export const AuthSlice = createSlice({
                                 break;
                             default:
                                 API.ServiceSlotStates.Pending;
-                                if (notification.recipient == result?.serviceOwner) {
+                                if (notification.recipient == result.serviceOwner) {
                                     notification.message =
-                                        `User with a score of ${result?.client?.vouchScore} purchased your service.`;
+                                        `User with a score of ${result.client.vouchScore} purchased your service.`;
                                 }
                                 break;
                         }

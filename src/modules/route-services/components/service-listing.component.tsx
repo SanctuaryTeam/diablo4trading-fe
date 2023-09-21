@@ -1,3 +1,4 @@
+import { Game } from '@diablosnaps/common';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
@@ -24,7 +25,7 @@ const ServerTypeIcon = styled('img')(() => ({
 }));
 
 interface ServiceListingProps {
-    realmType: string;
+    realmType: Game.ServerType;
     battleNetTag: string;
     userId: string;
     id: string;

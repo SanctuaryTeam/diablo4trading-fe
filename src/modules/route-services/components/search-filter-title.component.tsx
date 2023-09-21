@@ -4,7 +4,7 @@ import { Divider, Grid, Typography } from '@mui/material';
 import { ServiceTitleInput } from './inputs';
 
 interface SearchFilterTitleProps {
-    value: string;
+    value?: string;
     onChange: (value: string) => void;
     disabled?: boolean;
 }

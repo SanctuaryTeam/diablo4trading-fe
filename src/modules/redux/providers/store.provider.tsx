@@ -36,7 +36,7 @@ export const StoreProvider: React.FC<StoreProviderProps> = ({
         };
         preloadedState.auth = {
             ...preloadedState.auth,
-            ...(STORAGE.get('auth') || { token: '', user: null }),
+            ...(STORAGE.get('auth') || { token: '', user: null, notifications: [] }),
         };
         preloadedState.user = {
             ...preloadedState.user,

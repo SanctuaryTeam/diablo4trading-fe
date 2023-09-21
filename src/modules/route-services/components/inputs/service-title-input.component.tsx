@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import React, { useEffect } from 'react';
 
 interface ServiceTitleProps {
-    value: string;
+    value?: string;
     onChange: (value: string) => void;
     label?: string;
     helperText?: string;
@@ -16,13 +16,13 @@ export const ServiceTitleInput: React.FC<ServiceTitleProps> = ({
     helperText,
     disabled,
 }) => {
-    const [textValue, setTextValue] = React.useState<string>(value);
+    const [textValue, setTextValue] = React.useState<string | undefined>(value);
     useEffect(() => {
         setTextValue(value);
     }, [value]);
 
     const setValue = () => {
-        onChange(textValue);
+        textValue && onChange(textValue);
     };
 
     return (

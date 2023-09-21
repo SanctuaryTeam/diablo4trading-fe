@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import { BackendSlice } from './../backend/slice';
 
@@ -24,7 +24,7 @@ export const ServiceSlice = createSlice({
                 (action) =>
                     BackendSlice.endpoints.serviceSearch.matchFulfilled(action)
                     && !action.meta.arg.originalArgs.isUserSearch,
-                (state, action) => {
+                (state, action: PayloadAction<API.ServiceDto[]>) => {
                     state.searchListings = [];
                     action.payload.forEach(result => {
                         if (!state.searchListings.find(listing => listing.id === result.id)) {
@@ -36,8 +36,8 @@ export const ServiceSlice = createSlice({
             .addMatcher(
                 (action) =>
                     BackendSlice.endpoints.serviceSearch.matchFulfilled(action)
-                    && action.meta.arg.originalArgs.isUserSearch,
-                (state, action) => {
+                    && action.meta.arg.originalArgs.isUserSearch === true,
+                (state, action: PayloadAction<API.ServiceDto[]>) => {
                     state.userListings = state.userListings.map(listing => {
                         const updatedResult = action.payload.find(result => result.id === listing.id);
                         return updatedResult ? updatedResult : listing;
