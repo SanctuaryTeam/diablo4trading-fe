@@ -39,7 +39,7 @@ export const AuthSlice = createSlice({
                     state.notifications = [];
 
                     action.payload.forEach(result => {
-                        const notification : API.Notification = {
+                        const notification: API.Notification = {
                             entity: result,
                             message: '',
                             recipient: result.client,

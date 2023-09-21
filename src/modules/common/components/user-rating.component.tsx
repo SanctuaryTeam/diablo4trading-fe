@@ -17,7 +17,7 @@ export const UserRating: React.FC<UserRatingProps> = ({
 }) => {
     const fullStars = Math.floor(rating ? rating / 2 : 0);
     const hasHalfStar = rating ? rating % 2 !== 0 : 0;
-    const emptyStars = Math.max(0, 5 - Math.ceil(rating ? rating / 2: 0));
+    const emptyStars = Math.max(0, 5 - Math.ceil(rating ? rating / 2 : 0));
 
     return (
         <Box

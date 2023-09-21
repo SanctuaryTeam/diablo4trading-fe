@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { API } from '@sanctuaryteam/shared'; // Commented for above reason
 import { BackendSlice } from './../backend/slice';
 
