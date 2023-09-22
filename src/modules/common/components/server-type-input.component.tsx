@@ -13,8 +13,13 @@ const ServerTypeIcon = styled('img')(() => ({
     marginRight: 4,
 }));
 
+interface ServerTypeOption {
+    id: Game.ServerType;
+    label: string;
+}
+
 interface ServerTypeInputProps {
-    value?: Game.ServerType;
+    value: Game.ServerType;
     onChange: (value: Game.ServerType) => void;
     label?: string;
     required?: boolean;
@@ -30,23 +35,13 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
 }) => {
     const { i18n } = useLingui();
     const { language, translations } = useAssets();
-    const options: {
-        id?: Game.ServerType;
-        label: string;
-    }[] = Object
+    const options: ServerTypeOption[] = Object
         .values(Game.ServerType)
         .map((type) => ({
             id: type,
             label: Game.getServerTypeText(type, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
-    if (selected === undefined) {
-        options.push({
-            id: value,
-            label: t(i18n)`Unknown: ${value}`,
-        });
-        selected = options[options.length - 1];
-    }
+    let selected = options.find((x) => x.id === value) ?? {id: Game.ServerType.Seasonal, label: Game.getServerTypeText(Game.ServerType.Seasonal, language, translations)};
 
     return (
         <Autocomplete
@@ -58,15 +53,13 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option?.id && onChange(option.id)}
+            onChange={(_, option) => option && onChange(option.id)}
             renderOption={(props, option) => (
-                <li {...props}>
-                    {option.id && (
-                        <ServerTypeIcon
-                            src={GAME_SERVER_TYPE_ICONS[option.id]}
-                            alt={t(i18n)`${Game.getServerTypeText(option.id, language, translations)}'s icon`}
-                        />
-                    )}
+                <li {...props}>                    
+                    <ServerTypeIcon
+                        src={GAME_SERVER_TYPE_ICONS[option.id]}
+                        alt={t(i18n)`${Game.getServerTypeText(option.id, language, translations)}'s icon`}
+                    />
                     &nbsp;
                     {option.label}
                 </li>
@@ -79,7 +72,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                     hiddenLabel={!label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: value && <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
+                        startAdornment: value && GAME_SERVER_TYPE_ICONS[value] && <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
                     }}
                 />
             )}
