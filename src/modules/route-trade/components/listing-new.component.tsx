@@ -11,6 +11,7 @@ import { ListingNewParamsFormValue } from './listing-new-2_params.types';
 import { ListingNewItem } from './listing-new-3_item.component';
 import { isListingNewItemFormValid } from './listing-new-3_item.helper';
 import { ListingNewItemFormValue } from './listing-new-3_item.types';
+import { useRouteServerType } from '@modules/common/providers';
 
 enum Step {
     Import,
@@ -42,10 +43,11 @@ export const ListingNew: React.FC<ListingNewProps> = ({
 
     const [step, setStep] = React.useState(Step.Import);
     const [loading, setLoading] = React.useState(false);
+    const [serverType] = useRouteServerType();
 
     const [image, setImage] = React.useState('');
 
-    const [paramsForm, setParamsForm] = React.useState<ListingNewParamsFormValue>({});
+    const [paramsForm, setParamsForm] = React.useState<ListingNewParamsFormValue>({serverType});
     const [itemForm, setItemForm] = React.useState<ListingNewItemFormValue>({});
 
     const handleImageImport = (image: string) => {
@@ -57,7 +59,7 @@ export const ListingNew: React.FC<ListingNewProps> = ({
     const handleItemImport = (image: string, item: Game.Item) => {
         setImage(image);
         // TODO: could set server type based on last context
-        setParamsForm({ language: item.language });
+        setParamsForm({ language: item.language, serverType });
         setItemForm({
             variant: item.variant,
             quality: item.quality,
