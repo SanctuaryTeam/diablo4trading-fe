@@ -93,7 +93,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={12} md={3}>
                             <Common.ServerTypeInput
-                                value={query.serverType}
+                                value={serverType}
                                 onChange={handleSetServerType}
                             />
                         </Grid>
