@@ -147,11 +147,12 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         });
     };
 
+    const itemPowerValue = String(isNaN(item.power ?? NaN) ? 1 : item.power);
     const itemPower = replaceVariables(translations[language]['UIItemPower'], {
-        s1: `${isNaN(item.power ?? NaN) ? 1 : item.power}`,
+        s1: itemPowerValue,
     }).trim();
 
-    const requiredLevel = item.requiredLevel ?? 0 > 0
+    const requiredLevel = item.requiredLevel && item.requiredLevel > 0
         ? replaceVariables(translations[language]['RequiredLevel'], {
             value: `${item.requiredLevel}`,
         }).trim()
@@ -186,17 +187,17 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
 
     return (
         <Tooltip data-quality={item.quality}>
-            <Icon style={item.type ? { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` } : {}} />
+            {item.type && <Icon style={item.type && { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />}
             <TypeLine data-quality={item.quality}>{label}</TypeLine>
             <Power>{highlightNumbers(itemPower)}</Power>
             <Separator data-left />
-            {(item.inherentAffixes?.length ?? 0) > 0 && (
+            {item.inherentAffixes && item.inherentAffixes.length > 0 && (
                 <>
-                    {renderAffixes(item.inherentAffixes ?? [])}
+                    {renderAffixes(item.inherentAffixes)}
                     <Separator />
                 </>
             )}
-            {(item.affixes?.length ?? 0) > 0 && renderAffixes(item.affixes ?? [])}
+            {item.affixes && item.affixes.length > 0 && renderAffixes(item.affixes)}
             {(requiredLevel !== undefined || classRestriction !== undefined) && (
                 <Extras>
                     {requiredLevel !== undefined && <Number>{requiredLevel}</Number>}
