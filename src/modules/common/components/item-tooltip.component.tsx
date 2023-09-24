@@ -166,21 +166,23 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
     const renderAffixes = (entries: Game.ItemAffix[]) => {
         return (
             <ul>
-                {entries.map((entry, index) => (
-                    <li key={index}>
+                {entries.map((entry, index) => {
+                    const entryValue = isNaN(entry.value ?? NaN) ? '?' : `${entry.value}`;
+                    const affixText = Game.getItemAffixText(
+                        entry.id,
+                        language,
+                        Game.AffixType.Basic,
+                        -1,
+                        -1,
+                        affixes,
+                        entryValue,
+                    ).replace(/\{([^}]+)\}/g, '#');
+                    return <li key={index}>
                         {highlightNumbers(
-                            Game.getItemAffixText(
-                                entry.id,
-                                language,
-                                Game.AffixType.Basic,
-                                -1,
-                                -1,
-                                affixes,
-                                `${isNaN(entry.value ?? NaN) ? '?' : entry.value}`,
-                            ).replace(/\{([^}]+)\}/g, '#'),
+                            affixText
                         )}
                     </li>
-                ))}
+                })}
             </ul>
         );
     };
