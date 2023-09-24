@@ -72,7 +72,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
                                                 })}
                                         />
                                     </Grid>
-                                    {query?.item?.type && Common.isSeasonal(serverType, query?.item?.type) && (
+                                    {Common.isSeasonal(serverType, query?.item?.type) && (
                                         <Grid item xs={12}>
                                             <SearchFilterSeasonal
                                                 value={query.seasonal}

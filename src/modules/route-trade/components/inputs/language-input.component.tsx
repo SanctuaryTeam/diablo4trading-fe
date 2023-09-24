@@ -46,6 +46,11 @@ interface LanguageInputProps {
     onChange: (value: Game.Language) => void;
 }
 
+interface LanguageOptions {
+    id?: Game.Language;
+    label: string;
+}
+
 export const LanguageInput: React.FC<LanguageInputProps> = ({
     value,
     label,
@@ -55,7 +60,7 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
 }) => {
     const { i18n } = useLingui();
 
-    const options: { id?: Game.Language; label: string }[] = Object
+    const options: LanguageOptions[] = Object
         .values(Game.Language)
         .map((language) => ({
             id: language,

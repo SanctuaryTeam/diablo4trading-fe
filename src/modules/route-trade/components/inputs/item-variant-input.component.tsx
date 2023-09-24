@@ -14,6 +14,11 @@ interface ItemVariantInputProps {
     language?: Game.Language;
 }
 
+interface ItemVariantOptions {
+    id?: Game.ItemVariant;
+    label: string;
+}
+
 export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
     value,
     onChange,
@@ -26,9 +31,9 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options = Object
+    const options: ItemVariantOptions[] = Object
         .values(Game.ItemVariant)
-        .map<{ id?: Game.ItemVariant; label: string }>((type) => ({
+        .map<ItemVariantOptions>((type) => ({
             id: type,
             label: Game.getItemVariantText(type, language, translations),
         }));
