@@ -187,7 +187,9 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
 
     return (
         <Tooltip data-quality={item.quality}>
-            {item.type && <Icon style={item.type && { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />}
+            {item.type && (
+                <Icon style={item.type && { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />
+            )}
             <TypeLine data-quality={item.quality}>{label}</TypeLine>
             <Power>{highlightNumbers(itemPower)}</Power>
             <Separator data-left />

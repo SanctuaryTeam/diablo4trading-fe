@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Rating } from '@mui/material';
+import { Box, Grid, Rating, Typography } from '@mui/material';
 
 interface UserRatingProps {
     user: string;
@@ -34,7 +34,7 @@ export const UserRating: React.FC<UserRatingProps> = ({
                                         {user}
                                     </Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                        <Rating name="read-only" value={rating} precision={0.5} readOnly />
+                                        <Rating name='read-only' value={rating} precision={0.5} readOnly />
                                         <Typography>({score})</Typography>
                                     </Box>
                                 </Box>

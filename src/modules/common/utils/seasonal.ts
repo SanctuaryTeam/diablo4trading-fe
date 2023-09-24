@@ -7,7 +7,7 @@ export function isSeasonal(
     if (
         !itemType
         || itemType !== Game.ItemType.Amulet
-        && itemType !== Game.ItemType.Ring
+            && itemType !== Game.ItemType.Ring
     ) {
         return false;
     }

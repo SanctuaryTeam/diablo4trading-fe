@@ -41,7 +41,11 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
             id: type,
             label: Game.getServerTypeText(type, language, translations),
         }));
-    let selected = options.find((x) => x.id === value) ?? {id: Game.ServerType.Seasonal, label: Game.getServerTypeText(Game.ServerType.Seasonal, language, translations)};
+    let selected = options.find((x) => x.id === value)
+        ?? {
+            id: Game.ServerType.Seasonal,
+            label: Game.getServerTypeText(Game.ServerType.Seasonal, language, translations),
+        };
 
     return (
         <Autocomplete
@@ -55,7 +59,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                     : options}
             onChange={(_, option) => option && onChange(option.id)}
             renderOption={(props, option) => (
-                <li {...props}>                    
+                <li {...props}>
                     <ServerTypeIcon
                         src={GAME_SERVER_TYPE_ICONS[option.id]}
                         alt={t(i18n)`${Game.getServerTypeText(option.id, language, translations)}'s icon`}
@@ -72,7 +76,9 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                     hiddenLabel={!label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: value && GAME_SERVER_TYPE_ICONS[value] && <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
+                        startAdornment: value && GAME_SERVER_TYPE_ICONS[value] && (
+                            <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />
+                        ),
                     }}
                 />
             )}
