@@ -20,6 +20,11 @@ interface CharacterClassInputProps {
     language?: Game.Language;
 }
 
+interface CharacterClassOptions {
+    id?: Game.Class;
+    label: string;
+}
+
 export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
     value,
     onChange,
@@ -31,9 +36,9 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options = Object
+    const options: CharacterClassOptions[] = Object
         .values(Game.Class)
-        .map<{ id?: Game.Class; label: string }>((characterClass) => ({
+        .map<CharacterClassOptions>((characterClass) => ({
             id: characterClass,
             label: Game.getCharacterClassText(characterClass, language, translations),
         }));
@@ -56,7 +61,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option?.id && onChange(option.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>

@@ -85,7 +85,7 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option?.id && onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderInput={(params) => (
                 <TextField
                     {...params}

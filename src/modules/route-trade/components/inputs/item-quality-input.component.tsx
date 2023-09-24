@@ -14,6 +14,11 @@ interface ItemQualityInputProps {
     language?: Game.Language;
 }
 
+interface ItemQualityOptions {
+    id?: Game.ItemQuality;
+    label: string;
+}
+
 export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
     value,
     onChange,
@@ -26,10 +31,7 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options: {
-        id?: Game.ItemQuality;
-        label: string;
-    }[] = [Game.ItemQuality.Common, Game.ItemQuality.Magic, Game.ItemQuality.Rare]
+    const options: ItemQualityOptions[] = [Game.ItemQuality.Common, Game.ItemQuality.Magic, Game.ItemQuality.Rare]
         .map((type) => ({
             id: type,
             label: Game.getItemQualityText(type, language, translations),
@@ -53,7 +55,7 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderInput={(params) => <TextField {...params} label={label} required={required} />}
             disableClearable={required}
             disabled={disabled}

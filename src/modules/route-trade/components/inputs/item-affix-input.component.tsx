@@ -134,6 +134,11 @@ interface ItemAffixInputProps {
     language?: Game.Language;
 }
 
+interface ItemAffixOptions {
+    id?: string;
+    label: string;
+}
+
 export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     value,
     onChange,
@@ -148,9 +153,9 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
     const language = formLanguage ?? assetsLanguage;
 
     const { options, selected } = React.useMemo(() => {
-        const options = Object
+        const options: ItemAffixOptions[] = Object
             .keys(affixes.definitions[type])
-            .map<{ id?: string; label: string }>((id) => ({
+            .map<ItemAffixOptions>((id) => ({
                 id,
                 label: Game.getItemAffixText(
                     id,
@@ -186,7 +191,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option?.id && onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderInput={(params) => <TextField {...params} label={label} />}
             renderOption={(props, option, state) => [props, option, state.index] as React.ReactNode}
             fullWidth

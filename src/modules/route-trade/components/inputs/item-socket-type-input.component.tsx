@@ -63,7 +63,7 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderOption={(props, option) => (
                 <li {...props}>
                     {option.id

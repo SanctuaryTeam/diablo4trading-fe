@@ -56,7 +56,7 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderInput={(params) => <TextField {...params} label={label} required={required} />}
             disableClearable={required}
             disabled={disabled}

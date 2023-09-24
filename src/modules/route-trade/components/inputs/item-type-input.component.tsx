@@ -21,6 +21,11 @@ interface ItemTypeInputProps {
     language?: Game.Language;
 }
 
+interface ItemTypeOptions {
+    id?: Game.ItemType;
+    label: string;
+}
+
 export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
     value,
     onChange,
@@ -33,9 +38,9 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
-    const options = Object
+    const options: ItemTypeOptions[] = Object
         .values(Game.ItemType)
-        .map<{ id?: Game.ItemType; label: string }>((type) => ({
+        .map<ItemTypeOptions>((type) => ({
             id: type,
             label: Game.getItemTypeText(type, language, translations),
         }));
@@ -58,7 +63,7 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => option && option.id && onChange(option.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>
