@@ -44,8 +44,8 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
             id: type,
             label: Game.getItemSocketTypeText(type, language, translations),
         }));
-    
-    const selected = options.find((o) => o.id === value) ?? undefined;  
+
+    const selected = options.find((o) => o.id === value) ?? undefined;
 
     return (
         <Autocomplete

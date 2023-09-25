@@ -1,6 +1,4 @@
 import { Game } from '@diablosnaps/common';
-import { t } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
 import { Common } from '@modules/common';
 import { Autocomplete, TextField } from '@mui/material';
 import { matchSorter } from 'match-sorter';
@@ -35,8 +33,8 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
             id: type,
             label: Game.getItemQualityText(type, language, translations),
         }));
-    
-    const selected = options.find((o) => o.id === value) ?? undefined;  
+
+    const selected = options.find((o) => o.id === value) ?? undefined;
 
     return (
         <Autocomplete

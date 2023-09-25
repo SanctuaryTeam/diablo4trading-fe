@@ -177,11 +177,13 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
                         affixes,
                         entryValue,
                     ).replace(/\{([^}]+)\}/g, '#');
-                    return <li key={index}>
-                        {highlightNumbers(
-                            affixText
-                        )}
-                    </li>
+                    return (
+                        <li key={index}>
+                            {highlightNumbers(
+                                affixText,
+                            )}
+                        </li>
+                    );
                 })}
             </ul>
         );
@@ -189,7 +191,7 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
 
     if (!item.type || !item.inherentAffixes || !item.affixes) {
         return null;
-    };
+    }
 
     return (
         <Tooltip data-quality={item.quality}>

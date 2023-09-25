@@ -19,8 +19,8 @@ interface ServerTypeOption {
 }
 
 interface ServerTypeInputProps {
-    value: Game.ServerType;
-    onChange: (value: Game.ServerType | undefined) => void;
+    value?: Game.ServerType;
+    onChange: (value?: Game.ServerType) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -41,7 +41,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
             id: type,
             label: Game.getServerTypeText(type, language, translations),
         }));
-        
+
     const selected = options.find((x) => x.id === value)
         ?? {
             id: Game.ServerType.Seasonal,

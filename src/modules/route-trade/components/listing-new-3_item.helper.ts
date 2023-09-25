@@ -51,7 +51,8 @@ export function isListingNewItemFormValid(
     };
 
     if (
-        !form.inherentAffixes || (form.inherentAffixes.length === 0 || form.inherentAffixes.filter(isAffixValid).length < 1)
+        !form.inherentAffixes
+        || (form.inherentAffixes.length === 0 || form.inherentAffixes.filter(isAffixValid).length < 1)
     ) {
         return false;
     }

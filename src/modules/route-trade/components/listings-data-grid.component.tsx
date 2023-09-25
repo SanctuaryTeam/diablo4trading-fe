@@ -96,8 +96,9 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
                         -1,
                         affixes,
                         affixValue,
-                    )}
-                ) : [],
+                    );
+                })
+                : [],
             expiresAt: listing.expiresAt && new Date(listing.expiresAt),
         }));
     }, [results, language, translations, affixes]);

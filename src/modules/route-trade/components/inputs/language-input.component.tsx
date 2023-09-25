@@ -1,6 +1,4 @@
 import { Game } from '@diablosnaps/common';
-import { t } from '@lingui/macro';
-import { useLingui } from '@lingui/react';
 import { Autocomplete, TextField } from '@mui/material';
 import { matchSorter } from 'match-sorter';
 
@@ -58,15 +56,14 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
     required,
     onChange,
 }) => {
-
     const options: LanguageOptions[] = Object
         .values(Game.Language)
         .map((language) => ({
             id: language,
             label: formatLanguage(language),
         }));
-    
-    const selected = options.find((o) => o.id === value) ?? undefined; 
+
+    const selected = options.find((o) => o.id === value) ?? undefined;
 
     return (
         <Autocomplete

@@ -34,7 +34,7 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
         setVisible(false);
     };
 
-    const handleSetServerType = (serverType: Game.ServerType) => {
+    const handleSetServerType = (serverType?: Game.ServerType) => {
         setQuery({
             ...query,
             serverType,

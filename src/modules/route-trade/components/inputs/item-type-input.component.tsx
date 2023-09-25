@@ -44,8 +44,8 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
             id: type,
             label: Game.getItemTypeText(type, language, translations),
         }));
-    
-    const selected = options.find((o) => o.id === value) ?? undefined;  
+
+    const selected = options.find((o) => o.id === value) ?? undefined;
 
     return (
         <Autocomplete

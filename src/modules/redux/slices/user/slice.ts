@@ -4,7 +4,7 @@ import { UserLanguage } from './types';
 
 interface UserState {
     language: UserLanguage;
-    serverType: Game.ServerType;
+    serverType?: Game.ServerType;
 }
 
 export const USER_STATE_INITIAL: UserState = {
@@ -19,7 +19,7 @@ export const UserSlice = createSlice({
         setLanguage: (state, action: PayloadAction<UserLanguage>) => {
             state.language = action.payload;
         },
-        setServerType: (state, action: PayloadAction<Game.ServerType>) => {
+        setServerType: (state, action: PayloadAction<Game.ServerType | undefined>) => {
             state.serverType = action.payload;
         },
     },

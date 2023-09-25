@@ -34,9 +34,9 @@ export const RouteServerTypeProvider: React.FC<RouteServerTypeProviderProps> = (
 
     const routeServerType = ROUTE_MAPPING_REVERSE[params.serverType ?? ''];
     const setRouteServerType = React.useCallback(
-        (serverType: Game.ServerType) => {
+        (serverType: Game.ServerType | undefined) => {
             store.dispatch(Redux.UserSlice.actions.setServerType(serverType));
-            const pathname = ROUTE_MAPPING[serverType];
+            const pathname = serverType && ROUTE_MAPPING[serverType];
             navigate(`./../${pathname}`);
         },
         [navigate, store],
@@ -48,7 +48,7 @@ export const RouteServerTypeProvider: React.FC<RouteServerTypeProviderProps> = (
         if (!routeIncludesServerType) {
             const state = store.getState() as Redux.RootState;
             const serverType = Redux.UserSelectors.getServerType(state);
-            const pathname = ROUTE_MAPPING[serverType];
+            const pathname = serverType && ROUTE_MAPPING[serverType];
             navigate(`./${pathname}`, { replace: true });
         }
     }, [routeIncludesServerType, navigate, store]);
