@@ -12,8 +12,46 @@ export interface AssetsContext {
 export const AssetsContext = React.createContext<AssetsContext>({
     loading: true,
     language: Game.Language.English,
-    affixes: null as unknown as Game.Affixes,
-    translations: null as unknown as Game.Translations,
+    affixes: {
+        definitions: {
+            basic: {},
+            legendary: {},
+            unique: {},
+        },
+        attributes: {},
+        descriptions: {
+            deDE: {},
+            enUS: {},
+            esES: {},
+            esMX: {},
+            frFR: {},
+            itIT: {},
+            jaJP: {},
+            koKR: {},
+            plPL: {},
+            ptBR: {},
+            ruRU: {},
+            trTR: {},
+            zhCN: {},
+            zhTW: {},
+        },
+    },
+    translations: {
+        deDE: {},
+        enUS: {},
+        esES: {},
+        esMX: {},
+        frFR: {},
+        itIT: {},
+        jaJP: {},
+        koKR: {},
+        plPL: {},
+        ptBR: {},
+        ruRU: {},
+        trTR: {},
+        zhCN: {},
+        zhTW: {},
+    },
 });
 
 export const useAssets = () => {
