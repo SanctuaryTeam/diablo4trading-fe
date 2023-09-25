@@ -16,9 +16,14 @@ export const SearchFilterTitle: React.FC<SearchFilterTitleProps> = ({
 }) => {
     const { i18n } = useLingui();
 
-    const handleChange = (title: string) => {
-        onChange(value = title);
+    const handleChange = (title?: string) => {
+        if (!title) {
+            return;
+        }
+        value = title;
+        onChange(value);
     };
+
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
