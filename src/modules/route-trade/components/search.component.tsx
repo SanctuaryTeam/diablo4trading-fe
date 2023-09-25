@@ -71,7 +71,7 @@ export const Search: React.FC<SearchResultsProps> = ({
         throw new Error('Unable to fetch search results');
     }, [fetch]);
 
-    const loader = React.createRef<InfiniteLoader>();
+    const loader = React.useRef<InfiniteLoader>();
     React.useLayoutEffect(() => {
         if (!isNaN(timestamp)) {
             return;
@@ -141,7 +141,7 @@ export const Search: React.FC<SearchResultsProps> = ({
     return (
         <Root>
             <InfiniteLoader
-                ref={loader}
+                ref={loader as React.RefObject<InfiniteLoader>}
                 isRowLoaded={({ index }) => index < rowCount}
                 loadMoreRows={handleNextPage}
                 rowCount={hasMore ? rowCount + 1 : rowCount}
