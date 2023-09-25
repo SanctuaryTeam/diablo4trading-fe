@@ -43,7 +43,7 @@ interface LanguageInputProps {
     label?: string;
     disabled?: boolean;
     required?: boolean;
-    onChange: (value: Game.Language) => void;
+    onChange: (value?: Game.Language) => void;
 }
 
 interface LanguageOptions {
@@ -58,7 +58,6 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
     required,
     onChange,
 }) => {
-    const { i18n } = useLingui();
 
     const options: LanguageOptions[] = Object
         .values(Game.Language)
@@ -66,14 +65,8 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
             id: language,
             label: formatLanguage(language),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
-    if (selected === undefined) {
-        options.push({
-            id: value,
-            label: t(i18n)`Unknown: ${value}`,
-        });
-        selected = options[options.length - 1];
-    }
+    
+    const selected = options.find((o) => o.id === value) ?? undefined; 
 
     return (
         <Autocomplete
@@ -85,7 +78,7 @@ export const LanguageInput: React.FC<LanguageInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option && option.id && onChange(option.id)}
+            onChange={(_, option) => onChange(option?.id)}
             renderInput={(params) => (
                 <TextField
                     {...params}

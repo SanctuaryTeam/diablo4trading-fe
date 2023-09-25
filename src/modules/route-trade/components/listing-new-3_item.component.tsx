@@ -48,7 +48,7 @@ export const ListingNewItem: React.FC<ListingNewItemProps> = ({
         return onChange(prev => ({ ...prev, ...next }));
     }, [onChange]);
 
-    const isSeasonal = serverType && value.type && !Common.isSeasonal(serverType, value.type);
+    const isSeasonal = !Common.isSeasonal(serverType, value.type);
 
     React.useEffect(() => {
         if (isSeasonal) {

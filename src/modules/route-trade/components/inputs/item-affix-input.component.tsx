@@ -126,7 +126,7 @@ const StyledPopper = styled(Popper)({
 
 interface ItemAffixInputProps {
     value?: Game.AffixId;
-    onChange: (value: Game.AffixId) => void;
+    onChange: (value?: Game.AffixId) => void;
     label?: string;
     type?: Game.AffixType;
     placeholder?: string;
@@ -167,14 +167,8 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                     placeholder,
                 ),
             }));
-        let selected = value === undefined ? null : options.find((o) => o.id === value);
-        if (selected === undefined) {
-            options.push({
-                id: value,
-                label: t(i18n)`Unknown: ${value}`,
-            });
-            selected = options[options.length - 1];
-        }
+
+        const selected = options.find((o) => o.id === value) ?? undefined;
         return { options, selected };
     }, [affixes, type, value, language, placeholder, i18n]);
 
@@ -191,7 +185,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option && option.id && onChange(option.id)}
+            onChange={(_, option) => onChange(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} />}
             renderOption={(props, option, state) => [props, option, state.index] as React.ReactNode}
             fullWidth

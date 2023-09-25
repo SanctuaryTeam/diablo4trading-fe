@@ -86,19 +86,19 @@ export const ListingsDataGrid: React.FC<ListingsDataGridProps> = ({
             itemTypeLine: Game.getItemTypeLine(item.variant, item.quality, item.type, language, translations),
             itemPower: item.power,
             itemAffixes: item.affixes
-                ? item.affixes.map((affix) =>
-                    Game.getItemAffixText(
+                ? item.affixes.map((affix) => {
+                    const affixValue = `${isNaN(affix.value ?? NaN) ? '?' : affix.value}`;
+                    return Game.getItemAffixText(
                         affix.id,
                         language,
                         Game.AffixType.Basic,
                         -1,
                         -1,
                         affixes,
-                        `${isNaN(affix.value ?? NaN) ? '?' : affix.value}`,
-                    )
-                )
-                : [],
-            expiresAt: listing.expiresAt ? new Date(listing.expiresAt) : undefined,
+                        affixValue,
+                    )}
+                ) : [],
+            expiresAt: listing.expiresAt && new Date(listing.expiresAt),
         }));
     }, [results, language, translations, affixes]);
 

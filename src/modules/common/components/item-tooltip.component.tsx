@@ -187,21 +187,23 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         );
     };
 
+    if (!item.type || !item.inherentAffixes || !item.affixes) {
+        return null;
+    };
+
     return (
         <Tooltip data-quality={item.quality}>
-            {item.type && (
-                <Icon style={item.type && { backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />
-            )}
+            <Icon style={{ backgroundImage: `url(${GAME_ITEM_TYPE_TOOLTIP_ICONS[item.type]})` }} />
             <TypeLine data-quality={item.quality}>{label}</TypeLine>
             <Power>{highlightNumbers(itemPower)}</Power>
             <Separator data-left />
-            {item.inherentAffixes && item.inherentAffixes.length > 0 && (
+            {item.inherentAffixes.length > 0 && (
                 <>
                     {renderAffixes(item.inherentAffixes)}
                     <Separator />
                 </>
             )}
-            {item.affixes && item.affixes.length > 0 && renderAffixes(item.affixes)}
+            {item.affixes.length > 0 && renderAffixes(item.affixes)}
             {(requiredLevel !== undefined || classRestriction !== undefined) && (
                 <Extras>
                     {requiredLevel !== undefined && <Number>{requiredLevel}</Number>}

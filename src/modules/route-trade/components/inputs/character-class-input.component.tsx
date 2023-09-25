@@ -14,7 +14,7 @@ const ClassIcon = styled('img')(() => ({
 
 interface CharacterClassInputProps {
     value?: Game.Class;
-    onChange: (value: Game.Class) => void;
+    onChange: (value?: Game.Class) => void;
     label?: string;
     disabled?: boolean;
     language?: Game.Language;
@@ -42,14 +42,8 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
             id: characterClass,
             label: Game.getCharacterClassText(characterClass, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
-    if (selected === undefined) {
-        options.push({
-            id: value,
-            label: t(i18n)`Unknown: ${value}`,
-        });
-        selected = options[options.length - 1];
-    }
+    
+    const selected = options.find((o) => o.id === value) ?? undefined;   
 
     return (
         <Autocomplete
@@ -61,7 +55,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option && option.id && onChange(option.id)}
+            onChange={(_, option) => onChange(option?.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>
@@ -81,13 +75,12 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                     InputProps={{
                         ...params.InputProps,
                         startAdornment: value
-                            ? (
+                            && (
                                 <ClassIcon
                                     src={Common.GAME_CLASS_ICONS[value]}
                                     alt={t(i18n)`${Game.getCharacterClassText(value, language, translations)}'s icon`}
                                 />
-                            )
-                            : undefined,
+                            ),
                     }}
                 />
             )}

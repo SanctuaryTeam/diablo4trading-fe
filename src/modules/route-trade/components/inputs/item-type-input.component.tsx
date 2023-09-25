@@ -44,14 +44,8 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
             id: type,
             label: Game.getItemTypeText(type, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
-    if (selected === undefined) {
-        options.push({
-            id: value,
-            label: t(i18n)`Unknown: ${value}`,
-        });
-        selected = options[options.length - 1];
-    }
+    
+    const selected = options.find((o) => o.id === value) ?? undefined;  
 
     return (
         <Autocomplete
@@ -63,7 +57,7 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option && option.id && onChange(option.id)}
+            onChange={(_, option) => onChange(option?.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>

@@ -4,7 +4,7 @@ import { ListingNewItemFormValue } from './listing-new-3_item.types';
 
 export function isListingNewItemFormValid(
     form: ListingNewItemFormValue,
-    serverType: Game.ServerType,
+    serverType?: Game.ServerType,
 ): boolean {
     const power = form.power ?? NaN;
     const requiredLevel = form.requiredLevel ?? NaN;
@@ -51,13 +51,14 @@ export function isListingNewItemFormValid(
     };
 
     if (
-        (form.inherentAffixes || []).length === 0
-        || form.inherentAffixes && form.inherentAffixes.filter(isAffixValid).length < 1
+        !form.inherentAffixes || (form.inherentAffixes.length === 0 || form.inherentAffixes.filter(isAffixValid).length < 1)
     ) {
         return false;
     }
 
-    if ((form.affixes || []).length === 0 || form.affixes && form.affixes.filter(isAffixValid).length < 2) {
+    if (
+        !form.affixes || (form.affixes.length === 0 || form.affixes.filter(isAffixValid).length < 2)
+    ) {
         return false;
     }
 

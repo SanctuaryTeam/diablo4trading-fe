@@ -27,7 +27,6 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
     disabled,
     language: formLanguage,
 }) => {
-    const { i18n } = useLingui();
     const { language: assetsLanguage, translations } = Common.useAssets();
     const language = formLanguage ?? assetsLanguage;
 
@@ -36,14 +35,8 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
             id: type,
             label: Game.getItemQualityText(type, language, translations),
         }));
-    let selected = value === undefined ? null : options.find((x) => x.id === value);
-    if (selected === undefined) {
-        options.push({
-            id: value,
-            label: t(i18n)`Unknown: ${value}`,
-        });
-        selected = options[options.length - 1];
-    }
+    
+    const selected = options.find((o) => o.id === value) ?? undefined;  
 
     return (
         <Autocomplete
@@ -55,7 +48,7 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => option && option.id && onChange(option.id)}
+            onChange={(_, option) => onChange(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} required={required} />}
             disableClearable={required}
             disabled={disabled}

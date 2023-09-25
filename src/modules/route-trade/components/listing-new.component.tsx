@@ -113,7 +113,7 @@ export const ListingNew: React.FC<ListingNewProps> = ({
             case Step.Params:
                 return isListingNewParamsFormValid(paramsForm);
             case Step.Item:
-                return paramsForm.serverType && isListingNewItemFormValid(itemForm, paramsForm.serverType);
+                return isListingNewItemFormValid(itemForm, paramsForm.serverType);
             case Step.Listing:
                 return true;
         }
