@@ -33,13 +33,11 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 
     React.useEffect(() => {
         const itemType = payload?.query?.item?.type;
-        if (itemType && !Common.isSeasonal(serverType, itemType)) {
-            if (payload.query?.seasonal) {
-                setPayload({
-                    ...payload,
-                    query: { ...payload.query, seasonal: undefined },
-                });
-            }
+        if (!Common.isSeasonal(serverType, itemType) && payload.query?.seasonal) {
+            setPayload({
+                ...payload,
+                query: { ...payload.query, seasonal: undefined },
+            });
         }
     }, [payload, serverType]);
 

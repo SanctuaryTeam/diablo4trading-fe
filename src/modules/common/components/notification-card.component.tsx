@@ -83,7 +83,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                         </Grid>
                         <Grid item xs={12} display='flex' justifyContent='flex-end'>
                             {yes
-                                ? (
+                                && (
                                     <Button
                                         color='success'
                                         variant='outlined'
@@ -92,10 +92,9 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                     >
                                         {yesText}
                                     </Button>
-                                )
-                                : <></>}
+                                )}
                             {no
-                                ? (
+                                && (
                                     <Button
                                         color='error'
                                         variant='outlined'
@@ -104,8 +103,7 @@ export const NotificationCard: React.FC<NotificationCardProps> = ({
                                     >
                                         {noText}
                                     </Button>
-                                )
-                                : <></>}
+                                )}
                         </Grid>
                     </Grid>
                 </Box>

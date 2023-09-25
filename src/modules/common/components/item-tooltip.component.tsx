@@ -133,8 +133,8 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
     const { language, translations, affixes } = useAssets();
 
     const label = Game.getItemTypeLine(
-        // @ts-ignore
-        item.variant, // Fix upstream
+        // @ts-ignore - Fix upstream
+        item.variant,
         item.quality,
         item.type,
         language,
@@ -159,8 +159,8 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         : undefined;
 
     const classRestriction = item.classRestriction?.length ?? 0 > 0
-        // @ts-ignore
-        ? Game.getCharacterClassText(item.classRestriction, language, translations) // Fix upstream
+        // @ts-ignore - Fix upstream
+        ? Game.getCharacterClassText(item.classRestriction, language, translations)
         : undefined;
 
     const renderAffixes = (entries: Game.ItemAffix[]) => {

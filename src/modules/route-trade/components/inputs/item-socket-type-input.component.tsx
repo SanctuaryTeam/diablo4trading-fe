@@ -61,13 +61,12 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
             renderOption={(props, option) => (
                 <li {...props}>
                     {option.id
-                        ? (
+                        && (
                             <ItemSocketTypeIcon
                                 src={Common.GAME_ITEM_SOCKET_TYPE_ICONS[option.id]}
                                 alt={t(i18n)`${Game.getItemSocketTypeText(option.id, language, translations)}'s icon`}
                             />
-                        )
-                        : <></>}
+                        )}
                     &nbsp;
                     {option.label}
                 </li>
@@ -80,13 +79,12 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                     InputProps={{
                         ...params.InputProps,
                         startAdornment: value
-                            ? (
+                            && (
                                 <ItemSocketTypeIcon
                                     src={Common.GAME_ITEM_SOCKET_TYPE_ICONS[value]}
                                     alt={t(i18n)`${Game.getItemSocketTypeText(value, language, translations)}'s icon`}
                                 />
-                            )
-                            : undefined,
+                            ),
                     }}
                 />
             )}
