@@ -6,7 +6,7 @@ import { Box, Button, Grid, Stack } from '@mui/material';
 import React from 'react';
 
 interface ListingDetailProps {
-    id: string;
+    id?: string;
     onCancel: () => void;
 }
 
@@ -14,6 +14,10 @@ export const ListingDetail: React.FC<ListingDetailProps> = ({
     id,
     onCancel,
 }) => {
+    if (!id) {
+        return null;
+    }
+
     const { i18n } = useLingui();
     // TODO: use listing query
 
