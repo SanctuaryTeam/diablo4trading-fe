@@ -33,14 +33,6 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
     required,
     disabled,
 }) => {
-    const onChangeHandler = (value?: Game.ServerType) => {
-        if (!value) {
-            return;
-        }
-
-        onChange(value);
-    };
-
     const { i18n } = useLingui();
     const { language, translations } = useAssets();
     const options: ServerTypeOption[] = Object
@@ -55,6 +47,14 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
             id: Game.ServerType.Seasonal,
             label: Game.getServerTypeText(Game.ServerType.Seasonal, language, translations),
         };
+
+    const onChangeHandler = (value?: Game.ServerType) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
 
     return (
         <Autocomplete
