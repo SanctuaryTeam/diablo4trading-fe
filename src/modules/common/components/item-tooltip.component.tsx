@@ -99,7 +99,7 @@ const TypeLine = styled('div')(({ theme }) => ({
 
 const Power = styled('div')(() => ({}));
 
-const Number = styled('span')(({ theme }) => ({
+const NumberText = styled('span')(({ theme }) => ({
     color: theme.palette.item.number,
 }));
 
@@ -143,7 +143,7 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
 
     const highlightNumbers = (text: string) => {
         return reactStringReplace(text, /(\d+)/g, (value, index) => {
-            return <Number key={index}>{value}</Number>;
+            return <NumberText key={index}>{value}</NumberText>;
         });
     };
 
@@ -152,7 +152,7 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         s1: itemPowerValue,
     }).trim();
 
-    const requiredLevel = item.requiredLevel && item.requiredLevel > 0
+    const requiredLevel = Number(item?.requiredLevel) > 0
         ? replaceVariables(translations[language]['RequiredLevel'], {
             value: `${item.requiredLevel}`,
         }).trim()
@@ -162,6 +162,8 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         // @ts-ignore - Fix upstream
         ? Game.getCharacterClassText(item.classRestriction, language, translations)
         : undefined;
+
+    const isArrayWithLength = (array: any): array is Array<any> => Array.isArray(array) && array.length > 0;
 
     const renderAffixes = (entries: Game.ItemAffix[]) => {
         return (
@@ -189,7 +191,7 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
         );
     };
 
-    if (!item.type || !item.inherentAffixes || !item.affixes) {
+    if (!item.type) {
         return null;
     }
 
@@ -199,16 +201,16 @@ export const ItemTooltip: React.FC<ItemTooltipProps> = ({
             <TypeLine data-quality={item.quality}>{label}</TypeLine>
             <Power>{highlightNumbers(itemPower)}</Power>
             <Separator data-left />
-            {item.inherentAffixes.length > 0 && (
+            {isArrayWithLength(item.inherentAffixes) && (
                 <>
                     {renderAffixes(item.inherentAffixes)}
                     <Separator />
                 </>
             )}
-            {item.affixes.length > 0 && renderAffixes(item.affixes)}
+            {isArrayWithLength(item.affixes) && renderAffixes(item.affixes)}
             {(requiredLevel !== undefined || classRestriction !== undefined) && (
                 <Extras>
-                    {requiredLevel !== undefined && <Number>{requiredLevel}</Number>}
+                    {requiredLevel !== undefined && <NumberText>{requiredLevel}</NumberText>}
                     {classRestriction !== undefined && <div>{classRestriction}</div>}
                 </Extras>
             )}

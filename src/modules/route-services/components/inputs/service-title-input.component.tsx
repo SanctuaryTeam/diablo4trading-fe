@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 interface ServiceTitleProps {
     value?: string;
-    onChange: (value?: string) => void;
+    onChange: (value: string) => void;
     label?: string;
     helperText?: string;
     disabled?: boolean;
@@ -22,6 +22,9 @@ export const ServiceTitleInput: React.FC<ServiceTitleProps> = ({
     }, [value]);
 
     const setValue = () => {
+        if (!textValue) {
+            return;
+        }
         onChange(textValue);
     };
 

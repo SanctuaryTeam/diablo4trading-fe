@@ -125,7 +125,7 @@ const StyledPopper = styled(Popper)({
 
 interface ItemAffixInputProps {
     value?: Game.AffixId;
-    onChange: (value?: Game.AffixId) => void;
+    onChange: (value: Game.AffixId) => void;
     label?: string;
     type?: Game.AffixType;
     placeholder?: string;
@@ -171,6 +171,14 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
         return { options, selected };
     }, [affixes, type, value, language, placeholder, i18n]);
 
+    const onChangeHandler = (value?: Game.AffixId) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             disableListWrap
@@ -184,7 +192,7 @@ export const ItemAffixInput: React.FC<ItemAffixInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} />}
             renderOption={(props, option, state) => [props, option, state.index] as React.ReactNode}
             fullWidth

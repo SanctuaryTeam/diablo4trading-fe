@@ -5,7 +5,7 @@ import { matchSorter } from 'match-sorter';
 
 interface ItemVariantInputProps {
     value?: Game.ItemVariant;
-    onChange: (value?: Game.ItemVariant) => void;
+    onChange: (value: Game.ItemVariant) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -37,6 +37,14 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
 
     const selected = options.find((o) => o.id === value) ?? undefined;
 
+    const onChangeHandler = (value?: Game.ItemVariant) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -47,7 +55,7 @@ export const ItemVariantInput: React.FC<ItemVariantInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} required={required} />}
             disableClearable={required}
             disabled={disabled}

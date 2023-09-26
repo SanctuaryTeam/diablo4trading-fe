@@ -14,7 +14,7 @@ const ItemSocketTypeIcon = styled('img')(() => ({
 
 interface ItemSocketTypeInputProps {
     value?: Game.ItemSocketType;
-    onChange: (value?: Game.ItemSocketType) => void;
+    onChange: (value: Game.ItemSocketType) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -47,6 +47,14 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
 
     const selected = options.find((o) => o.id === value) ?? undefined;
 
+    const onChangeHandler = (value?: Game.ItemSocketType) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -57,7 +65,7 @@ export const ItemSocketTypeInput: React.FC<ItemSocketTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderOption={(props, option) => (
                 <li {...props}>
                     {option.id

@@ -8,7 +8,7 @@ export interface AssetsContext {
     language: Game.Language;
 }
 
-export const AssetsContext = React.createContext<AssetsContext>({
+export const defaultAssetContext = {
     loading: true,
     language: Game.Language.English,
     affixes: {
@@ -51,7 +51,9 @@ export const AssetsContext = React.createContext<AssetsContext>({
         zhCN: {},
         zhTW: {},
     },
-});
+};
+
+export const AssetsContext = React.createContext<AssetsContext>(defaultAssetContext);
 
 export const useAssets = () => {
     return React.useContext(AssetsContext);

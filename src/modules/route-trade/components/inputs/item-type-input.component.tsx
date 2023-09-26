@@ -14,7 +14,7 @@ const ItemTypeIcon = styled('img')(() => ({
 
 interface ItemTypeInputProps {
     value?: Game.ItemType;
-    onChange: (value?: Game.ItemType) => void;
+    onChange: (value: Game.ItemType) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -47,6 +47,14 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
 
     const selected = options.find((o) => o.id === value) ?? undefined;
 
+    const onChangeHandler = (value?: Game.ItemType) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -57,7 +65,7 @@ export const ItemTypeInput: React.FC<ItemTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>
