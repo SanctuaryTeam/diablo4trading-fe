@@ -5,7 +5,7 @@ import { matchSorter } from 'match-sorter';
 
 interface ItemQualityInputProps {
     value?: Game.ItemQuality;
-    onChange: (value?: Game.ItemQuality) => void;
+    onChange: (value: Game.ItemQuality) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -36,6 +36,14 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
 
     const selected = options.find((o) => o.id === value) ?? undefined;
 
+    const onChangeHandler = (value?: Game.ItemQuality) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -46,7 +54,7 @@ export const ItemQualityInput: React.FC<ItemQualityInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderInput={(params) => <TextField {...params} label={label} required={required} />}
             disableClearable={required}
             disabled={disabled}

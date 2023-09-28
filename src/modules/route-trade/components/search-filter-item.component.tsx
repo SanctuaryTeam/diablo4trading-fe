@@ -6,7 +6,7 @@ import { CharacterClassInput, ItemTypeInput, NumberInput } from './inputs';
 
 interface SearchFilterItemProps {
     value?: API.TradeItemFilter;
-    onChange: (value?: API.TradeItemFilter) => void;
+    onChange: (value: API.TradeItemFilter) => void;
     disabled?: boolean;
 }
 

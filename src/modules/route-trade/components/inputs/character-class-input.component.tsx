@@ -14,7 +14,7 @@ const ClassIcon = styled('img')(() => ({
 
 interface CharacterClassInputProps {
     value?: Game.Class;
-    onChange: (value?: Game.Class) => void;
+    onChange: (value: Game.Class) => void;
     label?: string;
     disabled?: boolean;
     language?: Game.Language;
@@ -45,6 +45,14 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
 
     const selected = options.find((o) => o.id === value) ?? undefined;
 
+    const onChangeHandler = (value?: Game.Class) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -55,7 +63,7 @@ export const CharacterClassInput: React.FC<CharacterClassInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderOption={(props, option) => (
                 option.id && (
                     <li {...props}>

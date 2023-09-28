@@ -24,7 +24,7 @@ function getCountRange(options: API.TradeAffixOption[]) {
 
 interface SearchFilterAffixProp {
     value?: API.TradeAffixFilter;
-    onChange: (value?: API.TradeAffixFilter) => void;
+    onChange: (value: API.TradeAffixFilter) => void;
     disabled?: boolean;
 }
 

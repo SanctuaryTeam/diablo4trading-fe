@@ -2,11 +2,11 @@ import { Assets } from '@diablosnaps/assets';
 import { Game } from '@diablosnaps/common';
 import { Redux } from '@modules/redux';
 import React, { useEffect } from 'react';
-import { AssetsContext } from './assets.context';
+import { AssetsContext, defaultAssetContext } from './assets.context';
 import { useRouteLanguage } from './route-language.context';
 
 interface AssetsProviderProps {
-    children?: (loading: boolean) => React.ReactNode;
+    children: (loading: boolean) => React.ReactNode;
 }
 
 export const AssetsProvider: React.FC<AssetsProviderProps> = ({
@@ -16,9 +16,9 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
 
     const [loading, setLoading] = React.useState<boolean>(true);
 
-    const [affixes, setAffixes] = React.useState<Game.Affixes>();
+    const [affixes, setAffixes] = React.useState<Game.Affixes>(defaultAssetContext.affixes);
 
-    const [translations, setTranslations] = React.useState<Game.Translations>();
+    const [translations, setTranslations] = React.useState<Game.Translations>(defaultAssetContext.translations);
 
     const language = React.useMemo(() => {
         switch (routeLanguage) {
@@ -56,9 +56,7 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
     const value = React.useMemo(() => {
         const ctx: AssetsContext = {
             loading,
-            // @ts-ignore
             affixes,
-            // @ts-ignore
             translations,
             language,
         };
@@ -85,7 +83,7 @@ export const AssetsProvider: React.FC<AssetsProviderProps> = ({
 
     return (
         <AssetsContext.Provider value={value}>
-            {children ? children(loading) : <></>}
+            {children(loading)}
         </AssetsContext.Provider>
     );
 };

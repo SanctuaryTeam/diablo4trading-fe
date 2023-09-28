@@ -20,7 +20,7 @@ interface ServerTypeOption {
 
 interface ServerTypeInputProps {
     value?: Game.ServerType;
-    onChange: (value?: Game.ServerType) => void;
+    onChange: (value: Game.ServerType) => void;
     label?: string;
     required?: boolean;
     disabled?: boolean;
@@ -48,6 +48,14 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
             label: Game.getServerTypeText(Game.ServerType.Seasonal, language, translations),
         };
 
+    const onChangeHandler = (value?: Game.ServerType) => {
+        if (!value) {
+            return;
+        }
+
+        onChange(value);
+    };
+
     return (
         <Autocomplete
             value={selected}
@@ -58,7 +66,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                         keys: ['label'],
                     })
                     : options}
-            onChange={(_, option) => onChange(option?.id)}
+            onChange={(_, option) => onChangeHandler(option?.id)}
             renderOption={(props, option) => (
                 <li {...props}>
                     <ServerTypeIcon
@@ -77,9 +85,7 @@ export const ServerTypeInput: React.FC<ServerTypeInputProps> = ({
                     hiddenLabel={!label}
                     InputProps={{
                         ...params.InputProps,
-                        startAdornment: value && GAME_SERVER_TYPE_ICONS[value] && (
-                            <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />
-                        ),
+                        startAdornment: value && <ServerTypeIcon src={GAME_SERVER_TYPE_ICONS[value]} />,
                     }}
                 />
             )}
