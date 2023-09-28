@@ -1,6 +1,7 @@
 import { ReactComponent as DiscordIcon } from '@assets/discord.svg';
 import { t } from '@lingui/macro';
 import { useLingui } from '@lingui/react';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { Link as MuiLink, Stack, SvgIcon, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -43,6 +44,9 @@ export const Footer: React.FC = () => {
                 </Link>
                 <Link target='_blank' href='https://discord.gg/Diablo4'>
                     <SvgIcon component={DiscordIcon} />
+                </Link>
+                <Link target='_blank' href='https://github.com/SanctuaryTeam/'>
+                    <GitHubIcon />
                 </Link>
             </Stack>
             <Stack
