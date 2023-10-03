@@ -107,12 +107,45 @@ export const BackendSlice = createApi({
                 body: { id, state },
             }),
         }),
+        // user-notifications search
+        searchNotifications: builder.query<API.UserNotificationDto[], { recipientId: string }>({
+            query: params => ({
+                url: '/users/notifications',
+                method: 'GET',
+                params,
+            }),
+        }),
+
+        closeVouch: builder.mutation({
+            query: (vouchData) => ({
+                url: '/user/vouch/close',
+                method: 'POST',
+                body: vouchData,
+            }),
+        }),
+        // Close vouch
+        // closeVouchs: builder.query<
+        //     API.UserVouchDto,
+        //     { id: string; rating: number; isPositive: boolean; description: string }
+        // >({
+        //     query: params => ({
+        //         url: '/user/vouch',
+        //         method: 'POST',
+        //         params,
+        //     }),
+        // }),
     }),
 });
 
 export const {
     // auth
     useAuthDiscordCallbackQuery,
+    useLazySearchNotificationsQuery,
+    useSearchNotificationsQuery,
+    // vouch
+    useCloseVouchMutation,
+    // useCloseVouchQuery,
+    // useLazyCloseVouchQuery,
     // trade
     useTradeSearchQuery,
     useLazyTradeSearchQuery,

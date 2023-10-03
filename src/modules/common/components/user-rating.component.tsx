@@ -34,7 +34,7 @@ export const UserRating: React.FC<UserRatingProps> = ({
                                         {user}
                                     </Typography>
                                     <Box sx={{ display: 'flex' }}>
-                                        <Rating name='read-only' value={rating} precision={0.5} readOnly />
+                                        <Rating name='read-only' value={rating / 2} precision={0.5} readOnly />
                                         <Typography>({score})</Typography>
                                     </Box>
                                 </Box>

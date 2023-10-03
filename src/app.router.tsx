@@ -3,7 +3,6 @@ import { RouteAuth } from '@modules/route-auth';
 import { RoutePages } from '@modules/route-pages';
 import { RouteServices } from '@modules/route-services';
 import { RouteTrade } from '@modules/route-trade';
-import { RouteVouch } from '@modules/route-vouch';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom';
 import { MasterLayout } from './app.master.layout';
 
@@ -40,7 +39,6 @@ export const router = createBrowserRouter([
             { index: true, element: <Navigate to='trade' replace /> },
             { path: 'services/*', element: <RouteServices.Element /> },
             { path: 'trade/*', element: <RouteTrade.Element /> },
-            { path: 'vouch/*', element: <RouteVouch.Element /> },
             { path: 'pages/*', element: <RoutePages.Element /> },
             { path: '*', element: <Common.NotFoundPage /> },
         ],

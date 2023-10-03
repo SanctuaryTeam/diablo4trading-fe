@@ -43,12 +43,13 @@ interface ServiceData {
 export const ServiceCreate: React.FC<ServiceCreateFormProps> = ({ onSubmit, onCancel }) => {
     const [createService] = useCreateServiceMutation();
     const [serverType, setServerType] = useRouteServerType();
+    const user = useSelector(AuthSelectors.getUser);
 
     const [serviceData, setServiceData] = React.useState<ServiceData>({
         realmType: serverType,
         title: '',
         content: '',
-        userId: useSelector(AuthSelectors.getUserId),
+        userId: user ? user.id : '0',
         tags: 0,
         deleted: false,
         maxAcceptedSlots: 3,

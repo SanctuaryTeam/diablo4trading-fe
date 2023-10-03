@@ -14,7 +14,7 @@ export const PosNegRatingInput: React.FC<PosNegRatingInputProps> = ({ onChange, 
     };
 
     return (
-        <Box>
+        <Box mt={-1}>
             <Checkbox
                 color='success'
                 onChange={handleThumbsUpChange}

@@ -1,7 +1,8 @@
 import { Redux } from '@modules/redux';
-import { AuthSelectors } from '@modules/redux/slices';
+import { AuthSelectors, useSearchNotificationsQuery } from '@modules/redux/slices';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { Card, IconButton, Menu, MenuItem } from '@mui/material';
+import { API } from '@sanctuaryteam/shared';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Common } from '..';
@@ -18,7 +19,9 @@ export const HeaderNotifications: React.FC = () => {
     };
 
     const user = useSelector(Redux.AuthSelectors.getUser) ?? null;
-    const notifications = useSelector(AuthSelectors.getNotifications);
+    user && useSearchNotificationsQuery({ recipientId: user.id });
+    const notifications = useSelector(AuthSelectors.getUserNotifications);
+
     if (user) {
         return (
             <React.Fragment>
@@ -31,22 +34,22 @@ export const HeaderNotifications: React.FC = () => {
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
                     onClose={handleCloseMenu}
+                    sx={{ maxWidth: '25%' }}
                 >
                     <Card
                         elevation={2}
-                        sx={{ outlineColor: 'error' }}
+                        sx={{ outlineColor: 'error', borderColor: 'white', borderWidth: '2px', borderStyle: 'solid' }}
                     >
                         {notifications
                             ? notifications.map(notification => (
                                 <MenuItem
-                                    key={'navbar-notification-' + notification?.entity?.id + '-'
-                                        + notification?.recipient?.id}
-                                    onClick={handleCloseMenu}
+                                    key={'navbar-notification-' + notification.reference?.id + '-'
+                                        + notification.recipient?.id}
                                 >
                                     <Common.NotificationCard
-                                        entity={notification?.entity}
-                                        message={notification?.message}
-                                        recipient={notification?.recipient}
+                                        entity={notification.reference as API.UserVouchDto}
+                                        message={notification.message}
+                                        recipient={notification.recipient}
                                     />
                                 </MenuItem>
                             ))
